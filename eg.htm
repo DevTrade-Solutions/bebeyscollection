@@ -27,18 +27,18 @@
                 
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="collections.html">Collections</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="in-store.html">In-Store</a></li>
-                    <li><a href="custom.html">Custom</a></li>
-                    <li><a href="story.html">Our Story</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#lookbook">Lookbook</a></li>
+                    <li><a href="#heritage">Heritage</a></li>
+                    <li><a href="#store">Store</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
                 
                 <div class="nav-actions">
-                    <a href="search.html" class="search-btn">
+                    <a href="#search" class="search-btn">
                         <i class="fas fa-search"></i>
                     </a>
-                    <a href="account.html" class="account-btn">
+                    <a href="#account" class="account-btn">
                         <i class="fas fa-user"></i>
                     </a>
                     <div class="cart-btn" id="cartBtn">
@@ -46,45 +46,41 @@
                         <span class="cart-count">0</span>
                     </div>
                     <button class="menu-toggle" id="menuToggle">
-                        <i class="fas fa-bars"></i>
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </button>
                 </div>
-
-                <!-- Add this to your header section -->
-                <button class="menu-toggle" id="menuToggle">
-                    <!-- Three lines will be added by JavaScript -->
-                </button>
             </nav>
         </div>
     </header>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-header">
-        <div class="logo">
-            <div class="logo-icon">
-                <i class="fas fa-crown"></i>
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <span class="logo-text">BEBEYS<br>COLLECTION</span>
             </div>
-            <span class="logo-text">BEBEYS<br>COLLECTION</span>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-        <button class="close-menu" id="closeMenu">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
         
         <ul class="mobile-nav-links">
             <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="collections.html"><i class="fas fa-layer-group"></i> Collections</a></li>
-            <li><a href="shop.html"><i class="fas fa-store"></i> Shop Online</a></li>
-            <li><a href="in-store.html"><i class="fas fa-map-marker-alt"></i> In-Store Experience</a></li>
-            <li><a href="custom.html"><i class="fas fa-paint-brush"></i> Custom Design</a></li>
-            <li><a href="story.html"><i class="fas fa-book"></i> Our Story</a></li>
-            <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Store Events</a></li>
-            <li><a href="styling.html"><i class="fas fa-user-tie"></i> Personal Styling</a></li>
+            <li><a href="#shop"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+            <li><a href="#lookbook"><i class="fas fa-images"></i> Lookbook</a></li>
+            <li><a href="#heritage"><i class="fas fa-book"></i> Heritage</a></li>
+            <li><a href="#store"><i class="fas fa-store"></i> Store</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="#appointment"><i class="fas fa-calendar-alt"></i> Book Appointment</a></li>
         </ul>
         
         <div class="mobile-actions">
-            <a href="account.html" class="mobile-action-btn">
+            <a href="#account" class="mobile-action-btn">
                 <i class="fas fa-user"></i> Account
             </a>
             <div class="mobile-action-btn cart-btn" id="mobileCartBtn">
@@ -93,44 +89,30 @@
         </div>
         
         <div class="store-info">
-            <h4>Visit Our Store</h4>
-            <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Johannesburg</p>
+            <h4><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
+            <p><i class="fas fa-location-dot"></i> 123 Luxury Avenue, Sandton, Johannesburg</p>
             <p><i class="fas fa-clock"></i> Mon-Sat: 10AM-7PM | Sun: 12PM-5PM</p>
             <p><i class="fas fa-phone"></i> (011) 234-5678</p>
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - SIMPLIFIED -->
     <section class="hero">
         <div class="hero-background"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">
-                    <span class="badge-text">EXCLUSIVE IN-STORE COLLECTION</span>
+                    <span class="badge-text">EXCLUSIVE IN-STORE</span>
                 </div>
-                <h1 class="hero-title">African Luxury<br>Reimagined</h1>
-                <p class="hero-subtitle">Experience heritage craftsmanship in our exclusive store collections</p>
+                <h1 class="hero-title">African Luxury Reimagined</h1>
+                <p class="hero-subtitle">Heritage craftsmanship meets contemporary design</p>
                 <div class="hero-buttons">
-                    <a href="#store-experience" class="btn btn-primary">
-                        <i class="fas fa-map-marker-alt"></i> Visit Our Store
+                    <a href="#store" class="btn btn-primary">
+                        <i class="fas fa-map-marker-alt"></i> Visit Store
                     </a>
-                    <a href="#collections" class="btn btn-secondary">
-                        <i class="fas fa-eye"></i> View Collections
+                    <a href="#shop" class="btn btn-secondary">
+                        <i class="fas fa-shopping-bag"></i> Shop Now
                     </a>
-                </div>
-                <div class="hero-features">
-                    <div class="feature">
-                        <i class="fas fa-gift"></i>
-                        <span>Exclusive In-Store Pieces</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-hands"></i>
-                        <span>Personal Styling Available</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-star"></i>
-                        <span>VIP Fitting Experience</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -147,42 +129,132 @@
                     <h3>Exclusive In-Store Collection</h3>
                     <p>Visit our flagship store to experience pieces not available online. Enjoy personalized styling and VIP treatment.</p>
                 </div>
-                <a href="in-store.html" class="btn btn-outline">
+                <a href="#appointment" class="btn btn-outline">
                     <i class="fas fa-calendar-alt"></i> Book Store Appointment
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Collections Section -->
-    <section class="collections" id="collections">
+    <!-- SHOP SECTION (Replaced Collections) -->
+    <section class="shop" id="shop">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Curated Collections</h2>
-                <p class="section-subtitle">Discover our handcrafted luxury pieces</p>
-                <div class="collection-filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
+                <h2 class="section-title">Shop Our Collection</h2>
+                <p class="section-subtitle">Discover handcrafted luxury pieces that blend traditional African artistry with modern design</p>
+                <div class="shop-filters">
+                    <button class="filter-btn active" data-filter="all">All Products</button>
                     <button class="filter-btn" data-filter="in-store">In-Store Exclusive</button>
-                    <button class="filter-btn" data-filter="online">Online Available</button>
+                    <button class="filter-btn" data-filter="online">Available Online</button>
                     <button class="filter-btn" data-filter="new">New Arrivals</button>
+                    <button class="filter-btn" data-filter="sale">On Sale</button>
                 </div>
             </div>
             
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be loaded here -->
+            <div class="shop-grid" id="shopGrid">
+                <!-- Products loaded by JavaScript -->
             </div>
             
             <div class="view-all">
-                <a href="shop.html" class="btn btn-secondary">View All Products</a>
-                <a href="in-store.html" class="btn btn-primary">
-                    <i class="fas fa-store"></i> Explore In-Store Exclusives
+                <a href="#store" class="btn btn-primary">
+                    <i class="fas fa-store"></i> Visit Our Store
                 </a>
             </div>
         </div>
     </section>
 
+    <!-- Lookbook Gallery -->
+    <section class="lookbook" id="lookbook">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Lookbook Gallery</h2>
+                <p class="section-subtitle">See how our pieces come to life through real styling</p>
+            </div>
+            
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All Collections</button>
+                <button class="filter-btn" data-filter="adinkra">Adinkra Heritage</button>
+                <button class="filter-btn" data-filter="golden">Golden Sands</button>
+                <button class="filter-btn" data-filter="modern">Modern Ankara</button>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="adinkra">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3" alt="Adinkra Look 1">
+                    <div class="gallery-overlay">
+                        <p>Adinkra Heritage Collection</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="golden">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb" alt="Golden Sands Look 1">
+                    <div class="gallery-overlay">
+                        <p>Golden Sands Collection</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="modern">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="Modern Ankara Look 1">
+                    <div class="gallery-overlay">
+                        <p>Modern Ankara Collection</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="adinkra">
+                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446" alt="Adinkra Look 2">
+                    <div class="gallery-overlay">
+                        <p>Adinkra Heritage Collection</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="golden">
+                    <img src="https://images.unsplash.com/photo-1544728265-df0e6f5d7d72" alt="Golden Sands Look 2">
+                    <div class="gallery-overlay">
+                        <p>Golden Sands Collection</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="modern">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e" alt="Modern Ankara Look 2">
+                    <div class="gallery-overlay">
+                        <p>Modern Ankara Collection</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Section -->
+    <section class="heritage" id="heritage">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Heritage Story</h2>
+                <p class="section-subtitle">Bridging traditional African craftsmanship with contemporary luxury fashion</p>
+            </div>
+            
+            <div class="heritage-content">
+                <div class="heritage-text">
+                    <p>Founded in 2023, Bebeys Collection bridges traditional African craftsmanship with contemporary luxury fashion. Each piece is meticulously crafted by artisans using time-honored techniques.</p>
+                    <ul class="heritage-features">
+                        <li><i class="fas fa-check-circle"></i> Handwoven fabrics from local communities</li>
+                        <li><i class="fas fa-check-circle"></i> Sustainable and ethical production</li>
+                        <li><i class="fas fa-check-circle"></i> Modern silhouettes with traditional motifs</li>
+                        <li><i class="fas fa-check-circle"></i> Limited edition collections</li>
+                        <li><i class="fas fa-check-circle"></i> Artisanal craftsmanship</li>
+                        <li><i class="fas fa-check-circle"></i> Cultural storytelling through design</li>
+                    </ul>
+                </div>
+                <div class="heritage-images">
+                    <div class="heritage-image">
+                        <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e" alt="Craftsmanship">
+                        <div class="image-caption">Traditional Weaving</div>
+                    </div>
+                    <div class="heritage-image">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb" alt="Heritage Design">
+                        <div class="image-caption">Modern Design</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Store Experience Section -->
-    <section class="store-experience" id="store-experience">
+    <section class="store-experience" id="store">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Elevated Store Experience</h2>
@@ -196,7 +268,7 @@
                     </div>
                     <h3>Personal Styling</h3>
                     <p>One-on-one sessions with our expert stylists to find your perfect look</p>
-                    <a href="styling.html" class="btn-link">Book Session <i class="fas fa-arrow-right"></i></a>
+                    <a href="#appointment" class="btn-link">Book Session <i class="fas fa-arrow-right"></i></a>
                 </div>
                 
                 <div class="experience-card">
@@ -205,7 +277,7 @@
                     </div>
                     <h3>VIP Fittings</h3>
                     <p>Private fitting rooms with champagne service and personalized attention</p>
-                    <a href="vip.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#appointment" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 
                 <div class="experience-card">
@@ -214,7 +286,7 @@
                     </div>
                     <h3>Custom Alterations</h3>
                     <p>On-site master tailors for perfect fit adjustments</p>
-                    <a href="alterations.html" class="btn-link">Schedule <i class="fas fa-arrow-right"></i></a>
+                    <a href="#appointment" class="btn-link">Schedule <i class="fas fa-arrow-right"></i></a>
                 </div>
                 
                 <div class="experience-card">
@@ -223,18 +295,19 @@
                     </div>
                     <h3>Exclusive Events</h3>
                     <p>Private viewings, fashion shows, and designer meet-and-greets</p>
-                    <a href="events.html" class="btn-link">View Calendar <i class="fas fa-arrow-right"></i></a>
+                    <a href="#events" class="btn-link">View Calendar <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Store Location & Hours -->
+    <!-- Store Location & Hours - CENTERED FOR MOBILE -->
     <section class="store-location">
         <div class="container">
             <div class="location-grid">
                 <div class="location-info">
                     <h2>Visit Our Flagship Store</h2>
+                    
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
@@ -271,13 +344,12 @@
                         </div>
                     </div>
                     
-                    <a href="https://maps.google.com" target="_blank" class="btn btn-primary">
+                    <a href="#directions" class="btn btn-primary">
                         <i class="fas fa-directions"></i> Get Directions
                     </a>
                 </div>
                 
                 <div class="location-map">
-                    <!-- Map placeholder -->
                     <div class="map-placeholder">
                         <i class="fas fa-map-marked-alt"></i>
                         <p>Interactive store map</p>
@@ -304,7 +376,7 @@
                         <h3>Heritage Collection</h3>
                         <p>Hand-embroidered pieces with authentic African beads</p>
                         <div class="price">From R8,500</div>
-                        <a href="in-store.html#heritage" class="btn btn-small">View in Store</a>
+                        <a href="#store" class="btn btn-small">View in Store</a>
                     </div>
                 </div>
                 
@@ -315,7 +387,7 @@
                         <h3>Bridal Collection</h3>
                         <p>Custom bridal gowns with traditional motifs</p>
                         <div class="price">From R15,000</div>
-                        <a href="in-store.html#bridal" class="btn btn-small">Book Viewing</a>
+                        <a href="#appointment" class="btn btn-small">Book Viewing</a>
                     </div>
                 </div>
                 
@@ -326,7 +398,7 @@
                         <h3>Artisan Series</h3>
                         <p>One-of-a-kind pieces by master artisans</p>
                         <div class="price">From R12,000</div>
-                        <a href="in-store.html#artisan" class="btn btn-small">Visit to See</a>
+                        <a href="#store" class="btn btn-small">Visit to See</a>
                     </div>
                 </div>
             </div>
@@ -334,7 +406,7 @@
     </section>
 
     <!-- Appointment Booking -->
-    <section class="appointment-booking">
+    <section class="appointment-booking" id="appointment">
         <div class="container">
             <div class="booking-card">
                 <div class="booking-content">
@@ -360,13 +432,32 @@
                         </div>
                     </div>
                     
-                    <a href="booking.html" class="btn btn-primary btn-large">
-                        <i class="fas fa-calendar-check"></i> Book Appointment Now
-                    </a>
+                    <form class="booking-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Phone Number">
+                            <select required>
+                                <option value="">Select Service</option>
+                                <option value="styling">Personal Styling</option>
+                                <option value="fitting">VIP Fitting</option>
+                                <option value="viewing">Collection Viewing</option>
+                                <option value="custom">Custom Design</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" required>
+                            <input type="time" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-calendar-check"></i> Book Appointment Now
+                        </button>
+                    </form>
                 </div>
                 
                 <div class="booking-image">
-                    <!-- Image placeholder -->
                     <div class="image-placeholder">
                         <i class="fas fa-store-alt"></i>
                         <p>VIP Store Experience</p>
@@ -377,7 +468,7 @@
     </section>
 
     <!-- Newsletter -->
-    <section class="newsletter">
+    <section class="newsletter" id="contact">
         <div class="container">
             <div class="newsletter-content">
                 <h2>Stay Connected</h2>
@@ -426,6 +517,7 @@
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
                         <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
@@ -434,11 +526,11 @@
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="collections.html">Collections</a></li>
-                        <li><a href="shop.html">Shop Online</a></li>
-                        <li><a href="in-store.html">In-Store</a></li>
-                        <li><a href="story.html">Our Story</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#shop">Shop</a></li>
+                        <li><a href="#lookbook">Lookbook</a></li>
+                        <li><a href="#store">In-Store</a></li>
+                        <li><a href="#heritage">Our Story</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 
@@ -451,7 +543,7 @@
                         <p><i class="fas fa-envelope"></i> hello@bebeyscollection.com</p>
                         <p><i class="fas fa-clock"></i> Mon-Sat: 10AM-7PM | Sun: 12PM-5PM</p>
                     </div>
-                    <a href="booking.html" class="btn btn-outline btn-small">
+                    <a href="#appointment" class="btn btn-outline btn-small">
                         <i class="fas fa-calendar-alt"></i> Book Store Visit
                     </a>
                 </div>
@@ -460,12 +552,12 @@
                 <div class="footer-services-section">
                     <h4>Services</h4>
                     <ul class="footer-links">
-                        <li><a href="styling.html">Personal Styling</a></li>
-                        <li><a href="custom.html">Custom Design</a></li>
-                        <li><a href="alterations.html">Alterations</a></li>
-                        <li><a href="events.html">Store Events</a></li>
-                        <li><a href="vip.html">VIP Experience</a></li>
-                        <li><a href="gift-cards.html">Gift Cards</a></li>
+                        <li><a href="#appointment">Personal Styling</a></li>
+                        <li><a href="#custom">Custom Design</a></li>
+                        <li><a href="#alterations">Alterations</a></li>
+                        <li><a href="#events">Store Events</a></li>
+                        <li><a href="#vip">VIP Experience</a></li>
+                        <li><a href="#gift">Gift Cards</a></li>
                     </ul>
                 </div>
             </div>
@@ -480,9 +572,9 @@
                 <div class="copyright">
                     <p>&copy; 2023 Bebeys Collection. All rights reserved.</p>
                     <div class="legal-links">
-                        <a href="privacy.html">Privacy Policy</a>
-                        <a href="terms.html">Terms of Service</a>
-                        <a href="returns.html">Returns & Exchanges</a>
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#returns">Returns & Exchanges</a>
                     </div>
                 </div>
             </div>
@@ -507,12 +599,69 @@
                 <span>Total:</span>
                 <span id="cartTotal">R0.00</span>
             </div>
-            <a href="checkout.html" class="btn btn-primary">Proceed to Checkout</a>
+            <a href="#checkout" class="btn btn-primary">Proceed to Checkout</a>
             <button class="btn btn-secondary" id="continueShopping">Continue Shopping</button>
             
             <div class="cart-note">
                 <i class="fas fa-info-circle"></i>
-                <p>Looking for in-store exclusives? <a href="in-store.html">Visit our store</a> for premium pieces.</p>
+                <p>Looking for in-store exclusives? <a href="#store">Visit our store</a> for premium pieces.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+
+        <!-- Product Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-grid">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="Product Image">
+                </div>
+                <div class="modal-details">
+                    <h2 id="modalTitle">Product Title</h2>
+                    <div class="modal-category" id="modalCategory">Category</div>
+                    <p class="modal-description" id="modalDescription">Product description goes here.</p>
+                    
+                    <div class="modal-info">
+                        <div class="info-group">
+                            <h4>Available Sizes</h4>
+                            <div class="sizes" id="modalSizes">
+                                <!-- Sizes will be added by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="info-group">
+                            <h4>Available Colors</h4>
+                            <div class="colors" id="modalColors">
+                                <!-- Colors will be added by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-price">
+                        <div>
+                            <span class="original-price" id="modalOriginalPrice"></span>
+                            <span class="price" id="modalPrice">R0.00</span>
+                            <div class="discount" id="modalDiscount"></div>
+                        </div>
+                        <span class="modal-availability" id="modalAvailability">Available Online</span>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="btn btn-primary" id="modalAddToCart">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <a href="#store" class="btn btn-secondary" id="modalViewInStore">
+                            <i class="fas fa-store"></i> View in Store
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -521,7 +670,17 @@
     <div class="toast" id="toast"></div>
 
     <!-- JavaScript -->
-    <script src="data.js"></script>
-    <script src="main.js"></script>
+    <script type="module" src="data.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
+
+
+
+
+
+    <!-- JavaScript -->
+    <script type="module" src="data.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
