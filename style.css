@@ -1426,3 +1426,51 @@ a {
     background-color: var(--error);
     color: white;
 }
+
+
+/* Add to your existing style.css file */
+
+/* Update the existing menu-toggle styles to ensure consistency */
+.menu-toggle {
+    display: none; /* Hidden by default, shown on mobile via responsive.css */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+}
+
+/* Ensure header has proper z-index for mobile */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--primary);
+    color: var(--secondary);
+    z-index: 1000;
+    padding: 1rem 0;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
+}
+
+/* Make sure cart sidebar appears above mobile menu */
+.cart-sidebar {
+    z-index: 1003;
+}
+
+/* Mobile menu overlay (if needed) */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+}

@@ -485,3 +485,123 @@ export {
     showToast,
     trackStoreVisit
 };
+
+
+// Add these functions to your existing main.js file
+
+// Mobile Menu Functions
+function toggleMobileMenu() {
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const body = document.body;
+    
+    if (!menuToggle || !mobileMenu) return;
+    
+    menuToggle.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    body.classList.toggle('menu-open');
+    
+    // Prevent body scroll when menu is open
+    if (mobileMenu.classList.contains('active')) {
+        body.style.overflow = 'hidden';
+    } else {
+        body.style.overflow = '';
+    }
+}
+
+function closeMobileMenu() {
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const body = document.body;
+    
+    if (!menuToggle || !mobileMenu) return;
+    
+    menuToggle.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    body.classList.remove('menu-open');
+    body.style.overflow = '';
+}
+
+// Update your setupEventListeners function to include mobile menu
+function setupEventListeners() {
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileCartBtn = document.getElementById('mobileCartBtn');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', toggleMobileMenu);
+    }
+    
+    if (closeMenu) {
+        closeMenu.addEventListener('click', closeMobileMenu);
+    }
+    
+    if (mobileCartBtn) {
+        mobileCartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeMobileMenu();
+            openCart();
+        });
+    }
+    
+    // Close mobile menu when clicking on links
+    document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenu && mobileMenu.classList.contains('active')) {
+            if (!mobileMenu.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        }
+    });
+    
+    // Add other event listeners...
+    // ... rest of your existing setupEventListeners code
+}
+
+// Update your existing functions to work with mobile
+function openCart() {
+    const cartSidebar = document.getElementById('cartSidebar');
+    const body = document.body;
+    
+    if (cartSidebar) {
+        cartSidebar.classList.add('active');
+        body.classList.add('cart-open');
+        body.style.overflow = 'hidden';
+    }
+}
+
+function closeCart() {
+    const cartSidebar = document.getElementById('cartSidebar');
+    const body = document.body;
+    
+    if (cartSidebar) {
+        cartSidebar.classList.remove('active');
+        body.classList.remove('cart-open');
+        body.style.overflow = '';
+    }
+}
+
+// Update the init function to initialize mobile menu
+function init() {
+    // ... existing init code
+    
+    // Initialize mobile menu state
+    const menuToggle = document.getElementById('menuToggle');
+    if (menuToggle) {
+        menuToggle.innerHTML = `
+            <span></span>
+            <span></span>
+            <span></span>
+        `;
+    }
+    
+    // ... rest of your init code
+}
