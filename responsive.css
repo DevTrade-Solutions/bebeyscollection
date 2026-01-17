@@ -40,7 +40,7 @@
         max-width: 720px;
     }
     
-    /* Menu toggle - FIXED VERSION */
+    /* Menu toggle - FIXED ALIGNMENT */
     .menu-toggle {
         display: flex !important;
         background: none;
@@ -52,6 +52,15 @@
         gap: 4px;
         padding: 8px;
         z-index: 1002;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        height: 44px; /* Match other buttons */
+    }
+    
+    .nav-actions {
+        align-items: center;
+        gap: 1rem;
     }
     
     .menu-toggle span {
@@ -275,14 +284,21 @@
         margin-bottom: 0;
     }
     
-    /* Hide details button on mobile */
-    .shop-actions .btn-secondary {
-        display: none !important;
+    /* SHOP ACTIONS - Show both buttons on mobile */
+    .shop-actions {
+        flex-direction: column;
+        gap: 0.5rem;
     }
     
-    /* Make primary button full width on mobile */
-    .shop-actions .btn-primary {
+    .shop-actions .btn {
         width: 100%;
+        justify-content: center;
+        font-size: 0.75rem;
+        padding: 0.5rem;
+    }
+    
+    .shop-actions .btn-secondary {
+        display: flex !important;
     }
     
     /* Heritage content */
