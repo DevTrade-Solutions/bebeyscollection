@@ -1,5 +1,6 @@
-// Product Data
+// Product Data - EXPANDED FOR SHOP PAGE
 const products = [
+    // Original products (1-8)
     {
         id: 1,
         name: "Adinkra Heritage Dress",
@@ -10,7 +11,7 @@ const products = [
         description: "Elegant dress featuring traditional Adinkra symbols with a modern silhouette.",
         badge: "IN-STORE EXCLUSIVE",
         availability: "in-store",
-        tags: ["new", "exclusive"],
+        tags: ["new", "exclusive", "featured"],
         sizes: ["S", "M", "L", "XL"],
         colors: ["Blue/Black", "Red/Gold", "Green/Brown"]
     },
@@ -24,7 +25,7 @@ const products = [
         description: "Luxurious top with gold thread embroidery and intricate beadwork.",
         badge: "NEW ARRIVAL",
         availability: "online",
-        tags: ["new", "bestseller"],
+        tags: ["new", "bestseller", "featured"],
         sizes: ["XS", "S", "M"],
         colors: ["Gold", "Ivory", "Bronze"]
     },
@@ -111,6 +112,176 @@ const products = [
         tags: ["bestseller", "set"],
         sizes: ["S", "M", "L"],
         colors: ["Red/Black", "Blue/Gold", "Green/White"]
+    },
+    
+    // Additional products for shop page (9-20)
+    {
+        id: 9,
+        name: "Royal Kaftan",
+        category: "Dresses",
+        price: 1950.00,
+        originalPrice: 2400.00,
+        image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80",
+        description: "Elegant kaftan with intricate embroidery and flowing silhouette.",
+        badge: "SALE",
+        availability: "online",
+        tags: ["sale", "popular"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Navy/Gold", "Emerald/Silver", "Burgundy"]
+    },
+    {
+        id: 10,
+        name: "Ankara Crop Top",
+        category: "Tops",
+        price: 950.00,
+        originalPrice: null,
+        image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80",
+        description: "Modern crop top with vibrant Ankara print and puff sleeves.",
+        badge: "NEW ARRIVAL",
+        availability: "both",
+        tags: ["new", "trending"],
+        sizes: ["XS", "S", "M"],
+        colors: ["Yellow/Black", "Blue/White", "Pink/Orange"]
+    },
+    {
+        id: 11,
+        name: "Wax Print Midi Skirt",
+        category: "Bottoms",
+        price: 1350.00,
+        originalPrice: 1600.00,
+        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80",
+        description: "Flowy midi skirt in authentic wax print fabric with elastic waist.",
+        badge: null,
+        availability: "online",
+        tags: ["popular"],
+        sizes: ["S", "M", "L"],
+        colors: ["Red/Black", "Green/Gold", "Purple/White"]
+    },
+    {
+        id: 12,
+        name: "Beaded Leather Belt",
+        category: "Accessories",
+        price: 750.00,
+        originalPrice: 950.00,
+        image: "https://images.unsplash.com/photo-1542327897-d73f4005b533?auto=format&fit=crop&w=800&q=80",
+        description: "Handcrafted leather belt with traditional beadwork.",
+        badge: "SALE",
+        availability: "both",
+        tags: ["sale", "accessory"],
+        sizes: ["S", "M", "L"],
+        colors: ["Brown", "Black", "Natural"]
+    },
+    {
+        id: 13,
+        name: "Mudcloth Blazer",
+        category: "Outerwear",
+        price: 2450.00,
+        originalPrice: null,
+        image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80",
+        description: "Tailored blazer in authentic mudcloth for a sophisticated look.",
+        badge: "NEW ARRIVAL",
+        availability: "in-store",
+        tags: ["new", "exclusive"],
+        sizes: ["S", "M", "L"],
+        colors: ["Indigo", "Natural", "Brown/White"]
+    },
+    {
+        id: 14,
+        name: "Bold Necklace Set",
+        category: "Jewelry",
+        price: 1200.00,
+        originalPrice: 1500.00,
+        image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80",
+        description: "Statement necklace with matching earrings in vibrant colors.",
+        badge: "BESTSELLER",
+        availability: "online",
+        tags: ["bestseller", "accessory"],
+        sizes: ["One Size"],
+        colors: ["Gold/Red", "Silver/Blue", "Mixed Metals"]
+    },
+    {
+        id: 15,
+        name: "Evening Wrap Dress",
+        category: "Evening Wear",
+        price: 4200.00,
+        originalPrice: 5000.00,
+        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
+        description: "Silk wrap dress with traditional embroidery for elegant evenings.",
+        badge: "SALE",
+        availability: "both",
+        tags: ["sale", "featured"],
+        sizes: ["S", "M", "L"],
+        colors: ["Emerald", "Royal Blue", "Deep Red"]
+    },
+    {
+        id: 16,
+        name: "Two-Piece Lounge Set",
+        category: "Sets",
+        price: 1850.00,
+        originalPrice: null,
+        image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80",
+        description: "Comfortable lounge set in soft Ankara cotton.",
+        badge: "NEW ARRIVAL",
+        availability: "online",
+        tags: ["new", "casual"],
+        sizes: ["S", "M", "L"],
+        colors: ["Pink/White", "Blue/Grey", "Green/Beige"]
+    },
+    {
+        id: 17,
+        name: "Maxi Kimono",
+        category: "Dresses",
+        price: 1750.00,
+        originalPrice: 2100.00,
+        image: "https://images.unsplash.com/photo-1542280756-1e9d9774cac6?auto=format&fit=crop&w=800&q=80",
+        description: "Lightweight kimono with bold African prints and tassel details.",
+        badge: null,
+        availability: "both",
+        tags: ["popular", "featured"],
+        sizes: ["One Size"],
+        colors: ["Red/Black", "Blue/Gold", "Purple/Orange"]
+    },
+    {
+        id: 18,
+        name: "Embroidered Blouse",
+        category: "Tops",
+        price: 1250.00,
+        originalPrice: null,
+        image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=800&q=80",
+        description: "Delicate blouse with hand-embroidered traditional motifs.",
+        badge: "BESTSELLER",
+        availability: "online",
+        tags: ["bestseller", "featured"],
+        sizes: ["XS", "S", "M"],
+        colors: ["White", "Ivory", "Light Blue"]
+    },
+    {
+        id: 19,
+        name: "Tailored Trousers",
+        category: "Bottoms",
+        price: 1650.00,
+        originalPrice: 1950.00,
+        image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
+        description: "Wide-leg tailored trousers in premium cotton blend.",
+        badge: "SALE",
+        availability: "both",
+        tags: ["sale", "featured"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Black", "Navy", "Olive"]
+    },
+    {
+        id: 20,
+        name: "Leather Clutch with Beads",
+        category: "Accessories",
+        price: 950.00,
+        originalPrice: 1200.00,
+        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
+        description: "Handcrafted leather clutch with traditional bead embroidery.",
+        badge: "SALE",
+        availability: "online",
+        tags: ["sale", "accessory"],
+        sizes: ["One Size"],
+        colors: ["Red", "Black", "Brown"]
     }
 ];
 
@@ -229,5 +400,18 @@ const user = {
     lastVisit: null
 };
 
+// Categories for filtering
+const categories = [
+    { id: "all", name: "All Products", count: 20 },
+    { id: "dresses", name: "Dresses", count: 4 },
+    { id: "tops", name: "Tops", count: 4 },
+    { id: "bottoms", name: "Bottoms", count: 4 },
+    { id: "accessories", name: "Accessories", count: 4 },
+    { id: "outerwear", name: "Outerwear", count: 2 },
+    { id: "jewelry", name: "Jewelry", count: 2 },
+    { id: "evening-wear", name: "Evening Wear", count: 2 },
+    { id: "sets", name: "Sets", count: 2 }
+];
+
 // Export data
-export { products, storeInfo, storeEvents, storeExclusives, cart, user };
+export { products, storeInfo, storeEvents, storeExclusives, cart, user, categories };
