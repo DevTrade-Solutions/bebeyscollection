@@ -60,7 +60,7 @@
         <div class="mobile-menu-header">
             <div class="logo">
                 <div class="logo-icon">
-                    <i class="fas fa-crown"></i>
+                    <img src="img/bebey-logo2.png" alt="">
                 </div>
                 <span class="logo-text">BEBEYS<br>COLLECTION</span>
             </div>
@@ -70,7 +70,7 @@
         </div>
         
         <ul class="mobile-nav-links">
-            <li><a href="eg.htm" class="active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="shop.html"><i class="fas fa-shopping-bag"></i> Shop</a></li>
             <li><a href="#lookbook"><i class="fas fa-images"></i> Lookbook</a></li>
             <li><a href="#heritage"><i class="fas fa-book"></i> Heritage</a></li>
@@ -692,57 +692,5 @@
     <script type="module" src="data.js"></script>
     <script type="module" src="main.js"></script>
 </body>
-<style>
-    /* Add this CSS to fix any display issues */
-    .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: var(--spacing-lg);
-        margin-bottom: var(--spacing-xl);
-    }
-    
-    .products-list {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-md);
-        margin-bottom: var(--spacing-xl);
-    }
-    
-    .products-list .shop-card {
-        display: grid;
-        grid-template-columns: 200px 1fr;
-        height: 200px;
-    }
-    
-    .products-list .shop-image {
-        height: 200px;
-    }
-    
-    .products-list .shop-content {
-        padding: var(--spacing-md);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    
-    /* Ensure products are visible */
-    .shop-card {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-    }
-    
-    /* Debug styles - remove in production */
-    .debug-info {
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: rgba(0,0,0,0.8);
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        z-index: 9999;
-        font-size: 12px;
-        display: none; /* Set to block for debugging */
-    }
-</style>
+
 </html>

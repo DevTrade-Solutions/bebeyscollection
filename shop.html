@@ -357,9 +357,10 @@
             border-top: 1px solid var(--border);
         }
         
+        /* ENHANCED FEATURED ITEMS SECTION */
         .featured-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: var(--spacing-lg);
             margin-top: var(--spacing-lg);
         }
@@ -368,44 +369,103 @@
             background: white;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-md);
             transition: var(--transition-normal);
+            border: 2px solid transparent;
         }
         
         .featured-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
         }
         
         .featured-image {
             height: 200px;
             overflow: hidden;
+            position: relative;
         }
         
         .featured-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
         
         .featured-item:hover .featured-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
         
         .featured-content {
-            padding: var(--spacing-md);
+            padding: var(--spacing-lg);
+            text-align: center;
         }
         
         .featured-content h4 {
             color: var(--primary);
             margin-bottom: var(--spacing-xs);
+            font-size: 1.125rem;
         }
         
         .featured-content p {
             color: var(--text-light);
             font-size: 0.875rem;
             margin-bottom: var(--spacing-sm);
+        }
+        
+        /* ENHANCED ADD TO CART BUTTON FOR FEATURED ITEMS */
+        .featured-content .btn-small {
+            background-color: var(--accent);
+            color: var(--primary);
+            border: 2px solid var(--accent);
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .featured-content .btn-small:hover {
+            background-color: var(--primary);
+            color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(198, 167, 94, 0.3);
+        }
+        
+        /* Featured item price styling */
+        .featured-content .shop-price {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.75rem 0;
+        }
+        
+        .featured-content .price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .featured-content .original-price {
+            color: var(--text-light);
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+        
+        .featured-content .discount {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
         }
         
         /* Collections Grid */
@@ -574,6 +634,78 @@
             font-size: 0.875rem;
         }
         
+        /* ENHANCED PRODUCT MODAL WITH IMAGE GALLERY */
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        
+        /* Increased modal height for desktop */
+        @media (min-width: 769px) {
+            .modal-content {
+                max-height: 85vh;
+                overflow-y: auto;
+            }
+            
+            .modal-image {
+                height: 600px;
+            }
+        }
+        
+        .modal-image-container {
+            position: relative;
+            height: 100%;
+        }
+        
+        .modal-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Modal image gallery */
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+        }
+        
+        .modal-gallery-item {
+            height: 80px;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: var(--radius-sm);
+            border: 2px solid transparent;
+            transition: var(--transition-normal);
+        }
+        
+        .modal-gallery-item.active,
+        .modal-gallery-item:hover {
+            border-color: var(--accent);
+        }
+        
+        .modal-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Modal actions enhancement */
+        .modal-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+        
+        .modal-actions .btn {
+            flex: 1;
+            padding: 1rem;
+            font-weight: 600;
+        }
+        
         @media (max-width: 992px) {
             .shop-layout {
                 grid-template-columns: 1fr;
@@ -615,6 +747,20 @@
             .cart-sidebar {
                 width: 90%;
             }
+            
+            /* Mobile modal adjustments */
+            .modal-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-image {
+                height: 300px;
+            }
+            
+            .modal-gallery {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
         }
         
         @media (max-width: 768px) {
@@ -639,6 +785,21 @@
             .collections-grid {
                 grid-template-columns: 1fr;
             }
+            
+            /* Mobile: 2 featured items per row */
+            @media (max-width: 768px) {
+                .featured-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: var(--spacing-sm);
+                }
+            }
+            
+            /* Very small mobile: 1 featured item per row */
+            @media (max-width: 480px) {
+                .featured-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
         }
         
         @media (max-width: 480px) {
@@ -658,6 +819,13 @@
                 width: 100%;
                 justify-content: center;
             }
+            
+            /* Mobile modal full height */
+            .modal-content {
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
+            }
         }
     </style>
 </head>
@@ -676,8 +844,8 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="shop.html" class="active">Shop</a></li>
-                    <li><a href="index.html#lookbook">Lookbook</a></li>
-                    <li><a href="index.html#heritage">Heritage</a></li>
+                    <li><a href="lookbook.html#lookbook">Lookbook</a></li>
+                    <li><a href="heritage.html#heritage">Heritage</a></li>
                     <li><a href="index.html#store">Store</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
@@ -708,7 +876,7 @@
         <div class="mobile-menu-header">
             <div class="logo">
                 <div class="logo-icon">
-                    <i class="fas fa-crown"></i>
+                   <img src="img/bebey-logo2.png" alt="">
                 </div>
                 <span class="logo-text">BEBEYS<br>COLLECTION</span>
             </div>
@@ -718,7 +886,7 @@
         </div>
         
         <ul class="mobile-nav-links">
-            <li><a href="eg.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="shop.html" class="active"><i class="fas fa-shopping-bag"></i> Shop</a></li>
             <li><a href="index.html#lookbook"><i class="fas fa-images"></i> Lookbook</a></li>
             <li><a href="index.html#heritage"><i class="fas fa-book"></i> Heritage</a></li>
@@ -1167,7 +1335,7 @@
         </div>
     </div>
 
-    <!-- Product Modal -->
+    <!-- ENHANCED Product Modal with 3-image gallery -->
     <div class="product-modal" id="productModal">
         <div class="modal-content">
             <button class="close-modal" id="closeModal">
@@ -1175,7 +1343,13 @@
             </button>
             <div class="modal-grid">
                 <div class="modal-image">
-                    <img id="modalImage" src="" alt="Product Image">
+                    <div class="modal-image-container">
+                        <img id="modalImage" src="" alt="Product Image" class="modal-main-image">
+                    </div>
+                    <!-- Image Gallery with 3 images -->
+                    <div class="modal-gallery" id="modalGallery">
+                        <!-- Gallery images will be added by JavaScript -->
+                    </div>
                 </div>
                 <div class="modal-details">
                     <h2 id="modalTitle">Product Title</h2>
@@ -1226,6 +1400,68 @@
     <!-- JavaScript -->
     <script type="module" src="data.js"></script>
     <script type="module" src="shop.js"></script>
+    
+    <!-- Update shop.js to support enhanced features -->
+    <script>
+        // This code will enhance the existing shop.js functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for shop.js to initialize
+            setTimeout(function() {
+                // Add image gallery functionality if not already in shop.js
+                if (typeof window.debugShop !== 'undefined') {
+                    console.log('Enhancing product modal with gallery feature...');
+                    
+                    // Override the openProductModal function to include gallery
+                    const originalOpenProductModal = window.debugShop.openProductModal || function() {};
+                    
+                    // Create enhanced modal function
+                    window.enhancedOpenProductModal = function(productId) {
+                        const product = window.debugShop.getProducts().find(p => p.id === productId);
+                        if (!product) return;
+                        
+                        // Call original function first
+                        originalOpenProductModal.call(this, productId);
+                        
+                        // Then add gallery functionality
+                        const modalGallery = document.getElementById('modalGallery');
+                        if (modalGallery) {
+                            modalGallery.innerHTML = '';
+                            
+                            // Create gallery images (using main image plus 2 similar images)
+                            const galleryImages = [
+                                product.image,
+                                product.image.replace('800', '801') || product.image,
+                                product.image.replace('800', '802') || product.image
+                            ];
+                            
+                            galleryImages.forEach((imgSrc, index) => {
+                                const galleryItem = document.createElement('div');
+                                galleryItem.className = 'modal-gallery-item' + (index === 0 ? ' active' : '');
+                                galleryItem.innerHTML = `<img src="${imgSrc}" alt="View ${index + 1}">`;
+                                
+                                galleryItem.addEventListener('click', function() {
+                                    // Update main image
+                                    document.getElementById('modalImage').src = imgSrc;
+                                    
+                                    // Update active state
+                                    document.querySelectorAll('.modal-gallery-item').forEach(item => {
+                                        item.classList.remove('active');
+                                    });
+                                    this.classList.add('active');
+                                });
+                                
+                                modalGallery.appendChild(galleryItem);
+                            });
+                        }
+                    };
+                    
+                    // Replace the original function with enhanced version
+                    if (typeof window.debugShop.openProductModal === 'function') {
+                        window.debugShop.openProductModal = window.enhancedOpenProductModal;
+                    }
+                }
+            }, 1000);
+        });
+    </script>
 </body>
-
 </html>
