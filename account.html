@@ -3,2903 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bebey's Collection | Luxury African Attire</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <title>My Account | Bebeys Collection</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    
     <style>
-        :root {
-            --primary: #0A2342; /* Deep indigo */
-            --secondary: #D4AF37; /* Gold */
-            --accent: #B85252; /* Earthy red */
-            --accent2: #4A7C59; /* Forest green */
-            --accent3: #8B4513; /* Rich brown */
-            --neutral-light: #F8F5F0; /* Ivory */
-            --neutral-dark: #2A2A2A; /* Charcoal */
-            --text-light: #F8F5F0;
-            --text-dark: #2A2A2A;
-            --transition: all 0.3s ease;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+        .account-page {
+            padding: 120px 0 60px;
+            min-height: 80vh;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-color: var(--neutral-light);
-        }
-        
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-        
-        .african-heading {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .african-heading:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--secondary);
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1400px;
+        .account-container {
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
         }
         
-        /* Header & Navigation - UPDATED */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: rgba(248, 245, 240, 0.95);
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .header.scrolled {
-            padding: 10px 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            transition: var(--transition);
-        }
-        
-        .header.scrolled .nav-container {
-            padding: 10px 0;
-        }
-        
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-        
-        .logo:before {
-            content: '✻';
-            color: var(--secondary);
-            margin-right: 5px;
-            font-size: 24px;
-        }
-        
-        .logo:after {
-            content: '✻';
-            color: var(--secondary);
-            margin-left: 5px;
-            font-size: 24px;
-        }
-        
-        .logo span {
-            color: var(--secondary);
-        }
-        
-        /* Mobile Logo */
-        .mobile-logo-container {
-            display: none;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            padding: 15px 0;
-            position: relative;
-        }
-        
-        .mobile-logo-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-        }
-        
-        .mobile-logo-img i {
-            font-size: 24px;
-            color: var(--secondary);
-        }
-        
-        .mobile-logo-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 20px;
-            color: var(--primary);
+        .account-header {
             text-align: center;
-            flex-grow: 1;
+            margin-bottom: var(--spacing-xl);
         }
         
-        .mobile-logo-text span {
-            color: var(--secondary);
+        .account-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--spacing-xl);
         }
         
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 40px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 500;
-            font-size: 16px;
-            position: relative;
-            transition: var(--transition);
-        }
-        
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--secondary);
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-        
-        .nav-actions {
-            display: flex;
-            align-items: center;
-        }
-        
-        .nav-actions a {
-            margin-left: 25px;
-            color: var(--primary);
-            font-size: 18px;
-            transition: var(--transition);
-        }
-        
-        .nav-actions a:hover {
-            color: var(--secondary);
-        }
-        
-        .cart-count {
-            position: relative;
-            cursor: pointer;
-        }
-        
-        .cart-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: var(--accent);
-            color: white;
-            font-size: 10px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* FIXED: Mobile Menu Button - Positioned at top right corner */
-        .mobile-menu-btn {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--primary);
-            z-index: 1002;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(248, 245, 240, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* UPDATED: Cart Slider for Both Mobile and Desktop */
-        .cart-slider {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            max-width: 450px;
-            height: 100vh;
-            background-color: var(--neutral-light);
-            z-index: 1003;
-            transition: var(--transition);
-            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .cart-slider.active {
-            right: 0;
-        }
-        
-        .cart-slider-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1002;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .cart-slider-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-        
-        .cart-slider-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px;
-            border-bottom: 1px solid rgba(10, 35, 66, 0.1);
-            background-color: var(--neutral-light);
-        }
-        
-        .cart-slider-header h2 {
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin: 0;
-        }
-        
-        .close-cart-slider {
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--primary);
-            cursor: pointer;
-            transition: var(--transition);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .close-cart-slider:hover {
-            background-color: rgba(10, 35, 66, 0.1);
-        }
-        
-        .cart-slider-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        
-        .cart-slider-footer {
-            padding: 25px;
-            border-top: 1px solid rgba(10, 35, 66, 0.1);
-            background-color: var(--neutral-light);
-        }
-        
-        .cart-summary {
-            margin-bottom: 25px;
-        }
-        
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            color: var(--primary);
-        }
-        
-        .summary-total {
-            font-weight: 700;
-            font-size: 1.2rem;
-            border-top: 1px solid rgba(10, 35, 66, 0.1);
-            padding-top: 15px;
-            margin-top: 10px;
-        }
-        
-        /* Mobile Sidebar Menu */
-        .mobile-sidebar {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 85%;
-            max-width: 350px;
-            height: 100vh;
-            background-color: var(--neutral-light);
-            z-index: 1001;
-            transition: var(--transition);
-            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-            padding: 20px;
-        }
-        
-        .mobile-sidebar.active {
-            right: 0;
-        }
-        
-        .mobile-sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .mobile-sidebar-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-        
-        .mobile-sidebar-header {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 20px;
-        }
-        
-        .close-sidebar {
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--primary);
-            cursor: pointer;
-            transition: var(--transition);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .close-sidebar:hover {
-            background-color: rgba(10, 35, 66, 0.1);
-        }
-        
-        .mobile-nav-actions {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(10, 35, 66, 0.1);
-            margin-bottom: 20px;
-        }
-        
-        .mobile-nav-actions a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: var(--primary);
-            font-size: 14px;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .mobile-nav-actions a:hover {
-            color: var(--secondary);
-        }
-        
-        .mobile-nav-actions i {
-            font-size: 22px;
-            margin-bottom: 5px;
-        }
-        
-        /* User Profile Section in Mobile Sidebar */
-        .user-profile-section {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            background-color: rgba(212, 175, 55, 0.1);
-            border-radius: 10px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .user-profile-section:hover {
-            background-color: rgba(212, 175, 55, 0.2);
-        }
-        
-        .user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 15px;
-            background-color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .user-avatar i {
-            font-size: 24px;
-            color: var(--secondary);
-        }
-        
-        .user-info {
-            flex-grow: 1;
-        }
-        
-        .user-name {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 16px;
-            margin-bottom: 3px;
-        }
-        
-        .user-status {
-            font-size: 12px;
-            color: var(--accent2);
-            font-weight: 500;
-        }
-        
-        /* Login Prompt */
-        .login-prompt {
-            text-align: center;
-            padding: 15px;
-            background-color: rgba(10, 35, 66, 0.05);
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .login-prompt p {
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-        
-        /* Mobile Search Overlay */
-        .mobile-search-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1003;
-            display: none;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 100px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .mobile-search-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-        
-        .mobile-search-container {
-            width: 90%;
-            max-width: 500px;
+        .account-sidebar {
             background-color: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            transform: translateY(-20px);
-            transition: transform 0.3s ease;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
         }
         
-        .mobile-search-overlay.active .mobile-search-container {
-            transform: translateY(0);
+        .account-content {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
         }
         
-        .mobile-search-header {
+        .account-nav {
+            list-style: none;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .account-nav li {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .account-nav a {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            gap: var(--spacing-sm);
+            padding: 0.75rem 1rem;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: var(--transition-normal);
         }
         
-        .mobile-search-header h3 {
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-        
-        .close-search {
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--primary);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .close-search:hover {
+        .account-nav a:hover,
+        .account-nav a.active {
+            background-color: rgba(198, 167, 94, 0.1);
             color: var(--accent);
         }
         
-        .mobile-search-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid rgba(10, 35, 66, 0.1);
-            border-radius: 8px;
-            font-size: 16px;
-            margin-bottom: 15px;
-            transition: var(--transition);
-        }
-        
-        .mobile-search-input:focus {
-            outline: none;
-            border-color: var(--secondary);
-        }
-        
-        .search-suggestions {
-            margin-top: 15px;
-        }
-        
-        .search-suggestions h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-        
-        .suggestion-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .suggestion-tag {
-            background-color: rgba(10, 35, 66, 0.1);
-            color: var(--primary);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .suggestion-tag:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        /* Cart Item Styles */
-        .cart-item {
-            display: flex;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(10, 35, 66, 0.1);
-        }
-        
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-        
-        .cart-item-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        
-        .cart-item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .cart-item-details {
-            flex-grow: 1;
-        }
-        
-        .cart-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-        
-        .cart-item-name {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1rem;
-            margin-right: 10px;
-        }
-        
-        .cart-item-price {
-            color: var(--accent);
-            font-weight: 600;
-            white-space: nowrap;
-        }
-        
-        .cart-item-size {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        
-        .cart-item-actions {
-            display: flex;
-            align-items: center;
-            margin-top: 15px;
-        }
-        
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            border: 1px solid rgba(10, 35, 66, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-right: 15px;
-        }
-        
-        .quantity-btn {
-            width: 35px;
-            height: 35px;
-            background-color: rgba(10, 35, 66, 0.05);
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .quantity-btn:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .quantity-display {
-            width: 40px;
+        .account-nav i {
+            width: 20px;
             text-align: center;
+        }
+        
+        .account-info h3 {
+            color: var(--primary);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .info-item {
+            display: flex;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .info-label {
+            width: 150px;
             font-weight: 600;
+            color: var(--primary);
         }
         
-        .remove-item-btn {
-            background: none;
-            border: none;
+        .info-value {
+            flex: 1;
+            color: var(--text);
+        }
+        
+        .login-form,
+        .register-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition-normal);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .forgot-password {
             color: var(--accent);
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.875rem;
         }
         
-        .remove-item-btn:hover {
-            color: #8a2e2e;
+        .forgot-password:hover {
             text-decoration: underline;
         }
         
-        .empty-cart-message {
-            text-align: center;
-            padding: 50px 20px;
-        }
-        
-        .empty-cart-icon {
-            font-size: 3.5rem;
-            color: rgba(10, 35, 66, 0.2);
-            margin-bottom: 20px;
-        }
-        
-        /* FIXED: Mobile Sidebar Footer with Centered Contact Info */
-        .mobile-sidebar-footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(10, 35, 66, 0.1);
-            text-align: center;
-        }
-        
-        .mobile-contact-info {
-            margin-bottom: 20px;
-        }
-        
-        .mobile-contact-info h4 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-        
-        .contact-item {
+        .form-actions {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 10px;
-            justify-content: center;
+            gap: var(--spacing-md);
         }
         
-        .contact-item i {
-            color: var(--secondary);
-            margin-right: 10px;
-            width: 20px;
-            text-align: center;
-            margin-top: 3px;
-        }
-        
-        .contact-item span {
-            color: var(--primary);
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-        
-        .mobile-social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .mobile-social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(10, 35, 66, 0.1);
-            border-radius: 50%;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-        
-        .mobile-social-icons a:hover {
-            background-color: var(--secondary);
-            color: white;
-        }
-        
-        .mobile-copyright {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
-        .mobile-nav-links {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .mobile-nav-links li {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(10, 35, 66, 0.05);
-        }
-        
-        .mobile-nav-links a {
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 500;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            transition: var(--transition);
-        }
-        
-        .mobile-nav-links a:hover {
-            color: var(--secondary);
-            padding-left: 10px;
-        }
-        
-        .mobile-nav-links i {
-            margin-right: 10px;
-            color: var(--secondary);
-            width: 24px;
-            text-align: center;
-        }
-        
-        /* Hero Section with Slogan */
-        .hero {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            margin-top: 80px;
-        }
-        
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, var(--primary) 0%, #1a3a5c 100%);
-        }
-        
-        .hero-content {
-            max-width: 700px;
-            color: var(--text-light);
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 15px;
-            line-height: 1.1;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-        }
-        
-        .hero-slogan {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            opacity: 0.9;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            color: var(--secondary);
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            opacity: 0.9;
-        }
-        
-        .hero-btns {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .btn {
-            padding: 16px 32px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary {
-            background-color: var(--secondary);
-            color: var(--primary);
-        }
-        
-        .btn-primary:hover {
-            background-color: #e6c02e;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-light);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .btn-secondary:hover {
-            border-color: var(--secondary);
-            color: var(--secondary);
-            transform: translateY(-3px);
-        }
-        
-        .btn-african {
-            background: linear-gradient(45deg, var(--accent), var(--accent2));
-            color: white;
-            border: none;
-        }
-        
-        .btn-african:hover {
-            background: linear-gradient(45deg, var(--accent2), var(--accent));
-            transform: translateY(-3px);
-        }
-        
-        /* Adinkra Symbols Bar */
-        .adinkra-bar {
-            background-color: var(--primary);
-            padding: 15px 0;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .adinkra-scroll {
-            display: flex;
-            animation: scrollAdinkra 30s linear infinite;
-            white-space: nowrap;
-        }
-        
-        @keyframes scrollAdinkra {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        
-        .adinkra-symbol {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin: 0 40px;
-            opacity: 0.8;
-        }
-        
-        /* Social Proof Section */
-        .social-proof {
-            padding: 80px 0;
-            background-color: var(--neutral-light);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.8rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .instagram-feed {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-        
-        .insta-post {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            height: 250px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .insta-post:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .insta-post img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .insta-post:hover img {
-            transform: scale(1.05);
-        }
-        
-        .insta-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 35, 66, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .insta-post:hover .insta-overlay {
-            opacity: 1;
-        }
-        
-        .insta-icon {
-            color: white;
-            font-size: 24px;
-        }
-        
-        .social-cta {
-            text-align: center;
-        }
-        
-        .social-cta h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .hashtag {
-            background-color: var(--primary);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 600;
-            display: inline-block;
-            margin: 20px 0;
-        }
-        
-        /* Featured Collections */
-        .featured-collections {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .collections-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .collection-card {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 500px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .collection-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .collection-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .collection-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 30px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
-        }
-        
-        .collection-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        
-        /* NEW: Shop/Collection Section */
-        .shop-section {
-            padding: 100px 0;
-            background-color: var(--neutral-light);
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .product-card {
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .product-image {
-            height: 300px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-        
-        .product-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: var(--accent);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 2;
-        }
-        
-        .product-info {
-            padding: 25px;
-        }
-        
-        .product-category {
-            color: var(--secondary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .product-title {
-            color: var(--primary);
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .product-description {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-        
-        .product-price {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        
-        .price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-        
-        .original-price {
-            font-size: 1rem;
-            color: #999;
-            text-decoration: line-through;
-            margin-right: 10px;
-        }
-        
-        .add-to-cart-btn {
-            background-color: var(--secondary);
-            color: var(--primary);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .add-to-cart-btn:hover {
-            background-color: #e6c02e;
-            transform: translateY(-2px);
-        }
-        
-        .shop-cta {
-            text-align: center;
-            margin-top: 60px;
-        }
-        
-        /* NEW: African Cultural Spotlight */
-        .cultural-spotlight {
-            padding: 100px 0;
-            background-color: var(--accent3);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cultural-spotlight:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23D4AF37' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.3;
-        }
-        
-        .cultural-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px;
-            align-items: center;
-        }
-        
-        .cultural-content h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--secondary);
-        }
-        
-        .cultural-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-        }
-        
-        .cultural-icon {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-right: 20px;
-            flex-shrink: 0;
-        }
-        
-        .cultural-text h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--secondary);
-        }
-        
-        .fabric-display {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-        
-        .fabric-sample {
-            height: 150px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .fabric-sample:hover {
-            transform: scale(1.05);
-        }
-        
-        .fabric-sample img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .fabric-name {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        
-        /* NEW: Live Social Feed */
-        .live-social-feed {
-            padding: 80px 0;
-            background-color: var(--neutral-light);
-        }
-        
-        .feed-container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-        }
-        
-        .live-video {
-            background-color: var(--primary);
-            border-radius: 12px;
-            overflow: hidden;
-            height: 500px;
-            position: relative;
-        }
-        
-        .video-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
-        
-        .video-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: var(--secondary);
-        }
-        
-        .social-updates {
-            background-color: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            overflow-y: auto;
-            max-height: 500px;
-        }
-        
-        .update-item {
-            display: flex;
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .update-item:last-child {
-            border-bottom: none;
-        }
-        
-        .update-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--neutral-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        
-        .insta-icon-bg {
-            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-            color: white;
-        }
-        
-        .tiktok-icon-bg {
-            background-color: #000;
-            color: white;
-        }
-        
-        .update-content h4 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-        
-        .update-time {
-            color: #888;
-            font-size: 0.9rem;
-        }
-        
-        /* Interactive Features */
-        .interactive-features {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .feature-item {
-            background-color: white;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            height: 100%;
-            border-top: 5px solid var(--secondary);
-        }
-        
-        .feature-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .feature-icon {
-            font-size: 48px;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-        
-        .feature-item h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .ar-preview {
-            position: relative;
-            height: 400px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .ar-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(10, 35, 66, 0.8), rgba(212, 175, 55, 0.7));
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
-        
-        /* NEW: African Fabric Explorer */
-        .fabric-explorer {
-            padding: 100px 0;
-            background-color: var(--neutral-light);
-        }
-        
-        .explorer-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-        }
-        
-        .fabric-selector {
-            background-color: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-        }
-        
-        .fabric-list {
-            list-style: none;
-            margin-top: 20px;
-        }
-        
-        .fabric-list li {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-        }
-        
-        .fabric-list li:hover, .fabric-list li.active {
-            background-color: rgba(212, 175, 55, 0.1);
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        .fabric-preview {
-            background-color: white;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        
-        .fabric-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .fabric-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* NEW: African Events Calendar */
-        .events-calendar {
-            padding: 80px 0;
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .calendar-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        .calendar {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .calendar-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .day-name {
-            text-align: center;
-            font-weight: 600;
-            color: var(--secondary);
-            padding: 10px 0;
-        }
-        
-        .calendar-dates {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
-        }
-        
-        .date {
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .date:hover {
-            background-color: rgba(212, 175, 55, 0.2);
-        }
-        
-        .date.event {
-            background-color: var(--secondary);
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        .event-list {
-            background-color: white;
-            border-radius: 12px;
-            padding: 30px;
-            color: var(--primary);
-        }
-        
-        .event-item {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-        }
-        
-        .event-item:last-child {
-            border-bottom: none;
-        }
-        
-        .event-date {
-            background-color: var(--secondary);
-            color: var(--primary);
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            flex-shrink: 0;
-            font-weight: 600;
-        }
-        
-        .event-date .month {
-            font-size: 0.8rem;
-        }
-        
-        .event-date .day {
-            font-size: 1.5rem;
-        }
-        
-        .event-details h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-        
-        /* NEW: Afrocentric Virtual Stylist */
-        .virtual-stylist {
-            padding: 100px 0;
-            background-color: var(--neutral-light);
-        }
-        
-        .stylist-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-        }
-        
-        .style-quiz {
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-        
-        .quiz-question {
-            margin-bottom: 20px;
-        }
-        
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .color-options {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .color-option {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        
-        .style-recommendations {
-            background-color: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-        
-        .recommended-item {
-            text-align: center;
-        }
-        
-        /* NEW: African Artisans Spotlight */
-        .artisans-spotlight {
-            padding: 100px 0;
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .artisans-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .artisan-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-        
-        /* Newsletter */
-        .newsletter {
-            padding: 80px 0;
-            background-color: var(--accent2);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .newsletter:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-        }
-        
-        .newsletter h2 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-        }
-        
-        .newsletter p {
-            max-width: 600px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-        
-        .newsletter-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            gap: 10px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .newsletter-input {
+        .form-actions .btn {
             flex: 1;
-            padding: 18px 20px;
-            border-radius: 4px;
-            border: none;
-            font-size: 16px;
         }
         
-        /* Footer */
-        .footer {
-            background-color: var(--neutral-dark);
-            color: var(--text-light);
-            padding: 60px 0 30px;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-col h3 {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            color: var(--secondary);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-            padding-left: 5px;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: var(--transition);
-        }
-        
-        .social-icons a:hover {
-            background-color: var(--secondary);
-            color: var(--primary);
-            transform: translateY(-5px);
-        }
-        
-        .copyright {
+        .form-footer {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            font-size: 14px;
+            margin-top: var(--spacing-lg);
+            color: var(--text-light);
+            font-size: 0.875rem;
         }
         
-        /* Mobile Responsiveness */
-        @media (max-width: 1200px) {
-            .hero h1 {
-                font-size: 3.8rem;
-            }
-            
-            .hero-slogan {
-                font-size: 1.6rem;
-            }
-            
-            .instagram-feed {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .features-grid {
-                gap: 30px;
-            }
-            
-            .cultural-grid, .feed-container, .explorer-container, .calendar-container, .stylist-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .fabric-display {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
+        .form-footer a {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
         }
         
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3.2rem;
-            }
-            
-            .hero-slogan {
-                font-size: 1.4rem;
-            }
-            
-            .collections-grid, .footer-grid, .artisans-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .nav-actions {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: flex;
-            }
-            
-            .mobile-logo-container {
-                display: flex;
-            }
-            
-            .desktop-logo {
-                display: none;
-            }
-            
-            .nav-container {
-                padding: 10px 0;
-            }
-            
-            .cart-slider {
-                max-width: 400px;
-            }
+        .form-footer a:hover {
+            text-decoration: underline;
         }
         
         @media (max-width: 768px) {
-            .hero {
-                height: 90vh;
-            }
-            
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero-slogan {
-                font-size: 1.3rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-            }
-            
-            .instagram-feed, .collections-grid, .fabric-display {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .features-grid {
+            .account-grid {
                 grid-template-columns: 1fr;
             }
             
-            .newsletter-form {
-                flex-direction: column;
+            .account-container {
+                padding: 0 var(--spacing-md);
             }
-            
-            .fabric-image {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .cart-slider {
-                max-width: 100%;
-            }
-            
-            .cart-item-image {
-                width: 80px;
-                height: 80px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2.3rem;
-            }
-            
-            .hero-slogan {
-                font-size: 1.1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .instagram-feed, .collections-grid, .footer-grid, .artisans-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .fabric-display {
-                grid-template-columns: 1fr;
-            }
-            
-            .adinkra-symbol {
-                font-size: 2rem;
-                margin: 0 20px;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .cart-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .cart-item-image {
-                width: 100%;
-                height: 200px;
-                margin-bottom: 15px;
-            }
-        }
-        
-        /* Animation Classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Pattern Background */
-        .pattern-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.05;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23D4AF37' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
-            z-index: -1;
-        }
-        
-        /* Toast Messages */
-        .toast-message {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--primary);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: var(--shadow-hover);
-            z-index: 1004;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        
-        .toast-message.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .toast-message.success {
-            background-color: var(--accent2);
-        }
-        
-        .toast-message.error {
-            background-color: var(--accent);
         }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
+    <!-- Header -->
     <header class="header">
         <div class="container">
-            <!-- Desktop Navigation -->
-            <div class="nav-container">
-                <a href="#" class="logo desktop-logo">BEBEY'S<span>COLLECTION</span></a>
-                
-                <!-- Mobile Logo Container -->
-                <div class="mobile-logo-container">
-                    <div class="mobile-logo-img">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
                         <i class="fas fa-crown"></i>
                     </div>
-                    <div class="mobile-logo-text">BEBEY'S<span>COLLECTION</span></div>
-                    <div class="mobile-menu-btn" id="mobileMenuBtn">
-                        <i class="fas fa-bars"></i>
-                    </div>
+                    <span class="logo-text">BEBEYS<br>COLLECTION</span>
                 </div>
                 
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#shop">Collections</a></li>
-                    <li><a href="#shop">Shop</a></li>
-                    <li><a href="#">Custom</a></li>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Journal</a></li>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#shop">Shop</a></li>
+                    <li><a href="index.html#lookbook">Lookbook</a></li>
+                    <li><a href="index.html#heritage">Heritage</a></li>
+                    <li><a href="index.html#store">Store</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
                 </ul>
                 
                 <div class="nav-actions">
-                    <a href="#"><i class="fas fa-search"></i></a>
-                    <a href="account.html"><i class="fas fa-user"></i></a>
-                    <div class="cart-count" id="cartIcon">
+                    <a href="#search" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <a href="account.html" class="account-btn active">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="cart-btn" id="cartBtn">
                         <i class="fas fa-shopping-bag"></i>
-                        <span class="cart-badge" id="cartBadge">3</span>
+                        <span class="cart-count">0</span>
                     </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Sidebar Menu -->
-        <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
-        
-        <div class="mobile-sidebar" id="mobileSidebar">
-            <!-- Mobile Sidebar Header with Close Button -->
-            <div class="mobile-sidebar-header">
-                <button class="close-sidebar" id="closeSidebarBtn">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <!-- User Profile Section (Conditional) -->
-            <div id="userProfileSection" class="user-profile-section" style="display: none;">
-                <div class="user-avatar">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="user-info">
-                    <div class="user-name" id="userName">Nana Ama</div>
-                    <div class="user-status">VIP Member</div>
-                </div>
-                <a href="account.html" style="color: var(--primary);">
-                    <i class="fas fa-chevron-right"></i>
-                </a>
-            </div>
-            
-            <!-- Login Prompt (Shown when not logged in) -->
-            <div id="loginPrompt" class="login-prompt">
-                <p>Sign in to access your account and exclusive offers</p>
-                <a href="account.html" class="btn btn-primary" style="width: 100%; padding: 12px; text-decoration: none;">
-                    <i class="fas fa-sign-in-alt"></i> Sign In / Sign Up
-                </a>
-            </div>
-            
-            <!-- Mobile Navigation Actions (Top of sidebar) -->
-            <div class="mobile-nav-actions">
-                <a href="#" class="mobile-search-btn" id="mobileSearchBtn">
-                    <i class="fas fa-search"></i>
-                    <span>Search</span>
-                </a>
-                <a href="account.html" class="mobile-account-btn" id="mobileAccountBtn">
-                    <i class="fas fa-user"></i>
-                    <span>Account</span>
-                </a>
-                <a href="#" class="mobile-cart-btn" id="mobileCartBtn">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span>Cart</span>
-                    <span class="cart-badge" id="mobileCartBadge">3</span>
-                </a>
-            </div>
-            
-            <!-- Mobile Navigation Links -->
-            <ul class="mobile-nav-links">
-                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#shop"><i class="fas fa-tshirt"></i> Collections</a></li>
-                <li><a href="#shop"><i class="fas fa-shopping-bag"></i> Shop</a></li>
-                <li><a href="#"><i class="fas fa-paint-brush"></i> Custom Designs</a></li>
-                <li><a href="#"><i class="fas fa-book-open"></i> Our Story</a></li>
-                <li><a href="#"><i class="fas fa-newspaper"></i> Journal</a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i> Events</a></li>
-                <li><a href="#"><i class="fas fa-hands-helping"></i> Styling Services</a></li>
-                <li><a href="#"><i class="fas fa-map-marker-alt"></i> Store Locator</a></li>
-                <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
-            </ul>
-            
-            <!-- Mobile Sidebar Footer with Contact Info -->
-            <div class="mobile-sidebar-footer">
-                <div class="mobile-contact-info">
-                    <h4>Our Store</h4>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>123 Fashion Avenue, Accra, Ghana</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+233 20 123 4567</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>info@bebeyscollection.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Mon-Sat: 9AM-7PM, Sun: 11AM-5PM</span>
-                    </div>
-                </div>
-                
-                <h4 style="color: var(--primary); margin-bottom: 15px; text-align: center; font-size: 1.1rem;">Follow Us</h4>
-                <div class="mobile-social-icons">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                </div>
-                
-                <div class="mobile-copyright">
-                    <p>&copy; 2023 Bebey's Collection. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Search Overlay -->
-        <div class="mobile-search-overlay" id="mobileSearchOverlay">
-            <div class="mobile-search-container">
-                <div class="mobile-search-header">
-                    <h3>Search Products</h3>
-                    <button class="close-search" id="closeSearchBtn">
-                        <i class="fas fa-times"></i>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </button>
                 </div>
-                <input type="text" class="mobile-search-input" placeholder="Search for products, collections, or keywords...">
-                <button class="btn btn-primary" style="width: 100%;">
-                    <i class="fas fa-search"></i> Search
-                </button>
-                
-                <div class="search-suggestions">
-                    <h4>Popular Searches:</h4>
-                    <div class="suggestion-tags">
-                        <div class="suggestion-tag">Ankara Dresses</div>
-                        <div class="suggestion-tag">Kente Stoles</div>
-                        <div class="suggestion-tag">African Print</div>
-                        <div class="suggestion-tag">Bridal Collection</div>
-                        <div class="suggestion-tag">Men's Agbada</div>
-                        <div class="suggestion-tag">Accessories</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Cart Slider for Both Mobile and Desktop -->
-        <div class="cart-slider-overlay" id="cartSliderOverlay"></div>
-        <div class="cart-slider" id="cartSlider">
-            <div class="cart-slider-header">
-                <h2>Your Shopping Cart</h2>
-                <button class="close-cart-slider" id="closeCartSlider">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div class="cart-slider-content" id="cartSliderContent">
-                <!-- Cart items will be dynamically added here -->
-            </div>
-            
-            <div class="cart-slider-footer">
-                <div class="cart-summary">
-                    <div class="summary-row">
-                        <span>Subtotal:</span>
-                        <span id="cartSubtotal">$450.00</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Shipping:</span>
-                        <span id="cartShipping">Calculated at checkout</span>
-                    </div>
-                    <div class="summary-row summary-total">
-                        <span>Total:</span>
-                        <span id="cartTotal">$450.00</span>
-                    </div>
-                </div>
-                
-                <a href="#" class="btn btn-primary" style="width: 100%; margin-bottom: 15px; text-decoration: none;">
-                    <i class="fas fa-shopping-bag"></i> Proceed to Checkout
-                </a>
-                <a href="#" class="btn btn-secondary" style="width: 100%; text-decoration: none;">
-                    <i class="fas fa-shopping-cart"></i> Continue Shopping
-                </a>
-            </div>
+            </nav>
         </div>
     </header>
 
-    <!-- Hero Section with Slogan -->
-    <section class="hero">
-        <div class="hero-bg">
-            <div class="pattern-bg"></div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <span class="logo-text">BEBEYS<br>COLLECTION</span>
+            </div>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-        <div class="container">
-            <div class="hero-content fade-in">
-                <h1>African Luxury<br>Reimagined</h1>
-                <div class="hero-slogan">
-                    "Where Tradition Meets Contemporary Elegance"
-                </div>
-                <p>Experience the finest handcrafted African attire, where traditional artistry meets contemporary luxury. Each piece tells a story of heritage and craftsmanship.</p>
-                <div class="hero-btns">
-                    <button class="btn btn-primary">
-                        <i class="fas fa-eye"></i> Explore Collections
-                    </button>
-                    <button class="btn btn-secondary">
-                        <i class="fas fa-play-circle"></i> Virtual Lookbook
-                    </button>
-                </div>
+        
+        <ul class="mobile-nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="index.html#shop"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+            <li><a href="index.html#lookbook"><i class="fas fa-images"></i> Lookbook</a></li>
+            <li><a href="index.html#heritage"><i class="fas fa-book"></i> Heritage</a></li>
+            <li><a href="index.html#store"><i class="fas fa-store"></i> Store</a></li>
+            <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="index.html#appointment"><i class="fas fa-calendar-alt"></i> Book Appointment</a></li>
+            <li><a href="#search"><i class="fas fa-search"></i> Search</a></li>
+            <li><a href="account.html" class="active"><i class="fas fa-user"></i> Account</a></li>
+        </ul>
+        
+        <div class="mobile-actions">
+            <a href="account.html" class="mobile-action-btn active">
+                <i class="fas fa-user"></i> Account
+            </a>
+            <div class="mobile-action-btn cart-btn" id="mobileCartBtn">
+                <i class="fas fa-shopping-bag"></i> Cart <span class="cart-count">0</span>
             </div>
         </div>
-    </section>
-
-    <!-- Adinkra Symbols Bar -->
-    <section class="adinkra-bar">
-        <div class="adinkra-scroll">
-            <div class="adinkra-symbol">𓃒</div>
-            <div class="adinkra-symbol">𓆓</div>
-            <div class="adinkra-symbol">𓋹</div>
-            <div class="adinkra-symbol">𓍝</div>
-            <div class="adinkra-symbol">𓎆</div>
-            <div class="adinkra-symbol">𓃒</div>
-            <div class="adinkra-symbol">𓆓</div>
-            <div class="adinkra-symbol">𓋹</div>
-            <div class="adinkra-symbol">𓍝</div>
-            <div class="adinkra-symbol">𓎆</div>
+        
+        <div class="store-info">
+            <h4><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
+            <p><i class="fas fa-location-dot"></i> 123 Luxury Avenue, Sandton, Johannesburg</p>
+            <p><i class="fas fa-clock"></i> Mon-Sat: 10AM-7PM | Sun: 12PM-5PM</p>
+            <p><i class="fas fa-phone"></i> (011) 234-5678</p>
         </div>
-    </section>
+    </div>
 
-    <!-- Social Proof Section -->
-    <section class="social-proof">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 class="african-heading">As Worn By</h2>
-                <p>Our community showcases Bebey's Collection across the globe. Join the movement with #BebeysLook</p>
+    <!-- Account Page -->
+    <section class="account-page">
+        <div class="container account-container">
+            <div class="account-header">
+                <h1>My Account</h1>
+                <p>Manage your profile, orders, and preferences</p>
             </div>
             
-            <div class="instagram-feed">
-                <div class="insta-post fade-in">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Customer wearing Bebey's Collection">
-                    <div class="insta-overlay">
-                        <i class="fab fa-instagram insta-icon"></i>
-                    </div>
-                </div>
-                <div class="insta-post fade-in">
-                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Customer wearing Bebey's Collection">
-                    <div class="insta-overlay">
-                        <i class="fab fa-instagram insta-icon"></i>
-                    </div>
-                </div>
-                <div class="insta-post fade-in">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Customer wearing Bebey's Collection">
-                    <div class="insta-overlay">
-                        <i class="fab fa-instagram insta-icon"></i>
-                    </div>
-                </div>
-                <div class="insta-post fade-in">
-                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Customer wearing Bebey's Collection">
-                    <div class="insta-overlay">
-                        <i class="fab fa-instagram insta-icon"></i>
-                    </div>
-                </div>
-                <div class="insta-post fade-in">
-                    <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Customer wearing Bebey's Collection">
-                    <div class="insta-overlay">
-                        <i class="fab fa-instagram insta-icon"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="social-cta fade-in">
-                <h3>Share Your Style</h3>
-                <p>Tag us on Instagram for a chance to be featured</p>
-                <div class="hashtag">#BebeysLook</div>
-                <a href="#" class="btn btn-secondary">
-                    <i class="fab fa-instagram"></i> Follow Our Journey
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Collections -->
-    <section class="featured-collections">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 class="african-heading">Signature Collections</h2>
-                <p>Curated luxury pieces that celebrate African heritage through contemporary design</p>
-            </div>
-            
-            <div class="collections-grid">
-                <div class="collection-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Adinkra Collection" class="collection-img">
-                    <div class="collection-info">
-                        <h3>Adinkra Heritage</h3>
-                        <p>Symbolic prints with contemporary silhouettes</p>
-                        <button class="btn btn-primary" style="margin-top: 15px;">Explore</button>
-                    </div>
-                </div>
-                
-                <div class="collection-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Golden Sands Collection" class="collection-img">
-                    <div class="collection-info">
-                        <h3>Golden Sands</h3>
-                        <p>Luxurious evening wear with gold accents</p>
-                        <button class="btn btn-primary" style="margin-top: 15px;">Explore</button>
-                    </div>
-                </div>
-                
-                <div class="collection-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Modern Ankara Collection" class="collection-img">
-                    <div class="collection-info">
-                        <h3>Modern Ankara</h3>
-                        <p>Bold patterns reimagined for today's woman</p>
-                        <button class="btn btn-primary" style="margin-top: 15px;">Explore</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEW: Shop/Collection Section -->
-    <section class="shop-section" id="shop">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 class="african-heading">Shop Our Collection</h2>
-                <p>Discover handcrafted luxury pieces that celebrate African heritage</p>
-            </div>
-            
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be dynamically added here -->
-            </div>
-            
-            <div class="shop-cta fade-in">
-                <a href="#" class="btn btn-african">
-                    <i class="fas fa-store"></i> View All Products
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- African Cultural Spotlight -->
-    <section class="cultural-spotlight">
-        <div class="container">
-            <div class="cultural-grid">
-                <div class="cultural-content fade-in">
-                    <h2>Rooted in Heritage</h2>
-                    <p>Each piece in our collection is inspired by rich African traditions, craftsmanship, and storytelling.</p>
-                    
-                    <div class="cultural-item">
-                        <div class="cultural-icon">
-                            <i class="fas fa-hands"></i>
+            <div class="account-grid">
+                <div class="account-sidebar">
+                    <div class="user-profile">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle" style="font-size: 4rem; color: var(--accent);"></i>
                         </div>
-                        <div class="cultural-text">
-                            <h3>Handcrafted Excellence</h3>
-                            <p>Every garment is meticulously crafted by skilled artisans using techniques passed down through generations.</p>
-                        </div>
+                        <h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Welcome!</h3>
+                        <p style="color: var(--text-light); font-size: 0.875rem;">Sign in to your account</p>
                     </div>
                     
-                    <div class="cultural-item">
-                        <div class="cultural-icon">
-                            <i class="fas fa-globe-africa"></i>
-                        </div>
-                        <div class="cultural-text">
-                            <h3>Authentic Fabrics</h3>
-                            <p>We source premium Ankara, Kente, and Mudcloth fabrics directly from African textile markets.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="cultural-item">
-                        <div class="cultural-icon">
-                            <i class="fas fa-book-open"></i>
-                        </div>
-                        <div class="cultural-text">
-                            <h3>Storytelling Through Design</h3>
-                            <p>Our patterns and motifs carry symbolic meanings, connecting wearers to African wisdom and heritage.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="fabric-display fade-in">
-                    <div class="fabric-sample">
-                        <img src="https://images.unsplash.com/photo-1558769132-cb1c458e4222?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ankara Fabric">
-                        <div class="fabric-name">Ankara</div>
-                    </div>
-                    <div class="fabric-sample">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kente Fabric">
-                        <div class="fabric-name">Kente</div>
-                    </div>
-                    <div class="fabric-sample">
-                        <img src="https://images.unsplash.com/photo-1567401893416-8f1f9e5b46ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mudcloth Fabric">
-                        <div class="fabric-name">Bogolan</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Live Social Feed -->
-    <section class="live-social-feed">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 class="african-heading">Live From Our Community</h2>
-                <p>Real-time updates from our social media platforms</p>
-            </div>
-            
-            <div class="feed-container">
-                <div class="live-video fade-in">
-                    <div class="video-placeholder">
-                        <div class="video-icon">
-                            <i class="fas fa-broadcast-tower"></i>
-                        </div>
-                        <h3>Live Fashion Show</h3>
-                        <p>Join our next virtual runway event. Experience the latest collections in real-time.</p>
-                        <button class="btn btn-african" style="margin-top: 20px;">
-                            <i class="fas fa-calendar-alt"></i> Schedule Alert
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="social-updates fade-in">
-                    <h3 style="margin-bottom: 20px; color: var(--primary);">Recent Updates</h3>
-                    
-                    <div class="update-item">
-                        <div class="update-icon insta-icon-bg">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <div class="update-content">
-                            <h4>@NanaAma styled our Adinkra dress</h4>
-                            <p>Check out how she paired it with traditional beads</p>
-                            <div class="update-time">2 hours ago</div>
-                        </div>
-                    </div>
-                    
-                    <div class="update-item">
-                        <div class="update-icon tiktok-icon-bg">
-                            <i class="fab fa-tiktok"></i>
-                        </div>
-                        <div class="update-content">
-                            <h4>New #BebeysChallenge trending</h4>
-                            <p>Show us your best African luxury look</p>
-                            <div class="update-time">5 hours ago</div>
-                        </div>
-                    </div>
-                    
-                    <div class="update-item">
-                        <div class="update-icon insta-icon-bg">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <div class="update-content">
-                            <h4>Behind-the-scenes at our Lagos studio</h4>
-                            <p>See how our latest collection comes to life</p>
-                            <div class="update-time">1 day ago</div>
-                        </div>
-                    </div>
-                    
-                    <div class="update-item">
-                        <div class="update-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="update-content">
-                            <h4>Virtual styling session tomorrow</h4>
-                            <p>Book your slot for personalized fashion advice</p>
-                            <div class="update-time">2 days ago</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Features -->
-    <section class="interactive-features">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 class="african-heading">Interactive Experience</h2>
-                <p>Engage with our brand through innovative digital features</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-item fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-camera-retro"></i>
-                    </div>
-                    <h3>Virtual Try-On</h3>
-                    <p>Experience our garments in AR before you buy. See how our pieces drape and move in real-time using your smartphone camera.</p>
-                    <button class="btn btn-primary" style="margin-top: 20px;">
-                        <i class="fas fa-mobile-alt"></i> Launch AR Experience
-                    </button>
-                </div>
-                
-                <div class="ar-preview fade-in">
-                    <div class="ar-overlay">
-                        <h3>Try Before You Buy</h3>
-                        <p>Use your phone camera to see how our luxury pieces fit and flow on you.</p>
-                        <div style="margin-top: 20px; font-size: 3rem;">
-                            <i class="fas fa-vr-cardboard"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="feature-item fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <h3>Custom Design Studio</h3>
-                    <p>Collaborate with our designers to create your bespoke African luxury attire. Select fabrics, patterns, and silhouettes.</p>
-                    <button class="btn btn-primary" style="margin-top: 20px;">
-                        <i class="fas fa-paint-brush"></i> Begin Custom Design
-                    </button>
-                </div>
-                
-                <div class="feature-item fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>Live Style Consultation</h3>
-                    <p>Book a virtual appointment with our styling experts for personalized recommendations and fit advice.</p>
-                    <button class="btn btn-primary" style="margin-top: 20px;">
-                        <i class="fas fa-calendar-alt"></i> Book Consultation
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- African Fabric Explorer -->
-    <section class="fabric-explorer">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 class="african-heading">Fabric Explorer</h2>
-                <p>Discover the stories behind our authentic African textiles</p>
-            </div>
-            
-            <div class="explorer-container">
-                <div class="fabric-selector fade-in">
-                    <h3>Select a Fabric</h3>
-                    <p>Click on a fabric to learn about its origin and significance</p>
-                    <ul class="fabric-list" id="fabricList">
-                        <li class="active" data-fabric="ankara"><i class="fas fa-circle" style="color: #B85252; margin-right: 10px;"></i> Ankara (Wax Print)</li>
-                        <li data-fabric="kente"><i class="fas fa-circle" style="color: #D4AF37; margin-right: 10px;"></i> Kente Cloth</li>
-                        <li data-fabric="bogolan"><i class="fas fa-circle" style="color: #8B4513; margin-right: 10px;"></i> Bogolan (Mudcloth)</li>
-                        <li data-fabric="aso-oke"><i class="fas fa-circle" style="color: #4A7C59; margin-right: 10px;"></i> Aso-Oke</li>
-                        <li data-fabric="adire"><i class="fas fa-circle" style="color: #0A2342; margin-right: 10px;"></i> Adire (Indigo)</li>
+                    <ul class="account-nav">
+                        <li><a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="#orders"><i class="fas fa-shopping-bag"></i> My Orders</a></li>
+                        <li><a href="#appointments"><i class="fas fa-calendar-alt"></i> Store Appointments</a></li>
+                        <li><a href="#wishlist"><i class="fas fa-heart"></i> Wishlist</a></li>
+                        <li><a href="#addresses"><i class="fas fa-map-marker-alt"></i> Addresses</a></li>
+                        <li><a href="#settings"><i class="fas fa-cog"></i> Account Settings</a></li>
+                        <li><a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
                 
-                <div class="fabric-preview fade-in">
-                    <div class="fabric-image">
-                        <img id="fabricImage" src="https://images.unsplash.com/photo-1558769132-cb1c458e4222?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ankara Fabric">
-                    </div>
-                    <h3 id="fabricTitle">Ankara (Wax Print)</h3>
-                    <p id="fabricDescription">Originating from Dutch wax prints, Ankara has become synonymous with African fashion. Each pattern tells a story and carries cultural significance across West Africa.</p>
-                    <button class="btn btn-african" style="margin-top: 20px;">
-                        <i class="fas fa-tshirt"></i> View Collection
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- African Events Calendar -->
-    <section class="events-calendar">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 class="african-heading">Cultural Events</h2>
-                <p>Join us for exclusive events celebrating African fashion and culture</p>
-            </div>
-            
-            <div class="calendar-container">
-                <div class="calendar fade-in">
-                    <div class="calendar-header">
-                        <h3>December 2023</h3>
-                        <div>
-                            <button class="btn btn-secondary" style="padding: 5px 10px; margin-right: 5px;"><</button>
-                            <button class="btn btn-secondary" style="padding: 5px 10px;">></button>
-                        </div>
-                    </div>
-                    
-                    <div class="calendar-days">
-                        <div class="day-name">Sun</div>
-                        <div class="day-name">Mon</div>
-                        <div class="day-name">Tue</div>
-                        <div class="day-name">Wed</div>
-                        <div class="day-name">Thu</div>
-                        <div class="day-name">Fri</div>
-                        <div class="day-name">Sat</div>
-                    </div>
-                    
-                    <div class="calendar-dates" id="calendarDates">
-                        <!-- Dates will be populated by JavaScript -->
-                    </div>
-                </div>
-                
-                <div class="event-list fade-in">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">Upcoming Events</h3>
-                    
-                    <div class="event-item">
-                        <div class="event-date">
-                            <div class="month">DEC</div>
-                            <div class="day">15</div>
-                        </div>
-                        <div class="event-details">
-                            <h4>Virtual Fashion Show: Holiday Collection</h4>
-                            <p>Live on Instagram & Facebook | 7:00 PM GMT</p>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item">
-                        <div class="event-date">
-                            <div class="month">DEC</div>
-                            <div class="day">20</div>
-                        </div>
-                        <div class="event-details">
-                            <h4>Artisan Workshop: Traditional Weaving</h4>
-                            <p>Live demonstration from our Ghana studio</p>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item">
-                        <div class="event-date">
-                            <div class="month">JAN</div>
-                            <div class="day">05</div>
-                        </div>
-                        <div class="event-details">
-                            <h4>New Year Collection Launch</h4>
-                            <p>Exclusive preview for newsletter subscribers</p>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item">
-                        <div class="event-date">
-                            <div class="month">JAN</div>
-                            <div class="day">12</div>
-                        </div>
-                        <div class="event-details">
-                            <h4>Cultural Significance of Adinkra Symbols</h4>
-                            <p>Educational session with cultural historian</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Afrocentric Virtual Stylist -->
-    <section class="virtual-stylist">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 class="african-heading">Afrocentric Virtual Stylist</h2>
-                <p>Get personalized outfit recommendations based on African fashion principles</p>
-            </div>
-            
-            <div class="stylist-container">
-                <div class="style-quiz fade-in">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">Style Preference Quiz</h3>
-                    <div class="quiz-question">
-                        <p style="font-weight: 600; margin-bottom: 10px;">1. Which occasion are you dressing for?</p>
-                        <div class="quiz-options">
-                            <label style="display: flex; align-items: center;">
-                                <input type="radio" name="occasion" value="wedding" style="margin-right: 10px;">
-                                <span>Wedding / Traditional Ceremony</span>
-                            </label>
-                            <label style="display: flex; align-items: center;">
-                                <input type="radio" name="occasion" value="business" style="margin-right: 10px;">
-                                <span>Business / Professional</span>
-                            </label>
-                            <label style="display: flex; align-items: center;">
-                                <input type="radio" name="occasion" value="casual" style="margin-right: 10px;">
-                                <span>Casual / Everyday</span>
-                            </label>
-                            <label style="display: flex; align-items: center;">
-                                <input type="radio" name="occasion" value="special" style="margin-right: 10px;">
-                                <span>Special Event / Gala</span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="quiz-question">
-                        <p style="font-weight: 600; margin-bottom: 10px;">2. Which color palette resonates with you?</p>
-                        <div class="color-options">
-                            <div class="color-option" style="background-color: #0A2342;" data-color="earth"></div>
-                            <div class="color-option" style="background-color: #B85252;" data-color="vibrant"></div>
-                            <div class="color-option" style="background-color: #4A7C59;" data-color="natural"></div>
-                            <div class="color-option" style="background-color: #D4AF37;" data-color="golden"></div>
-                            <div class="color-option" style="background-color: #8B4513;" data-color="earthy"></div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-primary" style="width: 100%; margin-top: 20px;">
-                        <i class="fas fa-magic"></i> Get Style Recommendations
-                    </button>
-                </div>
-                
-                <div class="style-recommendations fade-in">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">Recommended For You</h3>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                        <div class="recommended-item">
-                            <div style="height: 200px; background-color: #f5f5f5; border-radius: 8px; margin-bottom: 10px; overflow: hidden;">
-                                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Recommended outfit" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="account-content">
+                    <div id="login-section">
+                        <h3>Sign In</h3>
+                        <form class="login-form">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="your@email.com" required>
                             </div>
-                            <p style="font-weight: 600;">Adinkra Maxi Dress</p>
-                        </div>
-                        <div class="recommended-item">
-                            <div style="height: 200px; background-color: #f5f5f5; border-radius: 8px; margin-bottom: 10px; overflow: hidden;">
-                                <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Recommended outfit" style="width: 100%; height: 100%; object-fit: cover;">
+                            
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" placeholder="Enter your password" required>
                             </div>
-                            <p style="font-weight: 600;">Golden Embellished Top</p>
-                        </div>
-                        <div class="recommended-item">
-                            <div style="height: 200px; background-color: #f5f5f5; border-radius: 8px; margin-bottom: 10px; overflow: hidden;">
-                                <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Recommended outfit" style="width: 100%; height: 100%; object-fit: cover;">
+                            
+                            <div class="remember-forgot">
+                                <label class="remember-me">
+                                    <input type="checkbox">
+                                    <span>Remember me</span>
+                                </label>
+                                <a href="#forgot" class="forgot-password">Forgot password?</a>
                             </div>
-                            <p style="font-weight: 600;">Ankara Palazzo Pants</p>
-                        </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Sign In</button>
+                                <a href="#register" class="btn btn-secondary">Create Account</a>
+                            </div>
+                            
+                            <div class="form-footer">
+                                <p>Don't have an account? <a href="#register">Register here</a></p>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- African Artisans Spotlight -->
-    <section class="artisans-spotlight">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 class="african-heading">Meet Our Artisans</h2>
-                <p>The master craftspeople behind every Bebey's Collection piece</p>
-            </div>
-            
-            <div class="artisans-grid">
-                <div class="artisan-card fade-in">
-                    <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; border: 3px solid var(--secondary);">
-                        <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Artisan" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <h3 style="color: var(--secondary); margin-bottom: 10px;">Amina Diallo</h3>
-                    <p style="margin-bottom: 15px; opacity: 0.9;">Master Weaver from Mali</p>
-                    <p style="font-size: 0.9rem; opacity: 0.8;">"Each thread tells a story of our ancestors. I've been weaving Bogolan for 25 years."</p>
-                </div>
-                
-                <div class="artisan-card fade-in">
-                    <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; border: 3px solid var(--secondary);">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Artisan" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <h3 style="color: var(--secondary); margin-bottom: 10px;">Kwame Nkrumah</h3>
-                    <p style="margin-bottom: 15px; opacity: 0.9;">Kente Master from Ghana</p>
-                    <p style="font-size: 0.9rem; opacity: 0.8;">"In every Kente pattern, we encode proverbs and wisdom for generations to come."</p>
-                </div>
-                
-                <div class="artisan-card fade-in">
-                    <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; border: 3px solid var(--secondary);">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Artisan" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <h3 style="color: var(--secondary); margin-bottom: 10px;">Chinwe Okoro</h3>
-                    <p style="margin-bottom: 15px; opacity: 0.9;">Beadwork Artist from Nigeria</p>
-                    <p style="font-size: 0.9rem; opacity: 0.8;">"Beads are our language. Each color and pattern communicates status, history, and identity."</p>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 50px;">
-                <button class="btn btn-african">
-                    <i class="fas fa-play-circle"></i> Watch Artisan Stories
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Join Our Inner Circle</h2>
-                <p>Be the first to access new collections, exclusive events, and styling insights from our atelier.</p>
-            </div>
-            
-            <form class="newsletter-form fade-in">
-                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
-                <button type="submit" class="btn btn-primary">Subscribe</button>
-            </form>
-            
-            <p class="fade-in" style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
-                By subscribing, you agree to our Privacy Policy and consent to receive updates from Bebey's Collection.
-            </p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>BEBEY'S COLLECTION</h3>
-                    <p>Luxury African attire celebrating heritage through contemporary design and unparalleled craftsmanship.</p>
-                    <div class="social-icons">
+            <div class="footer-content">
+                <!-- Footer Logo -->
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h3>BEBEYS COLLECTION</h3>
+                            <p>African Luxury Reimagined</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Celebrating heritage through contemporary African luxury fashion.</p>
+                    <div class="social-links">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
@@ -2908,719 +373,137 @@
                     </div>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Shop</h3>
+                <!-- Quick Links -->
+                <div class="footer-links-section">
+                    <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#shop">New Arrivals</a></li>
-                        <li><a href="#shop">Ready-to-Wear</a></li>
-                        <li><a href="#">Custom Designs</a></li>
-                        <li><a href="#">Bridal Collection</a></li>
-                        <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#shop">Shop</a></li>
+                        <li><a href="index.html#lookbook">Lookbook</a></li>
+                        <li><a href="index.html#store">In-Store</a></li>
+                        <li><a href="index.html#heritage">Our Story</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Personal Styling</a></li>
-                        <li><a href="#">Custom Tailoring</a></li>
-                        <li><a href="#">Virtual Try-On</a></li>
-                        <li><a href="#">Alterations</a></li>
-                        <li><a href="#">International Shipping</a></li>
-                        <li><a href="#">Care Instructions</a></li>
-                    </ul>
+                <!-- Store Info -->
+                <div class="footer-store-section">
+                    <h4>Our Store</h4>
+                    <div class="store-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Sandton, Johannesburg</p>
+                        <p><i class="fas fa-phone"></i> (011) 234-5678</p>
+                        <p><i class="fas fa-envelope"></i> hello@bebeyscollection.com</p>
+                        <p><i class="fas fa-clock"></i> Mon-Sat: 10AM-7PM | Sun: 12PM-5PM</p>
+                    </div>
+                    <a href="index.html#appointment" class="btn btn-outline btn-small">
+                        <i class="fas fa-calendar-alt"></i> Book Store Visit
+                    </a>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Contact</h3>
+                <!-- Services -->
+                <div class="footer-services-section">
+                    <h4>Services</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Store Locator</a></li>
-                        <li><a href="#">Book Appointment</a></li>
-                        <li><a href="#">Customer Service</a></li>
-                        <li><a href="#">Wholesale Inquiries</a></li>
-                        <li><a href="#">Press & Media</a></li>
-                        <li><a href="#">Careers</a></li>
+                        <li><a href="index.html#appointment">Personal Styling</a></li>
+                        <li><a href="index.html#custom">Custom Design</a></li>
+                        <li><a href="index.html#alterations">Alterations</a></li>
+                        <li><a href="index.html#events">Store Events</a></li>
+                        <li><a href="index.html#vip">VIP Experience</a></li>
+                        <li><a href="index.html#gift">Gift Cards</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>&copy; 2023 Bebey's Collection. All rights reserved. | <a href="#" style="color: #aaa;">Privacy Policy</a> | <a href="#" style="color: #aaa;">Terms of Service</a></p>
+            <div class="footer-bottom">
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2023 Bebeys Collection. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#returns">Returns & Exchanges</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Toast Message Container -->
-    <div id="toastContainer"></div>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!-- JavaScript -->
+    <script type="module" src="data.js"></script>
+    <script type="module" src="main.js"></script>
+    
     <script>
-        // Product Data
-        const products = [
-            {
-                id: 1,
-                name: "Adinkra Heritage Dress",
-                category: "Dresses",
-                price: 285.00,
-                originalPrice: 320.00,
-                image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                description: "Elegant dress featuring traditional Adinkra symbols with a modern silhouette.",
-                badge: "Best Seller",
-                sizes: ["S", "M", "L", "XL"],
-                colors: ["Blue/Black", "Red/Gold", "Green/Brown"]
-            },
-            {
-                id: 2,
-                name: "Golden Sands Top",
-                category: "Tops",
-                price: 165.00,
-                originalPrice: 195.00,
-                image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                description: "Luxurious top with gold thread embroidery and intricate beadwork.",
-                badge: "New",
-                sizes: ["XS", "S", "M"],
-                colors: ["Gold", "Ivory", "Bronze"]
-            },
-            {
-                id: 3,
-                name: "Ankara Palazzo Pants",
-                category: "Bottoms",
-                price: 120.00,
-                originalPrice: null,
-                image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                description: "Wide-leg pants in vibrant Ankara print with comfortable elastic waist.",
-                badge: null,
-                sizes: ["S", "M", "L", "XL", "XXL"],
-                colors: ["Multi-color", "Blue/White", "Red/Black"]
-            },
-            {
-                id: 4,
-                name: "Kente Stole",
-                category: "Accessories",
-                price: 89.00,
-                originalPrice: 110.00,
-                image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                description: "Handwoven Kente stole with traditional Ashanti patterns.",
-                badge: "Sale",
-                sizes: ["One Size"],
-                colors: ["Gold/Green", "Red/Black", "Blue/White"]
-            },
-            {
-                id: 5,
-                name: "Mudcloth Jacket",
-                category: "Outerwear",
-                price: 220.00,
-                originalPrice: null,
-                image: "https://images.unsplash.com/photo-1567401893416-8f1f9e5b46ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                description: "Contemporary jacket made from authentic Malian mudcloth.",
-                badge: "Limited Edition",
-                sizes: ["S", "M", "L"],
-                colors: ["Natural", "Indigo", "Brown"]
-            },
-            {
-                id: 6,
-                name: "Beaded Statement Earrings",
-                category: "Jewelry",
-                price: 65.00,
-                originalPrice: 85.00,
-                image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                description: "Handcrafted beaded earrings with traditional African patterns.",
-                badge: "New",
-                sizes: ["One Size"],
-                colors: ["Multicolor", "Gold/Red", "Blue/Green"]
+        // Simple account page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update cart count on account page
+            function updateCartCount() {
+                try {
+                    const savedCart = localStorage.getItem('bebeysCart');
+                    if (savedCart) {
+                        const cart = JSON.parse(savedCart);
+                        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                        
+                        const cartCounts = document.querySelectorAll('.cart-count');
+                        cartCounts.forEach(count => {
+                            count.textContent = totalItems;
+                            count.style.display = totalItems > 0 ? 'flex' : 'none';
+                        });
+                    }
+                } catch (e) {
+                    console.error('Failed to load cart:', e);
+                }
             }
-        ];
-
-        // Cart Data Structure
-        let cart = [
-            {
-                id: 1,
-                name: "Adinkra Heritage Dress",
-                price: 285.00,
-                quantity: 1,
-                image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
-                size: "M",
-                color: "Blue/Black"
-            },
-            {
-                id: 2,
-                name: "Golden Sands Top",
-                price: 165.00,
-                quantity: 1,
-                image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80",
-                size: "S",
-                color: "Gold"
-            }
-        ];
-        
-        // Simulate login state
-        let isLoggedIn = true;
-        let userName = "Nana Ama";
-        
-        // DOM Elements
-        const cartIcon = document.getElementById('cartIcon');
-        const mobileCartBtn = document.getElementById('mobileCartBtn');
-        const cartSlider = document.getElementById('cartSlider');
-        const cartSliderOverlay = document.getElementById('cartSliderOverlay');
-        const closeCartSlider = document.getElementById('closeCartSlider');
-        const cartSliderContent = document.getElementById('cartSliderContent');
-        const cartBadge = document.getElementById('cartBadge');
-        const mobileCartBadge = document.getElementById('mobileCartBadge');
-        const cartSubtotal = document.getElementById('cartSubtotal');
-        const cartTotal = document.getElementById('cartTotal');
-        const productsGrid = document.getElementById('productsGrid');
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileSidebar = document.getElementById('mobileSidebar');
-        const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
-        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
-        const menuIcon = mobileMenuBtn.querySelector('i');
-        
-        // Initialize the mobile sidebar based on login state
-        function initializeLoginState() {
-            const userProfileSection = document.getElementById('userProfileSection');
-            const loginPrompt = document.getElementById('loginPrompt');
-            const mobileAccountBtn = document.getElementById('mobileAccountBtn');
-            const userNameElement = document.getElementById('userName');
             
-            if (isLoggedIn) {
-                userProfileSection.style.display = 'flex';
-                loginPrompt.style.display = 'none';
-                userNameElement.textContent = userName;
-                
-                // Update account button in mobile nav actions
-                mobileAccountBtn.querySelector('span').textContent = 'Profile';
-            } else {
-                userProfileSection.style.display = 'none';
-                loginPrompt.style.display = 'block';
-                
-                // Update account button in mobile nav actions
-                mobileAccountBtn.querySelector('span').textContent = 'Account';
-            }
-        }
-        
-        // Update cart display
-        function updateCartDisplay() {
             updateCartCount();
-            updateCartSlider();
-            updateCartTotal();
-        }
-        
-        // Update cart count badge
-        function updateCartCount() {
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            cartBadge.textContent = totalItems;
-            if (mobileCartBadge) {
-                mobileCartBadge.textContent = totalItems;
-            }
-        }
-        
-        // Update cart slider content
-        function updateCartSlider() {
-            if (!cartSliderContent) return;
             
-            if (cart.length === 0) {
-                cartSliderContent.innerHTML = `
-                    <div class="empty-cart-message">
-                        <div class="empty-cart-icon">
-                            <i class="fas fa-shopping-bag"></i>
-                        </div>
-                        <h3 style="color: var(--primary); margin-bottom: 15px;">Your cart is empty</h3>
-                        <p style="margin-bottom: 20px; color: #666;">Add some beautiful African attire to get started!</p>
-                        <button class="btn btn-primary" id="continueShoppingBtn">
-                            <i class="fas fa-tshirt"></i> Continue Shopping
-                        </button>
-                    </div>
-                `;
-                
-                // Add event listener to continue shopping button
-                document.getElementById('continueShoppingBtn').addEventListener('click', () => {
-                    closeCartSliderFunc();
-                    // Scroll to shop section
-                    document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
-                });
-                
-                return;
-            }
-            
-            let html = '';
-            let subtotal = 0;
-            
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                subtotal += itemTotal;
-                
-                html += `
-                    <div class="cart-item" data-id="${item.id}">
-                        <div class="cart-item-image">
-                            <img src="${item.image}" alt="${item.name}">
-                        </div>
-                        <div class="cart-item-details">
-                            <div class="cart-item-header">
-                                <div class="cart-item-name">${item.name}</div>
-                                <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
-                            </div>
-                            <div class="cart-item-size">Size: ${item.size} | Color: ${item.color}</div>
-                            <div class="cart-item-actions">
-                                <div class="quantity-controls">
-                                    <button class="quantity-btn minus" data-id="${item.id}">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <div class="quantity-display">${item.quantity}</div>
-                                    <button class="quantity-btn plus" data-id="${item.id}">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                                <button class="remove-item-btn" data-id="${item.id}">
-                                    <i class="fas fa-trash"></i> Remove
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            cartSliderContent.innerHTML = html;
-            
-            // Update cart totals
-            const tax = subtotal * 0.08; // 8% tax
-            const total = subtotal + tax;
-            
-            cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
-            cartTotal.textContent = `$${total.toFixed(2)}`;
-            
-            // Add event listeners to cart buttons
-            addCartEventListeners();
-        }
-        
-        // Update cart total
-        function updateCartTotal() {
-            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            const tax = subtotal * 0.08;
-            const total = subtotal + tax;
-            
-            // Update any other total displays if needed
-        }
-        
-        // Add event listeners to cart items
-        function addCartEventListeners() {
-            // Quantity minus buttons
-            document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const id = parseInt(this.getAttribute('data-id'));
-                    const item = cart.find(item => item.id === id);
+            // Login form submission
+            const loginForm = document.querySelector('.login-form');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('#email').value;
+                    const password = this.querySelector('#password').value;
                     
-                    if (item.quantity > 1) {
-                        item.quantity--;
-                        updateCartDisplay();
-                        showToast(`${item.name} quantity decreased`, 'success');
+                    if (email && password) {
+                        // In a real app, this would make an API call
+                        alert('Login functionality would connect to backend in production');
                     }
                 });
-            });
-            
-            // Quantity plus buttons
-            document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const id = parseInt(this.getAttribute('data-id'));
-                    const item = cart.find(item => item.id === id);
-                    
-                    item.quantity++;
-                    updateCartDisplay();
-                    showToast(`${item.name} quantity increased`, 'success');
-                });
-            });
-            
-            // Remove item buttons
-            document.querySelectorAll('.remove-item-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const id = parseInt(this.getAttribute('data-id'));
-                    const item = cart.find(item => item.id === id);
-                    
-                    cart = cart.filter(item => item.id !== id);
-                    updateCartDisplay();
-                    showToast(`${item.name} removed from cart`, 'error');
-                });
-            });
-        }
-        
-        // Add product to cart
-        function addToCart(productId, size = 'M', color = null) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-            
-            // Check if product is already in cart
-            const existingItem = cart.find(item => item.id === productId && item.size === size && item.color === color);
-            
-            if (existingItem) {
-                existingItem.quantity++;
-                showToast(`${product.name} quantity increased`, 'success');
-            } else {
-                const defaultColor = color || product.colors[0];
-                cart.push({
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    quantity: 1,
-                    image: product.image,
-                    size: size,
-                    color: defaultColor
-                });
-                showToast(`${product.name} added to cart`, 'success');
             }
             
-            updateCartDisplay();
+            // Mobile menu functionality
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeMenu = document.getElementById('closeMenu');
+            const mobileCartBtn = document.getElementById('mobileCartBtn');
             
-            // Open cart slider on mobile
-            if (window.innerWidth <= 992) {
-                openCartSlider();
-            }
-        }
-        
-        // Render products
-        function renderProducts() {
-            if (!productsGrid) return;
-            
-            let html = '';
-            
-            products.forEach(product => {
-                const hasDiscount = product.originalPrice !== null;
-                const discountPercent = hasDiscount ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
-                
-                html += `
-                    <div class="product-card fade-in">
-                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
-                        <div class="product-image">
-                            <img src="${product.image}" alt="${product.name}">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">${product.category}</div>
-                            <h3 class="product-title">${product.name}</h3>
-                            <p class="product-description">${product.description}</p>
-                            <div class="product-price">
-                                <div>
-                                    ${hasDiscount ? `<span class="original-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
-                                    <span class="price">$${product.price.toFixed(2)}</span>
-                                    ${hasDiscount ? `<div style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 5px;">Save ${discountPercent}%</div>` : ''}
-                                </div>
-                                <button class="add-to-cart-btn" data-id="${product.id}">
-                                    <i class="fas fa-cart-plus"></i> Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            productsGrid.innerHTML = html;
-            
-            // Add event listeners to add to cart buttons
-            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const productId = parseInt(this.getAttribute('data-id'));
-                    addToCart(productId);
-                });
-            });
-        }
-        
-        // Show toast message
-        function showToast(message, type = 'success') {
-            const toastContainer = document.getElementById('toastContainer');
-            const toastId = 'toast-' + Date.now();
-            
-            const toast = document.createElement('div');
-            toast.id = toastId;
-            toast.className = `toast-message ${type}`;
-            toast.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-                <span>${message}</span>
-            `;
-            
-            toastContainer.appendChild(toast);
-            
-            // Show toast
-            setTimeout(() => {
-                toast.classList.add('show');
-            }, 10);
-            
-            // Hide toast after 3 seconds
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => {
-                    if (toast.parentNode) {
-                        toast.parentNode.removeChild(toast);
-                    }
-                }, 300);
-            }, 3000);
-        }
-        
-        // Open cart slider
-        function openCartSlider() {
-            cartSlider.classList.add('active');
-            cartSliderOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        // Close cart slider
-        function closeCartSliderFunc() {
-            cartSlider.classList.remove('active');
-            cartSliderOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        // Mobile Menu Toggle with Sidebar
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileSidebar.classList.add('active');
-            mobileSidebarOverlay.classList.add('active');
-            menuIcon.classList.remove('fa-bars');
-            menuIcon.classList.add('fa-times');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        closeSidebarBtn.addEventListener('click', () => {
-            mobileSidebar.classList.remove('active');
-            mobileSidebarOverlay.classList.remove('active');
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Close sidebar when overlay is clicked
-        mobileSidebarOverlay.addEventListener('click', () => {
-            mobileSidebar.classList.remove('active');
-            mobileSidebarOverlay.classList.remove('active');
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Close sidebar when a link is clicked
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileSidebar.classList.remove('active');
-                mobileSidebarOverlay.classList.remove('active');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-                document.body.style.overflow = 'auto';
-            });
-        });
-        
-        // Header scroll effect
-        const header = document.querySelector('.header');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Fade-in animation on scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const fadeInOnScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('visible');
-                }
-            });
-        };
-        
-        // Initial check
-        fadeInOnScroll();
-        
-        // Check on scroll
-        window.addEventListener('scroll', fadeInOnScroll);
-        
-        // Cart functionality
-        cartIcon.addEventListener('click', () => {
-            openCartSlider();
-        });
-        
-        if (mobileCartBtn) {
-            mobileCartBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openCartSlider();
-                
-                // Close mobile sidebar if open
-                mobileSidebar.classList.remove('active');
-                mobileSidebarOverlay.classList.remove('active');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            });
-        }
-        
-        closeCartSlider.addEventListener('click', () => {
-            closeCartSliderFunc();
-        });
-        
-        cartSliderOverlay.addEventListener('click', () => {
-            closeCartSliderFunc();
-        });
-        
-        // Mobile Search Functionality
-        const mobileSearchBtn = document.getElementById('mobileSearchBtn');
-        const mobileSearchOverlay = document.getElementById('mobileSearchOverlay');
-        const closeSearchBtn = document.getElementById('closeSearchBtn');
-        
-        if (mobileSearchBtn) {
-            mobileSearchBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                mobileSearchOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Close sidebar if open
-                mobileSidebar.classList.remove('active');
-                mobileSidebarOverlay.classList.remove('active');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            });
-        }
-        
-        if (closeSearchBtn) {
-            closeSearchBtn.addEventListener('click', () => {
-                mobileSearchOverlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-        }
-        
-        if (mobileSearchOverlay) {
-            mobileSearchOverlay.addEventListener('click', (e) => {
-                if (e.target === mobileSearchOverlay) {
-                    mobileSearchOverlay.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        }
-        
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeLoginState();
-            updateCartDisplay();
-            renderProducts();
-            
-            // All existing JavaScript for other sections remains here
-            // This includes fabric explorer, calendar generation, etc.
-            
-            // Fabric Explorer Functionality
-            const fabricListItems = document.querySelectorAll('#fabricList li');
-            const fabricImage = document.getElementById('fabricImage');
-            const fabricTitle = document.getElementById('fabricTitle');
-            const fabricDescription = document.getElementById('fabricDescription');
-            
-            const fabricData = {
-                ankara: {
-                    image: 'https://images.unsplash.com/photo-1558769132-cb1c458e4222?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    title: 'Ankara (Wax Print)',
-                    description: 'Originating from Dutch wax prints, Ankara has become synonymous with African fashion. Each pattern tells a story and carries cultural significance across West Africa.'
-                },
-                kente: {
-                    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    title: 'Kente Cloth',
-                    description: 'Woven by the Ashanti people of Ghana, Kente is characterized by bright colors, geometric patterns, and symbolic designs. Each pattern has a name and meaning.'
-                },
-                bogolan: {
-                    image: 'https://images.unsplash.com/photo-1567401893416-8f1f9e5b46ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    title: 'Bogolan (Mudcloth)',
-                    description: 'Traditional Malian fabric dyed with fermented mud. Each Bogolan design is unique and often tells stories of history, mythology, or social status.'
-                },
-                'aso-oke': {
-                    image: 'https://images.unsplash.com/photo-1523380677598-64d85a1e0dab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    title: 'Aso-Oke',
-                    description: 'A traditional Yoruba fabric from Nigeria, handwoven on narrow-strip looms. Often used for special occasions like weddings and naming ceremonies.'
-                },
-                adire: {
-                    image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                    title: 'Adire (Indigo)',
-                    description: 'Yoruba resist-dyed cloth using natural indigo dye. Techniques include tie-dye, stitch-resist, and starch-resist methods passed through generations.'
-                }
-            };
-            
-            if (fabricListItems.length > 0) {
-                fabricListItems.forEach(item => {
-                    item.addEventListener('click', () => {
-                        fabricListItems.forEach(li => li.classList.remove('active'));
-                        item.classList.add('active');
-                        const fabricType = item.getAttribute('data-fabric');
-                        const data = fabricData[fabricType];
-                        fabricImage.src = data.image;
-                        fabricTitle.textContent = data.title;
-                        fabricDescription.textContent = data.description;
-                    });
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
                 });
             }
             
-            // Calendar Generation
-            const calendarDates = document.getElementById('calendarDates');
-            
-            if (calendarDates) {
-                function generateCalendar() {
-                    const today = new Date();
-                    const year = today.getFullYear();
-                    const month = today.getMonth();
-                    const firstDay = new Date(year, month, 1);
-                    const lastDay = new Date(year, month + 1, 0);
-                    const daysInMonth = lastDay.getDate();
-                    const firstDayOfWeek = firstDay.getDay();
-                    
-                    calendarDates.innerHTML = '';
-                    
-                    for (let i = 0; i < firstDayOfWeek; i++) {
-                        const emptyCell = document.createElement('div');
-                        emptyCell.className = 'date';
-                        calendarDates.appendChild(emptyCell);
-                    }
-                    
-                    for (let day = 1; day <= daysInMonth; day++) {
-                        const dateCell = document.createElement('div');
-                        dateCell.className = 'date';
-                        dateCell.textContent = day;
-                        
-                        if (day === 15 || day === 20) {
-                            dateCell.classList.add('event');
-                            dateCell.addEventListener('click', () => {
-                                alert(`Event on December ${day}: ${day === 15 ? 'Virtual Fashion Show' : 'Artisan Workshop'}`);
-                            });
-                        }
-                        
-                        if (day === today.getDate() && month === today.getMonth()) {
-                            dateCell.style.backgroundColor = 'var(--accent)';
-                            dateCell.style.color = 'white';
-                        }
-                        
-                        calendarDates.appendChild(dateCell);
-                    }
-                }
-                generateCalendar();
-            }
-            
-            // Style Quiz Color Selection
-            const colorOptions = document.querySelectorAll('.color-option');
-            if (colorOptions.length > 0) {
-                colorOptions.forEach(option => {
-                    option.addEventListener('click', () => {
-                        colorOptions.forEach(opt => opt.style.border = 'none');
-                        option.style.border = '3px solid var(--secondary)';
-                    });
+            if (closeMenu) {
+                closeMenu.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    if (menuToggle) menuToggle.classList.remove('active');
                 });
             }
             
-            // Adinkra Symbols Animation
-            const adinkraSymbols = document.querySelectorAll('.adinkra-symbol');
-            adinkraSymbols.forEach((symbol, index) => {
-                symbol.style.animationDelay = `${index * 0.5}s`;
-                symbol.addEventListener('mouseenter', () => {
-                    symbol.style.transform = 'scale(1.2) rotate(10deg)';
-                    symbol.style.transition = 'transform 0.3s ease';
-                    symbol.style.opacity = '1';
-                });
-                symbol.addEventListener('mouseleave', () => {
-                    symbol.style.transform = 'scale(1) rotate(0deg)';
-                    symbol.style.opacity = '0.8';
+            // Close mobile menu when clicking on links
+            document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    if (menuToggle) menuToggle.classList.remove('active');
                 });
             });
         });
