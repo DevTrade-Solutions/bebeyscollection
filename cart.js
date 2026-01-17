@@ -13,25 +13,28 @@ export const CartManager = (() => {
         const product = Data.products.find(p => p.id === productId);
         if (!product) return;
         
-        // Check if product is already in cart
+        // Get default color if not provided
+        const defaultColor = color || (product.colors && product.colors[0]) || 'Default';
+        const defaultSize = size || (product.sizes && product.sizes[0]) || 'M';
+        
+        // Check if product is already in cart with same size and color
         const existingItem = cart.find(item => 
             item.id === productId && 
-            item.size === size && 
-            item.color === color
+            item.size === defaultSize && 
+            item.color === defaultColor
         );
         
         if (existingItem) {
             existingItem.quantity++;
             UI.showToast(`${product.name} quantity increased`, 'success');
         } else {
-            const defaultColor = color || product.colors[0];
             cart.push({
                 id: product.id,
                 name: product.name,
                 price: product.price,
                 quantity: 1,
                 image: product.image,
-                size: size,
+                size: defaultSize,
                 color: defaultColor
             });
             UI.showToast(`${product.name} added to cart!`, 'success');
@@ -42,10 +45,16 @@ export const CartManager = (() => {
     }
     
     // Remove item from cart
-    function removeFromCart(productId) {
-        const item = cart.find(item => item.id === productId);
-        if (item) {
-            cart = cart.filter(item => item.id !== productId);
+    function removeFromCart(productId, size, color) {
+        const itemIndex = cart.findIndex(item => 
+            item.id === productId && 
+            item.size === size && 
+            item.color === color
+        );
+        
+        if (itemIndex !== -1) {
+            const item = cart[itemIndex];
+            cart.splice(itemIndex, 1);
             UI.showToast(`${item.name} removed from cart`, 'error');
             updateDisplay();
             saveCartToStorage();
@@ -53,13 +62,18 @@ export const CartManager = (() => {
     }
     
     // Update item quantity
-    function updateQuantity(productId, newQuantity) {
-        const item = cart.find(item => item.id === productId);
+    function updateQuantity(productId, newQuantity, size, color) {
+        const item = cart.find(item => 
+            item.id === productId && 
+            item.size === size && 
+            item.color === color
+        );
+        
         if (item) {
             if (newQuantity > 0) {
                 item.quantity = newQuantity;
             } else {
-                removeFromCart(productId);
+                removeFromCart(productId, size, color);
             }
             updateDisplay();
             saveCartToStorage();
@@ -94,6 +108,7 @@ export const CartManager = (() => {
         const cartBadge = document.getElementById('cartBadge');
         if (cartBadge) {
             cartBadge.textContent = totals.itemCount;
+            cartBadge.style.display = totals.itemCount > 0 ? 'flex' : 'none';
         }
     }
     
@@ -103,6 +118,7 @@ export const CartManager = (() => {
         const mobileCartBadge = document.getElementById('mobileCartBadge');
         if (mobileCartBadge) {
             mobileCartBadge.textContent = totals.itemCount;
+            mobileCartBadge.style.display = totals.itemCount > 0 ? 'inline-block' : 'none';
         }
     }
     
@@ -131,27 +147,27 @@ export const CartManager = (() => {
             const itemTotal = item.price * item.quantity;
             
             html += `
-                <div class="cart-item" data-id="${item.id}">
+                <div class="cart-item" data-id="${item.id}" data-size="${item.size}" data-color="${item.color}">
                     <div class="cart-item-image">
                         <img src="${item.image}" alt="${item.name}">
                     </div>
                     <div class="cart-item-details">
                         <div class="cart-item-header">
                             <div class="cart-item-name">${item.name}</div>
-                            <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                            <div class="cart-item-price">R${itemTotal.toFixed(2)}</div>
                         </div>
                         <div class="cart-item-size">Size: ${item.size} | Color: ${item.color}</div>
                         <div class="cart-item-actions">
                             <div class="quantity-controls">
-                                <button class="quantity-btn minus" data-id="${item.id}">
+                                <button class="quantity-btn minus" data-id="${item.id}" data-size="${item.size}" data-color="${item.color}">
                                     <i class="fas fa-minus"></i>
                                 </button>
                                 <div class="quantity-display">${item.quantity}</div>
-                                <button class="quantity-btn plus" data-id="${item.id}">
+                                <button class="quantity-btn plus" data-id="${item.id}" data-size="${item.size}" data-color="${item.color}">
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>
-                            <button class="remove-item-btn" data-id="${item.id}">
+                            <button class="remove-item-btn" data-id="${item.id}" data-size="${item.size}" data-color="${item.color}">
                                 <i class="fas fa-trash"></i> Remove
                             </button>
                         </div>
@@ -166,8 +182,8 @@ export const CartManager = (() => {
         const cartSubtotal = document.getElementById('cartSubtotal');
         const cartTotal = document.getElementById('cartTotal');
         
-        if (cartSubtotal) cartSubtotal.textContent = `$${totals.subtotal.toFixed(2)}`;
-        if (cartTotal) cartTotal.textContent = `$${totals.total.toFixed(2)}`;
+        if (cartSubtotal) cartSubtotal.textContent = `R${totals.subtotal.toFixed(2)}`;
+        if (cartTotal) cartTotal.textContent = `R${totals.total.toFixed(2)}`;
     }
     
     // Update cart total display
@@ -175,7 +191,7 @@ export const CartManager = (() => {
         const totals = calculateTotals();
         const cartTotal = document.getElementById('cartTotal');
         if (cartTotal) {
-            cartTotal.textContent = `$${totals.total.toFixed(2)}`;
+            cartTotal.textContent = `R${totals.total.toFixed(2)}`;
         }
     }
     
