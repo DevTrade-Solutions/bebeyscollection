@@ -26,19 +26,19 @@
                 </div>
                 
                 <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="#shop">Shop</a></li>
-                    <li><a href="#lookbook">Lookbook</a></li>
-                    <li><a href="#heritage">Heritage</a></li>
-                    <li><a href="#store">Store</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="eg.htm" class="active">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="lookbook.html">Lookbook</a></li>
+                    <li><a href="heritage">Heritage</a></li>
+                    <li><a href="store.html">Store</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
                 
                 <div class="nav-actions">
                     <a href="#search" class="search-btn">
                         <i class="fas fa-search"></i>
                     </a>
-                    <a href="#account" class="account-btn">
+                    <a href="account.html" class="account-btn">
                         <i class="fas fa-user"></i>
                     </a>
                     <div class="cart-btn" id="cartBtn">
@@ -70,17 +70,19 @@
         </div>
         
         <ul class="mobile-nav-links">
-            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="#shop"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+            <li><a href="eg.htm" class="active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="shop.html"><i class="fas fa-shopping-bag"></i> Shop</a></li>
             <li><a href="#lookbook"><i class="fas fa-images"></i> Lookbook</a></li>
             <li><a href="#heritage"><i class="fas fa-book"></i> Heritage</a></li>
             <li><a href="#store"><i class="fas fa-store"></i> Store</a></li>
             <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
             <li><a href="#appointment"><i class="fas fa-calendar-alt"></i> Book Appointment</a></li>
+            <li><a href="#search"><i class="fas fa-search"></i> Search</a></li>
+            <li><a href="account.html"><i class="fas fa-user"></i> Account</a></li>
         </ul>
         
         <div class="mobile-actions">
-            <a href="#account" class="mobile-action-btn">
+            <a href="account.html" class="mobile-action-btn">
                 <i class="fas fa-user"></i> Account
             </a>
             <div class="mobile-action-btn cart-btn" id="mobileCartBtn">
@@ -93,6 +95,27 @@
             <p><i class="fas fa-location-dot"></i> 123 Luxury Avenue, Sandton, Johannesburg</p>
             <p><i class="fas fa-clock"></i> Mon-Sat: 10AM-7PM | Sun: 12PM-5PM</p>
             <p><i class="fas fa-phone"></i> (011) 234-5678</p>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3><i class="fas fa-search"></i> Search Bebeys Collection</h3>
+                <button class="close-search-modal" id="closeSearchModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="search-input-container">
+                <input type="text" id="searchInput" placeholder="Search for products, events, categories...">
+                <button id="searchButton"><i class="fas fa-search"></i> Search</button>
+            </div>
+            
+            <div class="search-results" id="searchResults">
+                <!-- Search results will appear here -->
+            </div>
         </div>
     </div>
 
@@ -136,7 +159,7 @@
         </div>
     </section>
 
-    <!-- SHOP SECTION (Replaced Collections) -->
+    <!-- SHOP SECTION -->
     <section class="shop" id="shop">
         <div class="container">
             <div class="section-header">
@@ -609,11 +632,7 @@
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toast"></div>
-
-
-        <!-- Product Modal -->
+    <!-- Product Modal -->
     <div class="product-modal" id="productModal">
         <div class="modal-content">
             <button class="close-modal" id="closeModal">
@@ -668,16 +687,6 @@
 
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
-
-    <!-- JavaScript -->
-    <script type="module" src="data.js"></script>
-    <script type="module" src="main.js"></script>
-</body>
-</html>
-
-
-
-
 
     <!-- JavaScript -->
     <script type="module" src="data.js"></script>
