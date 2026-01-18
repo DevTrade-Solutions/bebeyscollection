@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookbook | Bebeys Collection - African Luxury Reimagined</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="lookbook.css">
+    
+    <!-- JavaScript -->
+    <script type="module" src="lookbook.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                       <img src="img/bebey-logo2.png" alt="Bebeys Collection Logo">
+                    </div>
+                    <span class="logo-text">BEBEYS<br>COLLECTION</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="lookbook.html" class="active">Lookbook</a></li>
+                    <li><a href="heritage.html">Heritage</a></li>
+                    <li><a href="index.html#store">Store</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <a href="#search" class="search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <a href="account.html" class="account-btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <div class="logo-icon">
+                   <img src="img/bebey-logo2.png" alt="Bebeys Collection Logo">
+                </div>
+                <span class="logo-text">BEBEYS<br>COLLECTION</span>
+            </div>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul class="mobile-nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="shop.html"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+            <li><a href="lookbook.html" class="active"><i class="fas fa-images"></i> Lookbook</a></li>
+            <li><a href="heritage.html"><i class="fas fa-book"></i> Heritage</a></li>
+            <li><a href="index.html#store"><i class="fas fa-store"></i> Store</a></li>
+            <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="index.html#appointment"><i class="fas fa-calendar-alt"></i> Book Appointment</a></li>
+            <li><a href="#search"><i class="fas fa-search"></i> Search</a></li>
+            <li><a href="account.html"><i class="fas fa-user"></i> Account</a></li>
+        </ul>
+        
+        <div class="mobile-actions">
+            <a href="account.html" class="mobile-action-btn">
+                <i class="fas fa-user"></i> Account
+            </a>
+            <div class="mobile-action-btn cart-btn" id="mobileCartBtn">
+                <i class="fas fa-shopping-bag"></i> Cart <span class="cart-count">0</span>
+            </div>
+        </div>
+        
+        <div class="store-info">
+            <h4><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
+            <p><i class="fas fa-location-dot"></i> 123 Luxury Avenue, Sandton, Johannesburg</p>
+            <p><i class="fas fa-clock"></i> Mon-Sat: 10AM-7PM | Sun: 12PM-5PM</p>
+            <p><i class="fas fa-phone"></i> (011) 234-5678</p>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3><i class="fas fa-search"></i> Search Lookbook</h3>
+                <button class="close-search-modal" id="closeSearchModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="search-input-container">
+                <input type="text" id="searchInput" placeholder="Search for looks, seasons, collections...">
+                <button id="searchButton"><i class="fas fa-search"></i> Search</button>
+            </div>
+            
+            <div class="search-results" id="searchResults">
+                <!-- Search results will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Lookbook Hero -->
+    <section class="lookbook-hero">
+        <div class="container">
+            <div class="lookbook-hero-content">
+                <div class="season-badge">Spring/Summer 2024</div>
+                <h1>Lookbook</h1>
+                <p>Discover inspiration through our curated collection of African luxury fashion. Each look tells a story of heritage, craftsmanship, and modern elegance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lookbook Navigation -->
+    <section class="lookbook-nav">
+        <div class="container">
+            <div class="lookbook-nav-container">
+                <div class="lookbook-season">
+                    <button class="season-btn active" data-season="all">All Seasons</button>
+                    <button class="season-btn" data-season="spring">Spring/Summer</button>
+                    <button class="season-btn" data-season="autumn">Autumn/Winter</button>
+                    <button class="season-btn" data-season="resort">Resort</button>
+                    <button class="season-btn" data-season="bridal">Bridal</button>
+                </div>
+                
+                <div class="lookbook-filters">
+                    <button class="filter-btn active" data-filter="all">All Looks</button>
+                    <button class="filter-btn" data-filter="dresses">Dresses</button>
+                    <button class="filter-btn" data-filter="evening">Evening Wear</button>
+                    <button class="filter-btn" data-filter="casual">Casual</button>
+                    <button class="filter-btn" data-filter="accessories">Accessories</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lookbook Gallery -->
+    <section class="lookbook-gallery">
+        <div class="container">
+            <!-- Spring/Summer Collection -->
+            <div class="lookbook-collection fade-in" id="spring-collection">
+                <div class="collection-header">
+                    <h2>Spring/Summer 2024</h2>
+                    <p>Vibrant colors and flowing silhouettes inspired by African summer festivals and traditional celebrations.</p>
+                </div>
+                
+                <div class="masonry-grid">
+                    <!-- Look 1 -->
+                    <div class="masonry-item" data-season="spring" data-category="dresses" data-tags="vibrant,flowing,ankara">
+                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80" 
+                             alt="Ankara Maxi Dress" class="masonry-image" loading="lazy">
+                        <div class="masonry-content">
+                            <h3>Ankara Maxi Dress</h3>
+                            <p>Flowing maxi dress with vibrant Ankara print and traditional embroidery</p>
+                            <div class="masonry-tags">
+                                <span class="masonry-tag">Vibrant</span>
+                                <span class="masonry-tag">Ankara</span>
+                                <span class="masonry-tag">Evening</span>
+                            </div>
+                            <div class="masonry-actions">
+                                <button class="btn btn-primary btn-small view-look" data-look="1">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-secondary btn-small shop-look" data-product="1">
+                                    <i class="fas fa-shopping-bag"></i> Shop Look
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Look 2 -->
+                    <div class="masonry-item" data-season="spring" data-category="casual" data-tags="modern,crop-top,printed">
+                        <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80" 
+                             alt="Modern Ankara Set" class="masonry-image" loading="lazy">
+                        <div class="masonry-content">
+                            <h3>Modern Ankara Set</h3>
+                            <p>Contemporary crop top and skirt set with geometric prints</p>
+                            <div class="masonry-tags">
+                                <span class="masonry-tag">Modern</span>
+                                <span class="masonry-tag">Casual</span>
+                                <span class="masonry-tag">Printed</span>
+                            </div>
+                            <div class="masonry-actions">
+                                <button class="btn btn-primary btn-small view-look" data-look="2">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-secondary btn-small shop-look" data-product="10">
+                                    <i class="fas fa-shopping-bag"></i> Shop Look
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Look 3 -->
+                    <div class="masonry-item" data-season="spring" data-category="accessories" data-tags="jewelry,statement,beaded">
+                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80" 
+                             alt="Beaded Statement Set" class="masonry-image" loading="lazy">
+                        <div class="masonry-content">
+                            <h3>Beaded Statement Set</h3>
+                            <p>Handcrafted necklace and earrings with traditional beadwork</p>
+                            <div class="masonry-tags">
+                                <span class="masonry-tag">Jewelry</span>
+                                <span class="masonry-tag">Beaded</span>
+                                <span class="masonry-tag">Statement</span>
+                            </div>
+                            <div class="masonry-actions">
+                                <button class="btn btn-primary btn-small view-look" data-look="3">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-secondary btn-small shop-look" data-product="6">
+                                    <i class="fas fa-shopping-bag"></i> Shop Look
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Look 4 -->
+                    <div class="masonry-item" data-season="spring" data-category="dresses" data-tags="elegant,embroidery,evening">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80" 
+                             alt="Embroidered Kaftan" class="masonry-image" loading="lazy">
+                        <div class="masonry-content">
+                            <h3>Embroidered Kaftan</h3>
+                            <p>Elegant kaftan with gold thread embroidery and flowing sleeves</p>
+                            <div class="masonry-tags">
+                                <span class="masonry-tag">Elegant</span>
+                                <span class="masonry-tag">Embroidered</span>
+                                <span class="masonry-tag">Evening</span>
+                            </div>
+                            <div class="masonry-actions">
+                                <button class="btn btn-primary btn-small view-look" data-look="4">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-secondary btn-small shop-look" data-product="9">
+                                    <i class="fas fa-shopping-bag"></i> Shop Look
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Look 5 -->
+                    <div class="masonry-item" data-season="spring" data-category="casual" data-tags="modern,wrap,printed">
+                        <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80" 
+                             alt="Printed Wrap Set" class="masonry-image" loading="lazy">
+                        <div class="masonry-content">
+                            <h3>Printed Wrap Set</h3>
+                            <p>Modern wrap top and wide-leg trousers in wax print</p>
+                            <div class="masonry-tags">
+                                <span class="masonry-tag">Modern</span>
+                                <span class="masonry-tag">Wrap</span>
+                                <span class="masonry-tag">Printed</span>
+                            </div>
+                            <div class="masonry-actions">
+                                <button class="btn btn-primary btn-small view-look" data-look="5">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-secondary btn-small shop-look" data-product="19">
+                                    <i class="fas fa-shopping-bag"></i> Shop Look
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Look 6 -->
+                    <div class="masonry-item" data-season="spring" data-category="evening" data-tags="luxury,gown,beaded">
+                        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80" 
+                             alt="Beaded Evening Gown" class="masonry-image" loading="lazy">
+                        <div class="masonry-content">
+                            <h3>Beaded Evening Gown</h3>
+                            <p>Luxury evening gown with intricate beadwork and silk fabric</p>
+                            <div class="masonry-tags">
+                                <span class="masonry-tag">Luxury</span>
+                                <span class="masonry-tag">Gown</span>
+                                <span class="masonry-tag">Beaded</span>
+                            </div>
+                            <div class="masonry-actions">
+                                <button class="btn btn-primary btn-small view-look" data-look="6">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-secondary btn-small shop-look" data-product="7">
+                                    <i class="fas fa-shopping-bag"></i> Shop Look
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Autumn/Winter Collection -->
+            <div class="lookbook-collection fade-in" id="autumn-collection">
+                <div class="collection-header">
+                    <h2>Autumn/Winter 2024</h2>
+                    <p>Rich textures and warm tones inspired by African winter landscapes and traditional fabrics.</p>
+                </div>
+                
+                <div class="masonry-grid">
+                    <!-- Look 7 -->
+                    <div class="masonry-item" data-season="autumn" data-category="outerwear" data-tags="mudcloth,jacket,warm">
+                        <img src="https://images.unsplash.com/photo-1567401893416-8f1f9e5b46ab?auto=format&fit=crop&w=800&q=80" 
+                             alt="Mudcloth Jacket" class="masonry-image" loading="lazy">
+                        <div class="masonry-content">
+                            <h3>Mudcloth Jacket</h3>
+                            <p>Contemporary jacket made from authentic Malian mudcloth</p>
+                            <div class="masonry-tags">
+                                <span class="masonry-tag">Mudcloth</span>
+                                <span class="masonry-tag">Jacket</span>
+                                <span class="masonry-tag">Warm</span>
+                            </div>
+                            <div class="masonry-actions">
+                                <button class="btn btn-primary btn-small view-look" data-look="7">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-secondary btn-small shop-look" data-product="5">
+                                    <i class="fas fa-shopping-bag"></i> Shop Look
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Look 8 -->
+                    <div class="masonry-item" data-season="autumn" data-category="outerwear" data-tags="blazer,tailored,mudcloth">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" 
+                             alt="Tailored Mudcloth Blazer" class="masonry-image" loading="lazy">
+                        <div class="masonry-content">
+                            <h3>Tailored Mudcloth Blazer</h3>
+                            <p>Sophisticated blazer in premium mudcloth with structured fit</p>
+                            <div class="masonry-tags">
+                                <span class="masonry-tag">Blazer</span>
+                                <span class="masonry-tag">Tailored</span>
+                                <span class="masonry-tag">Mudcloth</span>
+                            </div>
+                            <div class="masonry-actions">
+                                <button class="btn btn-primary btn-small view-look" data-look="8">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-secondary btn-small shop-look" data-product="13">
+                                    <i class="fas fa-shopping-bag"></i> Shop Look
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Look 9 -->
+                    <div class="masonry-item" data-season="autumn" data-category="dresses" data-tags="wrap,dress,winter">
+                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80" 
+                             alt="Winter Wrap Dress" class="masonry-image" loading="lazy">
+                        <div class="masonry-content">
+                            <h3>Winter Wrap Dress</h3>
+                            <p>Silk wrap dress with traditional embroidery for cooler weather</p>
+                            <div class="masonry-tags">
+                                <span class="masonry-tag">Wrap</span>
+                                <span class="masonry-tag">Dress</span>
+                                <span class="masonry-tag">Winter</span>
+                            </div>
+                            <div class="masonry-actions">
+                                <button class="btn btn-primary btn-small view-look" data-look="9">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-secondary btn-small shop-look" data-product="15">
+                                    <i class="fas fa-shopping-bag"></i> Shop Look
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Resort Collection -->
+            <div class="lookbook-collection fade-in" id="resort-collection">
+                <div class="collection-header">
+                    <h2>Resort Collection</h2>
+                    <p>Lightweight fabrics and beach-ready styles inspired by African coastal cultures.</p>
+                </div>
+                
+                <div class="masonry-grid">
+                    <!-- Look 10 -->
+                    <div class="masonry-item" data-season="resort" data-category="dresses" data-tags="kimono,flowing,beach">
+                        <img src="https://images.unsplash.com/photo-1542280756-1e9d9774cac6?auto=format&fit=crop&w=800&q=80" 
+                             alt="Maxi Kimono" class="masonry-image" loading="lazy">
+                        <div class="masonry-content">
+                            <h3>Maxi Kimono</h3>
+                            <p>Lightweight kimono with bold African prints for beach cover-ups</p>
+                            <div class="masonry-tags">
+                                <span class="masonry-tag">Kimono</span>
+                                <span class="masonry-tag">Flowing</span>
+                                <span class="masonry-tag">Beach</span>
+                            </div>
+                            <div class="masonry-actions">
+                                <button class="btn btn-primary btn-small view-look" data-look="10">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-secondary btn-small shop-look" data-product="17">
+                                    <i class="fas fa-shopping-bag"></i> Shop Look
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Look 11 -->
+                    <div class="masonry-item" data-season="resort" data-category="casual" data-tags="lounge,set,comfort">
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80" 
+                             alt="Lounge Set" class="masonry-image" loading="lazy">
+                        <div class="masonry-content">
+                            <h3>Lounge Set</h3>
+                            <p>Comfortable two-piece set in soft Ankara cotton for resort wear</p>
+                            <div class="masonry-tags">
+                                <span class="masonry-tag">Lounge</span>
+                                <span class="masonry-tag">Set</span>
+                                <span class="masonry-tag">Comfort</span>
+                            </div>
+                            <div class="masonry-actions">
+                                <button class="btn btn-primary btn-small view-look" data-look="11">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-secondary btn-small shop-look" data-product="16">
+                                    <i class="fas fa-shopping-bag"></i> Shop Look
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Looks -->
+    <section class="featured-looks">
+        <div class="container">
+            <h2 class="section-title">Editor's Picks</h2>
+            <p class="section-subtitle">Our stylists' favorite looks from the current season</p>
+            
+            <div class="featured-slider">
+                <div class="featured-slide zoom-in">
+                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80" alt="Golden Sands Look" loading="lazy">
+                    <div class="featured-slide-content">
+                        <h3>Golden Sands Collection</h3>
+                        <p>Luxurious gold embroidery meets traditional craftsmanship in this stunning evening look.</p>
+                        <button class="btn btn-outline btn-small explore-collection" data-collection="golden-sands">
+                            <i class="fas fa-star"></i> Explore Collection
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="featured-slide zoom-in">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt="Kente Heritage" loading="lazy">
+                    <div class="featured-slide-content">
+                        <h3>Kente Heritage</h3>
+                        <p>Authentic Kente patterns reimagined for modern silhouettes and special occasions.</p>
+                        <button class="btn btn-outline btn-small explore-collection" data-collection="kente">
+                            <i class="fas fa-star"></i> Explore Collection
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="featured-slide zoom-in">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80" alt="Modern Ankara" loading="lazy">
+                    <div class="featured-slide-content">
+                        <h3>Modern Ankara</h3>
+                        <p>Traditional Ankara prints with contemporary cuts for everyday elegance.</p>
+                        <button class="btn btn-outline btn-small explore-collection" data-collection="ankara">
+                            <i class="fas fa-star"></i> Explore Collection
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stylist Tips -->
+    <section class="stylist-tips">
+        <div class="container">
+            <h2 class="section-title">Stylist Tips & Inspiration</h2>
+            <p class="section-subtitle">Expert advice on styling African luxury pieces</p>
+            
+            <div class="stylist-grid">
+                <div class="stylist-tip fade-in">
+                    <div class="tip-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Layering Traditional Prints</h3>
+                    <p>Mix different Ankara prints by keeping one color consistent. Pair a bold print with a more subtle one in the same color family for a cohesive look.</p>
+                    <div class="tip-example">
+                        <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=150&q=80" alt="Layering Example" loading="lazy">
+                        <p>Try: Ankara crop top with matching print skirt</p>
+                    </div>
+                </div>
+                
+                <div class="stylist-tip fade-in">
+                    <div class="tip-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Accessorizing Statement Pieces</h3>
+                    <p>When wearing heavily embroidered or beaded pieces, keep accessories minimal. Let one statement piece shine without competition.</p>
+                    <div class="tip-example">
+                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=150&q=80" alt="Accessories Example" loading="lazy">
+                        <p>Try: Simple gold hoops with beaded dresses</p>
+                    </div>
+                </div>
+                
+                <div class="stylist-tip fade-in">
+                    <div class="tip-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Color Coordination</h3>
+                    <p>African prints often feature multiple colors. Pick one dominant color from the print and match your shoes and bag to it for a polished look.</p>
+                    <div class="tip-example">
+                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=150&q=80" alt="Color Example" loading="lazy">
+                        <p>Try: Gold accessories with earth-toned prints</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lookbook CTA -->
+    <section class="lookbook-cta">
+        <div class="container">
+            <div class="lookbook-cta-content">
+                <h2>Ready to Create Your Look?</h2>
+                <p>Visit our store for personalized styling sessions or shop our collections online to bring these looks to life.</p>
+                <div class="cta-buttons">
+                    <a href="shop.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-shopping-bag"></i> Shop the Lookbook
+                    </a>
+                    <a href="index.html#appointment" class="btn btn-secondary btn-large">
+                        <i class="fas fa-calendar-alt"></i> Book Styling Session
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Footer Logo -->
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h3>BEBEYS COLLECTION</h3>
+                            <p>African Luxury Reimagined</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Celebrating heritage through contemporary African luxury fashion.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-links-section">
+                    <h4>Shop Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="shop.html?category=dresses">Dresses</a></li>
+                        <li><a href="shop.html?category=tops">Tops</a></li>
+                        <li><a href="shop.html?category=bottoms">Bottoms</a></li>
+                        <li><a href="shop.html?category=accessories">Accessories</a></li>
+                        <li><a href="shop.html?category=outerwear">Outerwear</a></li>
+                        <li><a href="shop.html?category=jewelry">Jewelry</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Store Info -->
+                <div class="footer-store-section">
+                    <h4>Our Store</h4>
+                    <div class="store-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Sandton, Johannesburg</p>
+                        <p><i class="fas fa-phone"></i> (011) 234-5678</p>
+                        <p><i class="fas fa-envelope"></i> hello@bebeyscollection.com</p>
+                        <p><i class="fas fa-clock"></i> Mon-Sat: 10AM-7PM | Sun: 12PM-5PM</p>
+                    </div>
+                    <a href="index.html#appointment" class="btn btn-outline btn-small">
+                        <i class="fas fa-calendar-alt"></i> Book Store Visit
+                    </a>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-services-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#appointment">Personal Styling</a></li>
+                        <li><a href="index.html#custom">Custom Design</a></li>
+                        <li><a href="index.html#alterations">Alterations</a></li>
+                        <li><a href="index.html#events">Store Events</a></li>
+                        <li><a href="index.html#vip">VIP Experience</a></li>
+                        <li><a href="index.html#gift">Gift Cards</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2023 Bebeys Collection. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#returns">Returns & Exchanges</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lookbook Overlay -->
+    <div class="lookbook-overlay" id="lookbookOverlay">
+        <div class="overlay-content">
+            <button class="close-overlay" id="closeOverlay">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="overlayImage" src="" alt="Look Details" class="overlay-image">
+            <div class="overlay-details">
+                <h2 id="overlayTitle">Look Title</h2>
+                <p id="overlayDescription">Look description goes here.</p>
+                <div class="overlay-tags" id="overlayTags">
+                    <!-- Tags will be added by JavaScript -->
+                </div>
+                <div class="overlay-actions">
+                    <button class="btn btn-primary" id="overlayShopBtn">
+                        <i class="fas fa-shopping-bag"></i> Shop This Look
+                    </button>
+                    <button class="btn btn-secondary" id="overlayStylingBtn">
+                        <i class="fas fa-calendar-alt"></i> Book Styling
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating CTA -->
+    <button class="floating-cta" id="floatingCTA">
+        <i class="fas fa-camera"></i> Share Your Look
+    </button>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+</body>
+</html>
