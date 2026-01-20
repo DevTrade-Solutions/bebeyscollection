@@ -67,11 +67,11 @@
     box-shadow: 0 4px 12px rgba(198, 167, 94, 0.3);
 }
 
-/* Lookbook Navigation */
+/* Lookbook Navigation - UPDATED FOR CENTERED FILTERS */
 .lookbook-nav {
     background-color: var(--primary);
     padding: var(--spacing-md) 0;
-    position: sticky;
+    position: top;
     top: 80px;
     z-index: 100;
     box-shadow: var(--shadow-md);
@@ -79,16 +79,18 @@
 
 .lookbook-nav-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Center the content */
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--spacing-md);
+    gap: 15px; /* Increased gap for better spacing */
 }
 
 .lookbook-season {
     display: flex;
     gap: var(--spacing-sm);
     flex-wrap: wrap;
+    justify-content: center; /* Center season buttons */
+    width: 100%; /* Take full width */
 }
 
 .season-btn {
@@ -114,6 +116,10 @@
     display: flex;
     gap: var(--spacing-sm);
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center; /* Center filter buttons */
+    width: 100%; /* Take full width */
+    margin-top: var(--spacing-sm); /* Space between season and filter rows */
 }
 
 .filter-btn {
@@ -125,6 +131,7 @@
     cursor: pointer;
     transition: var(--transition-normal);
     font-size: 0.875rem;
+    white-space: nowrap; /* Prevent button text from wrapping */
 }
 
 .filter-btn.active,
@@ -595,7 +602,7 @@
     transform: scale(1);
 }
 
-/* Responsive Design for Lookbook */
+/* Responsive Design for Lookbook - UPDATED FOR MOBILE */
 @media (max-width: 1200px) {
     .masonry-grid {
         column-count: 3;
@@ -607,21 +614,42 @@
         column-count: 2;
     }
     
+    /* Tablet: Center filter section */
+    .lookbook-nav{
+        display: none;
+    }
+
+
     .lookbook-nav-container {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
+        gap: var(--spacing-md);
     }
     
     .lookbook-season {
         justify-content: center;
+        width: 100%;
     }
     
     .lookbook-filters {
         justify-content: center;
+        width: 100%;
+        margin-top: var(--spacing-sm);
     }
     
     .featured-slider {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Adjust filter button sizes for tablet */
+    .season-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .filter-btn {
+        padding: 0.5rem 0.875rem;
+        font-size: 0.85rem;
     }
 }
 
@@ -662,6 +690,27 @@
         padding: 0.75rem 1rem;
         font-size: 0.875rem;
     }
+    
+    /* Mobile: Stack filter buttons vertically */
+    .lookbook-season {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .lookbook-filters {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .season-btn,
+    .filter-btn {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+        padding: 0.75rem 1rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -685,5 +734,47 @@
     .filter-btn {
         padding: 0.5rem 0.75rem;
         font-size: 0.75rem;
+    }
+    
+    /* Mobile: Adjust masonry grid for better mobile view */
+    .masonry-item {
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .masonry-content {
+        padding: var(--spacing-sm);
+    }
+    
+    .masonry-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .masonry-actions .btn {
+        width: 100%;
+        padding: 0.5rem;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 400px) {
+    .lookbook-season,
+    .lookbook-filters {
+        gap: 0.25rem;
+    }
+    
+    .season-btn,
+    .filter-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.7rem;
+        max-width: 200px;
+    }
+    
+    .lookbook-hero h1 {
+        font-size: 1.75rem;
+    }
+    
+    .lookbook-hero p {
+        font-size: 1rem;
     }
 }

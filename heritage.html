@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage | Bebeys Collection - African Luxury Reimagined</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="heritage.css">
+    
+    <!-- JavaScript -->
+    <script type="module" src="heritage.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                       <img src="img/bebey-logo2.png" alt="Bebeys Collection Logo">
+                    </div>
+                    <span class="logo-text">BEBEYS<br>COLLECTION</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="lookbook.html">Lookbook</a></li>
+                    <li><a href="heritage.html" class="active">Heritage</a></li>
+                    <li><a href="store.html">Store</a></li>
+                    
+                </ul>
+                
+                <div class="nav-actions">
+                    <a href="#search" class="search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <a href="account.html" class="account-btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" >
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <div class="logo-icon">
+                   <img src="img/bebey-logo2.png" alt="Bebeys Collection Logo">
+                </div>
+                <span class="logo-text">BEBEYS<br>COLLECTION</span>
+            </div>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul class="mobile-nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="shop.html"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+            <li><a href="lookbook.html"><i class="fas fa-images"></i> Lookbook</a></li>
+            <li><a href="heritage.html" class="active"><i class="fas fa-book"></i> Heritage</a></li>
+            <li><a href="store.html"><i class="fas fa-store"></i> Store</a></li>
+            
+            <li><a href="index.html#appointment"><i class="fas fa-calendar-alt"></i> Book Appointment</a></li>
+            <li><a href="#search"><i class="fas fa-search"></i> Search</a></li>
+            <li><a href="account.html"><i class="fas fa-user"></i> Account</a></li>
+        </ul>
+        
+        <div class="mobile-actions">
+            <a href="account.html" class="mobile-action-btn">
+                <i class="fas fa-user"></i> Account
+            </a>
+            <div class="mobile-action-btn cart-btn" id="mobileCartBtn">
+                <i class="fas fa-shopping-bag"></i> Cart <span class="cart-count">0</span>
+            </div>
+        </div>
+        
+        <div class="store-info">
+            <h4><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
+            <p><i class="fas fa-location-dot"></i> 123 Luxury Avenue, Sandton, Johannesburg</p>
+            <p><i class="fas fa-clock"></i> Mon-Sat: 10AM-7PM | Sun: 12PM-5PM</p>
+            <p><i class="fas fa-phone"></i> (011) 234-5678</p>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3><i class="fas fa-search"></i> Search Heritage</h3>
+                <button class="close-search-modal" id="closeSearchModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="search-input-container">
+                <input type="text" id="searchInput" placeholder="Search fabrics, techniques, history...">
+                <button id="searchButton"><i class="fas fa-search"></i> Search</button>
+            </div>
+            
+            <div class="search-results" id="searchResults">
+                <!-- Search results will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Heritage Hero -->
+    <section class="heritage-hero">
+        <div class="container">
+            <div class="heritage-hero-content">
+                <div class="heritage-badge">Preserving Tradition</div>
+                <h1>Our Heritage</h1>
+                <p>Discover the rich history, traditional craftsmanship, and cultural significance behind every piece in our collection.</p>
+                <div class="heritage-scroll-indicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Navigation -->
+    <section class="heritage-nav">
+        <div class="container">
+            <div class="heritage-nav-container">
+                <div class="heritage-sections">
+                    <button class="heritage-nav-btn active" data-section="fabrics">Traditional Fabrics</button>
+                    <button class="heritage-nav-btn" data-section="craftsmanship">Craftsmanship</button>
+                    <button class="heritage-nav-btn" data-section="symbolism">Symbolism</button>
+                    <button class="heritage-nav-btn" data-section="regions">Cultural Regions</button>
+                    <button class="heritage-nav-btn" data-section="artisans">Master Artisans</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Traditional Fabrics Section -->
+    <section class="heritage-section active" id="fabrics-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Traditional African Fabrics</h2>
+                <p class="section-subtitle">The stories woven into every thread</p>
+            </div>
+            
+            <div class="fabrics-grid">
+                <!-- Ankara -->
+                <div class="fabric-card fade-in">
+                    <div class="fabric-image">
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80" alt="Ankara Fabric" loading="lazy">
+                        <div class="fabric-overlay">
+                            <div class="fabric-origin">
+                                <span class="fabric-country">West Africa</span>
+                                <span class="fabric-era">19th Century</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fabric-content">
+                        <h3>Ankara (African Wax Print)</h3>
+                        <div class="fabric-meta">
+                            <span class="fabric-type">Wax Resist Cotton</span>
+                            <span class="fabric-difficulty">Medium Complexity</span>
+                        </div>
+                        <p>Originally inspired by Indonesian batik, Ankara fabric has become a symbol of African identity with its vibrant colors and intricate patterns.</p>
+                        <div class="fabric-characteristics">
+                            <div class="characteristic">
+                                <i class="fas fa-palette"></i>
+                                <span>Vibrant Colors</span>
+                            </div>
+                            <div class="characteristic">
+                                <i class="fas fa-th-large"></i>
+                                <span>Repeating Patterns</span>
+                            </div>
+                            <div class="characteristic">
+                                <i class="fas fa-history"></i>
+                                <span>19th Century Origins</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small fabric-details-btn" data-fabric="ankara">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Kente -->
+                <div class="fabric-card fade-in">
+                    <div class="fabric-image">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt="Kente Cloth" loading="lazy">
+                        <div class="fabric-overlay">
+                            <div class="fabric-origin">
+                                <span class="fabric-country">Ghana</span>
+                                <span class="fabric-era">17th Century</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fabric-content">
+                        <h3>Kente Cloth</h3>
+                        <div class="fabric-meta">
+                            <span class="fabric-type">Handwoven Silk</span>
+                            <span class="fabric-difficulty">High Complexity</span>
+                        </div>
+                        <p>Woven by the Ashanti people of Ghana, Kente cloth was originally reserved for royalty and special occasions. Each pattern tells a specific story or proverb.</p>
+                        <div class="fabric-characteristics">
+                            <div class="characteristic">
+                                <i class="fas fa-crown"></i>
+                                <span>Royal Heritage</span>
+                            </div>
+                            <div class="characteristic">
+                                <i class="fas fa-book"></i>
+                                <span>Storytelling Patterns</span>
+                            </div>
+                            <div class="characteristic">
+                                <i class="fas fa-hand-sparkles"></i>
+                                <span>Handwoven</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small fabric-details-btn" data-fabric="kente">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mudcloth -->
+                <div class="fabric-card fade-in">
+                    <div class="fabric-image">
+                        <img src="https://images.unsplash.com/photo-1567401893416-8f1f9e5b46ab?auto=format&fit=crop&w=800&q=80" alt="Mudcloth" loading="lazy">
+                        <div class="fabric-overlay">
+                            <div class="fabric-origin">
+                                <span class="fabric-country">Mali</span>
+                                <span class="fabric-era">12th Century</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fabric-content">
+                        <h3>Bògòlanfini (Mudcloth)</h3>
+                        <div class="fabric-meta">
+                            <span class="fabric-type">Cotton & Fermented Mud</span>
+                            <span class="fabric-difficulty">High Complexity</span>
+                        </div>
+                        <p>Traditional Malian fabric made using a process of dyeing cotton with fermented mud. Each piece can take up to 4 weeks to complete and is considered a form of writing.</p>
+                        <div class="fabric-characteristics">
+                            <div class="characteristic">
+                                <i class="fas fa-leaf"></i>
+                                <span>Natural Dyes</span>
+                            </div>
+                            <div class="characteristic">
+                                <i class="fas fa-feather-alt"></i>
+                                <span>Symbolic Patterns</span>
+                            </div>
+                            <div class="characteristic">
+                                <i class="fas fa-hourglass-half"></i>
+                                <span>Month-long Process</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small fabric-details-btn" data-fabric="mudcloth">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Adinkra -->
+                <div class="fabric-card fade-in">
+                    <div class="fabric-image">
+                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80" alt="Adinkra Cloth" loading="lazy">
+                        <div class="fabric-overlay">
+                            <div class="fabric-origin">
+                                <span class="fabric-country">Ghana</span>
+                                <span class="fabric-era">19th Century</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fabric-content">
+                        <h3>Adinkra Cloth</h3>
+                        <div class="fabric-meta">
+                            <span class="fabric-type">Stamped Cotton</span>
+                            <span class="fabric-difficulty">Medium Complexity</span>
+                        </div>
+                        <p>Traditional mourning cloth from Ghana featuring symbolic stamps called Adinkra symbols, each with specific meanings related to proverbs, historical events, and human behavior.</p>
+                        <div class="fabric-characteristics">
+                            <div class="characteristic">
+                                <i class="fas fa-stamp"></i>
+                                <span>Symbolic Stamps</span>
+                            </div>
+                            <div class="characteristic">
+                                <i class="fas fa-brain"></i>
+                                <span>Philosophical Meanings</span>
+                            </div>
+                            <div class="characteristic">
+                                <i class="fas fa-heart"></i>
+                                <span>Ceremonial Use</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small fabric-details-btn" data-fabric="adinkra">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Craftsmanship Section -->
+    <section class="heritage-section" id="craftsmanship-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Traditional Craftsmanship</h2>
+                <p class="section-subtitle">Ancient techniques passed through generations</p>
+            </div>
+            
+            <div class="craftsmanship-grid">
+                <div class="craft-card zoom-in">
+                    <div class="craft-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Hand Embroidery</h3>
+                    <p>Intricate needlework using gold and silver threads, often taking weeks to complete a single garment. Our artisans use techniques dating back to 15th century Mali.</p>
+                    <div class="craft-time">
+                        <i class="fas fa-clock"></i>
+                        <span>2-4 weeks per piece</span>
+                    </div>
+                </div>
+                
+                <div class="craft-card zoom-in">
+                    <div class="craft-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Beadwork</h3>
+                    <p>Traditional beadwork using glass beads, seeds, and shells. Each pattern follows specific cultural codes and meanings, with some pieces containing over 10,000 individual beads.</p>
+                    <div class="craft-time">
+                        <i class="fas fa-clock"></i>
+                        <span>3-6 weeks per piece</span>
+                    </div>
+                </div>
+                
+                <div class="craft-card zoom-in">
+                    <div class="craft-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Natural Dyeing</h3>
+                    <p>Using locally sourced materials like indigo leaves, kola nuts, and fermented mud to create rich, lasting colors. Each dye batch is unique and can never be exactly replicated.</p>
+                    <div class="craft-time">
+                        <i class="fas fa-clock"></i>
+                        <span>2 weeks dye process</span>
+                    </div>
+                </div>
+                
+                <div class="craft-card zoom-in">
+                    <div class="craft-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h3>Pattern Drafting</h3>
+                    <p>Traditional geometric pattern drafting without modern tools. Artisans use mental calculations and hand measurements passed down through generations.</p>
+                    <div class="craft-time">
+                        <i class="fas fa-clock"></i>
+                        <span>1-2 days per pattern</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="craftsmanship-process">
+                <h3 class="process-title">The Creation Process</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h4>Design Consultation</h4>
+                        <p>Understanding the story and symbolism behind each piece</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h4>Fabric Selection</h4>
+                        <p>Choosing the perfect traditional fabric for the design</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h4>Hand Crafting</h4>
+                        <p>Artisans apply traditional techniques with precision</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h4>Quality Assurance</h4>
+                        <p>Each piece is inspected by master artisans</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Symbolism Section -->
+    <section class="heritage-section" id="symbolism-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Symbols & Meanings</h2>
+                <p class="section-subtitle">Understanding the language of our designs</p>
+            </div>
+            
+            <div class="symbols-grid">
+                <div class="symbol-card fade-in">
+                    <div class="symbol-visual">
+                        <div class="symbol-shape" style="background-color: var(--accent);">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                    </div>
+                    <h3>Adinkrahene</h3>
+                    <p class="symbol-meaning">"Chief of Adinkra symbols" - Represents greatness, charisma, and leadership</p>
+                    <p class="symbol-origin">Origin: Ashanti, Ghana</p>
+                </div>
+                
+                <div class="symbol-card fade-in">
+                    <div class="symbol-visual">
+                        <div class="symbol-shape" style="background-color: var(--primary); color: var(--secondary);">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                    </div>
+                    <h3>Nyame Dua</h3>
+                    <p class="symbol-meaning">"Tree of God" - Symbol of God's presence and protection</p>
+                    <p class="symbol-origin">Origin: Akan, Ghana</p>
+                </div>
+                
+                <div class="symbol-card fade-in">
+                    <div class="symbol-visual">
+                        <div class="symbol-shape" style="background-color: #065f46; color: white;">
+                            <i class="fas fa-crow"></i>
+                        </div>
+                    </div>
+                    <h3>Akoben</h3>
+                    <p class="symbol-meaning">"War horn" - Represents vigilance and wariness</p>
+                    <p class="symbol-origin">Origin: Ashanti, Ghana</p>
+                </div>
+                
+                <div class="symbol-card fade-in">
+                    <div class="symbol-visual">
+                        <div class="symbol-shape" style="background-color: #7f1d1d; color: white;">
+                            <i class="fas fa-link"></i>
+                        </div>
+                    </div>
+                    <h3>Nkonsonkonson</h3>
+                    <p class="symbol-meaning">"Chain link" - Represents unity and human relations</p>
+                    <p class="symbol-origin">Origin: Akan, Ghana</p>
+                </div>
+            </div>
+            
+            <div class="symbolism-explanation">
+                <h3>Cultural Significance</h3>
+                <p>Each symbol in our collection carries deep cultural meaning and historical significance. These symbols are not mere decorations - they are a visual language that communicates values, proverbs, and philosophical concepts.</p>
+                <p>When you wear a piece from Bebeys Collection, you carry with you centuries of wisdom, tradition, and cultural heritage.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural Regions Section -->
+    <section class="heritage-section" id="regions-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cultural Regions</h2>
+                <p class="section-subtitle">Diverse traditions from across Africa</p>
+            </div>
+            
+            <div class="regions-map">
+                <div class="map-container">
+                    <div class="map-visual">
+                        <!-- Simplified African map representation -->
+                        <div class="map-region west-africa" data-region="west">
+                            <div class="region-label">West Africa</div>
+                            <div class="region-dot" data-region="west"></div>
+                        </div>
+                        <div class="map-region east-africa" data-region="east">
+                            <div class="region-label">East Africa</div>
+                            <div class="region-dot" data-region="east"></div>
+                        </div>
+                        <div class="map-region southern-africa" data-region="south">
+                            <div class="region-label">Southern Africa</div>
+                            <div class="region-dot" data-region="south"></div>
+                        </div>
+                        <div class="map-region north-africa" data-region="north">
+                            <div class="region-label">North Africa</div>
+                            <div class="region-dot" data-region="north"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="regions-info">
+                    <div class="region-details active" data-region="west">
+                        <h3>West Africa</h3>
+                        <p>Home to rich textile traditions including Kente cloth from Ghana, Adire from Nigeria, and Bogolanfini from Mali. Known for vibrant colors, geometric patterns, and intricate beadwork.</p>
+                        <div class="region-fabrics">
+                            <span class="fabric-tag">Kente</span>
+                            <span class="fabric-tag">Ankara</span>
+                            <span class="fabric-tag">Adire</span>
+                            <span class="fabric-tag">Bogolanfini</span>
+                        </div>
+                    </div>
+                    
+                    <div class="region-details" data-region="east">
+                        <h3>East Africa</h3>
+                        <p>Famous for Kitenge and Kanga fabrics featuring Swahili proverbs. Known for bold, large-scale patterns and bright colors, often used as communication tools through printed messages.</p>
+                        <div class="region-fabrics">
+                            <span class="fabric-tag">Kitenge</span>
+                            <span class="fabric-tag">Kanga</span>
+                            <span class="fabric-tag">Shuka</span>
+                        </div>
+                    </div>
+                    
+                    <div class="region-details" data-region="south">
+                        <h3>Southern Africa</h3>
+                        <p>Known for Shweshwe fabric from South Africa and traditional Ndebele beadwork. Characterized by distinctive indigo colors and geometric patterns with cultural significance.</p>
+                        <div class="region-fabrics">
+                            <span class="fabric-tag">Shweshwe</span>
+                            <span class="fabric-tag">Ndebele Beadwork</span>
+                            <span class="fabric-tag">Basotho Blankets</span>
+                        </div>
+                    </div>
+                    
+                    <div class="region-details" data-region="north">
+                        <h3>North Africa</h3>
+                        <p>Influenced by Berber and Arab cultures, featuring intricate embroidery and metalwork. Known for caftans, djellabas, and elaborate wedding attire with gold thread work.</p>
+                        <div class="region-fabrics">
+                            <span class="fabric-tag">Caftan</span>
+                            <span class="fabric-tag">Djellaba</span>
+                            <span class="fabric-tag">Haik</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Master Artisans Section -->
+    <section class="heritage-section" id="artisans-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Master Artisans</h2>
+                <p class="section-subtitle">The hands behind our heritage pieces</p>
+            </div>
+            
+            <div class="artisans-slider">
+                <div class="artisan-card zoom-in">
+                    <div class="artisan-image">
+                        <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&w=800&q=80" alt="Master Weaver" loading="lazy">
+                        <div class="artisan-experience">
+                            <i class="fas fa-award"></i>
+                            <span>45 Years</span>
+                        </div>
+                    </div>
+                    <div class="artisan-content">
+                        <h3>Kwame Mensah</h3>
+                        <p class="artisan-specialty">Master Kente Weaver</p>
+                        <p class="artisan-location">Kumasi, Ghana</p>
+                        <p class="artisan-bio">Fourth-generation weaver specializing in traditional Ashanti Kente patterns. Has trained over 50 apprentices in the art of hand weaving.</p>
+                        <div class="artisan-techniques">
+                            <span class="technique-tag">Hand Weaving</span>
+                            <span class="technique-tag">Pattern Design</span>
+                            <span class="technique-tag">Natural Dyeing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="artisan-card zoom-in">
+                    <div class="artisan-image">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80" alt="Embroidery Artist" loading="lazy">
+                        <div class="artisan-experience">
+                            <i class="fas fa-award"></i>
+                            <span>32 Years</span>
+                        </div>
+                    </div>
+                    <div class="artisan-content">
+                        <h3>Amina Diallo</h3>
+                        <p class="artisan-specialty">Gold Embroidery Specialist</p>
+                        <p class="artisan-location">Bamako, Mali</p>
+                        <p class="artisan-bio">Specializes in traditional Tuareg and Bambara embroidery techniques using gold and silver threads. Her work has been featured in museums across West Africa.</p>
+                        <div class="artisan-techniques">
+                            <span class="technique-tag">Gold Threadwork</span>
+                            <span class="technique-tag">Bead Embroidery</span>
+                            <span class="technique-tag">Pattern Restoration</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="artisan-card zoom-in">
+                    <div class="artisan-image">
+                        <img src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?auto=format&fit=crop&w=800&q=80" alt="Beadwork Master" loading="lazy">
+                        <div class="artisan-experience">
+                            <i class="fas fa-award"></i>
+                            <span>28 Years</span>
+                        </div>
+                    </div>
+                    <div class="artisan-content">
+                        <h3>Naledi Moloi</h3>
+                        <p class="artisan-specialty">Ndebele Beadwork Artist</p>
+                        <p class="artisan-location">Pretoria, South Africa</p>
+                        <p class="artisan-bio">Preserves traditional Ndebele beadwork patterns while creating contemporary interpretations. Her work tells stories of heritage and identity.</p>
+                        <div class="artisan-techniques">
+                            <span class="technique-tag">Glass Beadwork</span>
+                            <span class="technique-tag">Symbolic Patterns</span>
+                            <span class="technique-tag">Contemporary Adaptation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="artisans-commitment">
+                <h3>Our Commitment to Artisans</h3>
+                <p>At Bebeys Collection, we believe in fair trade practices and sustainable partnerships with our artisans. We ensure:</p>
+                <div class="commitment-points">
+                    <div class="commitment-point">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h4>Fair Compensation</h4>
+                        <p>Artisans receive fair wages that reflect their skill and time investment</p>
+                    </div>
+                    <div class="commitment-point">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h4>Skill Preservation</h4>
+                        <p>We support apprenticeship programs to pass traditional skills to new generations</p>
+                    </div>
+                    <div class="commitment-point">
+                        <i class="fas fa-leaf"></i>
+                        <h4>Sustainable Materials</h4>
+                        <p>Using ethically sourced materials that respect both people and planet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage CTA -->
+    <section class="heritage-cta">
+        <div class="container">
+            <div class="heritage-cta-content">
+                <h2>Experience Heritage Firsthand</h2>
+                <p>Visit our store to see traditional craftsmanship in action and learn more about the stories behind our pieces.</p>
+                <div class="cta-buttons">
+                    <a href="index.html#store" class="btn btn-primary btn-large">
+                        <i class="fas fa-store"></i> Visit Our Store
+                    </a>
+                    <a href="index.html#appointment" class="btn btn-secondary btn-large">
+                        <i class="fas fa-calendar-alt"></i> Book Heritage Tour
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Footer Logo -->
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h3>BEBEYS COLLECTION</h3>
+                            <p>African Luxury Reimagined</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Celebrating heritage through contemporary African luxury fashion.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-links-section">
+                    <h4>Explore Heritage</h4>
+                    <ul class="footer-links">
+                        <li><a href="#fabrics-section">Traditional Fabrics</a></li>
+                        <li><a href="#craftsmanship-section">Craftsmanship</a></li>
+                        <li><a href="#symbolism-section">Symbols & Meanings</a></li>
+                        <li><a href="#regions-section">Cultural Regions</a></li>
+                        <li><a href="#artisans-section">Master Artisans</a></li>
+                        <li><a href="lookbook.html">Heritage in Fashion</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Store Info -->
+                <div class="footer-store-section">
+                    <h4>Heritage Center</h4>
+                    <div class="store-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Sandton, Johannesburg</p>
+                        <p><i class="fas fa-phone"></i> (011) 234-5678</p>
+                        <p><i class="fas fa-envelope"></i> heritage@bebeyscollection.com</p>
+                        <p><i class="fas fa-clock"></i> Heritage Tours: Wed & Sat 2PM</p>
+                    </div>
+                    <a href="index.html#appointment" class="btn btn-outline btn-small">
+                        <i class="fas fa-calendar-alt"></i> Book Heritage Tour
+                    </a>
+                </div>
+                
+                <!-- Educational Resources -->
+                <div class="footer-services-section">
+                    <h4>Educational Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#workshops">Heritage Workshops</a></li>
+                        <li><a href="#lectures">Cultural Lectures</a></li>
+                        <li><a href="#research">Textile Research</a></li>
+                        <li><a href="#apprenticeships">Artisan Apprenticeships</a></li>
+                        <li><a href="#museum">Virtual Museum</a></li>
+                        <li><a href="#library">Reference Library</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2023 Bebeys Collection. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#returns">Returns & Exchanges</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fabric Details Overlay -->
+    <div class="fabric-overlay-modal" id="fabricOverlay">
+        <div class="overlay-content">
+            <button class="close-overlay" id="closeFabricOverlay">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="overlay-grid">
+                <div class="overlay-image-section">
+                    <img id="overlayFabricImage" src="" alt="Fabric Details" class="overlay-fabric-image">
+                    <div class="overlay-image-caption" id="overlayImageCaption"></div>
+                </div>
+                <div class="overlay-details-section">
+                    <h2 id="overlayFabricTitle">Fabric Title</h2>
+                    <div class="overlay-fabric-meta" id="overlayFabricMeta"></div>
+                    <div class="overlay-fabric-description" id="overlayFabricDescription"></div>
+                    <div class="overlay-fabric-history">
+                        <h3><i class="fas fa-history"></i> Historical Significance</h3>
+                        <p id="overlayFabricHistory"></p>
+                    </div>
+                    <div class="overlay-fabric-technique">
+                        <h3><i class="fas fa-cogs"></i> Creation Technique</h3>
+                        <p id="overlayFabricTechnique"></p>
+                    </div>
+                    <div class="overlay-actions">
+                        <button class="btn btn-primary" id="overlayShopBtn">
+                            <i class="fas fa-shopping-bag"></i> Shop This Fabric
+                        </button>
+                        <button class="btn btn-secondary" id="overlayWorkshopBtn">
+                            <i class="fas fa-graduation-cap"></i> Learn in Workshop
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+</body>
+</html>

@@ -1,0 +1,1218 @@
+/* heritage.css - Heritage Page Specific Styles */
+
+/* Heritage Hero */
+.heritage-hero {
+    background: linear-gradient(rgba(11,11,11,0.9), rgba(11,11,11,0.8)),
+                url('https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=1600&q=80') center/cover;
+    color: var(--secondary);
+    padding: 140px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.heritage-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 L100,0 L100,100 Z" fill="%23c6a75e" opacity="0.05"/></svg>');
+    background-size: 100px 100px;
+    opacity: 0.1;
+}
+
+.heritage-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.heritage-badge {
+    display: inline-block;
+    background-color: var(--accent);
+    color: var(--primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 2px;
+    margin-bottom: var(--spacing-lg);
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(198, 167, 94, 0.3);
+}
+
+.heritage-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.heritage-hero p {
+    font-size: 1.25rem;
+    color: var(--accent-light);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+.heritage-scroll-indicator {
+    margin-top: var(--spacing-xl);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.heritage-scroll-indicator i {
+    font-size: 2rem;
+    color: var(--accent);
+}
+
+/* Heritage Navigation */
+.heritage-nav {
+    background-color: var(--primary);
+    padding: var(--spacing-md) 0;
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+}
+
+.heritage-nav-container {
+    display: flex;
+    justify-content: center;
+}
+
+.heritage-sections {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.heritage-nav-btn {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    color: var(--secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+.heritage-nav-btn.active,
+.heritage-nav-btn:hover {
+    border-color: var(--accent);
+    background-color: var(--accent);
+    color: var(--primary);
+}
+
+/* Heritage Sections */
+.heritage-section {
+    display: none;
+    padding: var(--spacing-xl) 0;
+    background-color: var(--secondary);
+}
+
+.heritage-section.active {
+    display: block;
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fabrics Grid */
+.fabrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.fabric-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+    border: 2px solid transparent;
+}
+
+.fabric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+}
+
+.fabric-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.fabric-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.fabric-card:hover .fabric-image img {
+    transform: scale(1.05);
+}
+
+.fabric-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.8));
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: flex-end;
+}
+
+.fabric-origin {
+    display: flex;
+    gap: var(--spacing-sm);
+    color: white;
+    font-size: 0.875rem;
+}
+
+.fabric-country {
+    background-color: var(--accent);
+    color: var(--primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+}
+
+.fabric-era {
+    background-color: rgba(255,255,255,0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    backdrop-filter: blur(5px);
+}
+
+.fabric-content {
+    padding: var(--spacing-md);
+}
+
+.fabric-content h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.25rem;
+}
+
+.fabric-meta {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.fabric-type {
+    background-color: rgba(198, 167, 94, 0.1);
+    color: var(--accent);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+.fabric-difficulty {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+.fabric-content p {
+    color: var(--text);
+    margin-bottom: var(--spacing-md);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.fabric-characteristics {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.characteristic {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.characteristic i {
+    color: var(--accent);
+}
+
+/* Craftsmanship Grid */
+.craftsmanship-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.craft-card {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 2px solid transparent;
+    transition: var(--transition-normal);
+    text-align: center;
+}
+
+.craft-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.craft-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: var(--spacing-md);
+}
+
+.craft-card h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.25rem;
+}
+
+.craft-card p {
+    color: var(--text);
+    margin-bottom: var(--spacing-md);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.craft-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+.craft-time i {
+    color: var(--accent);
+}
+
+/* Craftsmanship Process */
+.craftsmanship-process {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--primary), #1a1a1a);
+    border-radius: var(--radius-lg);
+    color: var(--secondary);
+}
+
+.process-title {
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.5rem;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.process-step {
+    text-align: center;
+    padding: var(--spacing-md);
+    background: rgba(255,255,255,0.05);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: var(--transition-normal);
+}
+
+.process-step:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 0 auto var(--spacing-md);
+}
+
+.process-step h4 {
+    color: var(--accent);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.125rem;
+}
+
+.process-step p {
+    color: var(--accent-light);
+    font-size: 0.875rem;
+    margin-bottom: 0;
+}
+
+/* Symbols Grid */
+.symbols-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.symbol-card {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transition: var(--transition-normal);
+    border: 2px solid transparent;
+}
+
+.symbol-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.symbol-visual {
+    margin-bottom: var(--spacing-md);
+}
+
+.symbol-shape {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 2rem;
+}
+
+.symbol-card h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.25rem;
+}
+
+.symbol-meaning {
+    color: var(--text);
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.symbol-origin {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin-bottom: 0;
+}
+
+.symbolism-explanation {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background-color: rgba(198, 167, 94, 0.1);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--accent);
+}
+
+.symbolism-explanation h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.symbolism-explanation p {
+    color: var(--text);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.6;
+}
+
+.symbolism-explanation p:last-child {
+    margin-bottom: 0;
+}
+
+/* Regions Map */
+.regions-map {
+    margin-top: var(--spacing-xl);
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.map-container {
+    position: relative;
+    height: 400px;
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    overflow: hidden;
+}
+
+.map-visual {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%23f0f0f0"/></svg>');
+    background-size: 20px 20px;
+}
+
+.map-region {
+    position: absolute;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.map-region:hover {
+    transform: scale(1.05);
+}
+
+.west-africa {
+    top: 40%;
+    left: 25%;
+    width: 100px;
+    height: 100px;
+}
+
+.east-africa {
+    top: 45%;
+    left: 60%;
+    width: 100px;
+    height: 100px;
+}
+
+.southern-africa {
+    top: 70%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.north-africa {
+    top: 20%;
+    left: 40%;
+    width: 100px;
+    height: 100px;
+}
+
+.region-label {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary);
+    color: var(--secondary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.map-region:hover .region-label {
+    opacity: 1;
+}
+
+.region-dot {
+    width: 20px;
+    height: 20px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 8px rgba(198, 167, 94, 0.3);
+    transition: var(--transition-normal);
+}
+
+.map-region:hover .region-dot {
+    transform: translate(-50%, -50%) scale(1.5);
+    box-shadow: 0 0 0 12px rgba(198, 167, 94, 0.5);
+}
+
+.regions-info {
+    padding: var(--spacing-lg);
+}
+
+.region-details {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.region-details.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.region-details h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
+}
+
+.region-details p {
+    color: var(--text);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+}
+
+.region-fabrics {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.fabric-tag {
+    background-color: rgba(198, 167, 94, 0.1);
+    color: var(--accent);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Artisans Slider */
+.artisans-slider {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.artisan-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+    border: 2px solid transparent;
+}
+
+.artisan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+}
+
+.artisan-image {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.artisan-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.artisan-card:hover .artisan-image img {
+    transform: scale(1.05);
+}
+
+.artisan-experience {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background-color: var(--accent);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.artisan-content {
+    padding: var(--spacing-md);
+}
+
+.artisan-content h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.25rem;
+}
+
+.artisan-specialty {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.artisan-location {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.artisan-bio {
+    color: var(--text);
+    margin-bottom: var(--spacing-md);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.artisan-techniques {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.technique-tag {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--text);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+}
+
+.artisans-commitment {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--primary), #1a1a1a);
+    border-radius: var(--radius-lg);
+    color: var(--secondary);
+}
+
+.artisans-commitment h3 {
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.5rem;
+}
+
+.artisans-commitment > p {
+    text-align: center;
+    color: var(--accent-light);
+    margin-bottom: var(--spacing-lg);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.commitment-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.commitment-point {
+    text-align: center;
+    padding: var(--spacing-md);
+}
+
+.commitment-point i {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: var(--spacing-md);
+}
+
+.commitment-point h4 {
+    color: var(--accent);
+    margin-bottom: var(--spacing-sm);
+}
+
+.commitment-point p {
+    color: var(--accent-light);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Heritage CTA */
+.heritage-cta {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: var(--primary);
+    text-align: center;
+}
+
+.heritage-cta-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.heritage-cta h2 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 2.5rem;
+}
+
+.heritage-cta p {
+    color: rgba(11, 11, 11, 0.8);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.125rem;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Fabric Details Overlay */
+.fabric-overlay-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 2000;
+    overflow-y: auto;
+    padding: var(--spacing-lg);
+}
+
+.fabric-overlay-modal.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.overlay-content {
+    background-color: var(--secondary);
+    border-radius: var(--radius-lg);
+    max-width: 1000px;
+    margin: 2rem auto;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--primary);
+    color: var(--secondary);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-normal);
+}
+
+.close-overlay:hover {
+    background-color: var(--accent);
+    color: var(--primary);
+}
+
+.overlay-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+}
+
+.overlay-image-section {
+    position: relative;
+}
+
+.overlay-fabric-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.overlay-image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    padding: var(--spacing-md);
+    font-size: 0.875rem;
+}
+
+.overlay-details-section {
+    padding: var(--spacing-xl);
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.overlay-details-section h2 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.75rem;
+}
+
+.overlay-fabric-meta {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.overlay-fabric-description {
+    color: var(--text);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+.overlay-fabric-history,
+.overlay-fabric-technique {
+    margin-bottom: var(--spacing-lg);
+}
+
+.overlay-fabric-history h3,
+.overlay-fabric-technique h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.overlay-fabric-history p,
+.overlay-fabric-technique p {
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 0.875rem;
+}
+
+.overlay-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xl);
+}
+
+.overlay-actions .btn {
+    flex: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .overlay-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .overlay-fabric-image {
+        height: 300px;
+    }
+    
+    .overlay-details-section {
+        max-height: none;
+    }
+    
+    .heritage-sections {
+        gap: 0.5rem;
+    }
+    
+    .heritage-nav-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .heritage-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .heritage-hero p {
+        font-size: 1.125rem;
+    }
+    
+    .heritage-nav {
+        top: 60px;
+    }
+    
+    .heritage-sections {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .heritage-nav-btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        padding: 0.75rem;
+    }
+    
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+    
+    .map-container {
+        height: 300px;
+    }
+    
+    .overlay-actions {
+        flex-direction: column;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .fabrics-grid,
+    .craftsmanship-grid,
+    .symbols-grid,
+    .artisans-slider {
+        grid-template-columns: 1fr;
+    }
+    
+    .heritage-hero {
+        padding: 100px 0 60px;
+    }
+    
+    .heritage-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .commitment-points {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.zoom-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.zoom-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Add to responsive.css - Heritage page specific responsive adjustments */
+
+@media (max-width: 992px) {
+    /* Ensure only header is sticky */
+    .header {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000;
+    }
+    
+    /* Remove sticky positioning from heritage nav */
+    .heritage-nav {
+        position: relative;
+        top: auto;
+        z-index: auto;
+    }
+    
+    /* Touch optimization for heritage navigation */
+    .heritage-nav-btn {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px; /* Prevent iOS zoom */
+    }
+    
+    /* Improve scroll behavior */
+    .heritage-sections {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    /* Adjust hero spacing */
+    .heritage-hero {
+        padding-bottom: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Stack CTA buttons on mobile */
+    .heritage-cta .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .heritage-cta .cta-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    /* Adjust section spacing */
+    .heritage-section {
+        padding: var(--spacing-lg) 0;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Single column layout for heritage grids */
+    .fabrics-grid,
+    .craftsmanship-grid,
+    .symbols-grid,
+    .artisans-slider {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Adjust card sizes for mobile */
+    .fabric-image,
+    .artisan-image {
+        height: 200px;
+    }
+    
+    /* Reduce padding on mobile */
+    .fabric-content,
+    .artisan-content,
+    .craft-card,
+    .symbol-card {
+        padding: 1rem;
+    }
+    
+    /* Smaller headings on mobile */
+    .heritage-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 360px) {
+    .heritage-nav-btn {
+        min-width: 120px;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+    
+    .heritage-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .heritage-badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .heritage-nav-btn {
+        font-size: 16px;
+    }
+}
+
+/* Smooth transitions for all interactive elements */
+.heritage-nav-btn,
+.fabric-details-btn,
+.region-dot {
+    transition: all 0.3s ease;
+}
+
+/* Prevent body scroll when overlay is open */
+body.overlay-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* Animation for heritage section switching */
+@keyframes sectionFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.heritage-section.active {
+    animation: sectionFadeIn 0.5s ease;
+}
