@@ -153,7 +153,7 @@ export const CartManager = (() => {
                     <div class="cart-item-details">
                         <div class="cart-item-header">
                             <div class="cart-item-name">${item.name}</div>
-                            <div class="cart-item-price">R${itemTotal.toFixed(2)}</div>
+                            <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
                         </div>
                         <div class="cart-item-size">Size: ${item.size} | Color: ${item.color}</div>
                         <div class="cart-item-actions">
@@ -181,8 +181,8 @@ export const CartManager = (() => {
         const cartSubtotal = document.getElementById('cartSubtotal');
         const cartTotal = document.getElementById('cartTotal');
         
-        if (cartSubtotal) cartSubtotal.textContent = `R${totals.subtotal.toFixed(2)}`;
-        if (cartTotal) cartTotal.textContent = `R${totals.total.toFixed(2)}`;
+        if (cartSubtotal) cartSubtotal.textContent = `$${totals.subtotal.toFixed(2)}`;
+        if (cartTotal) cartTotal.textContent = `$${totals.total.toFixed(2)}`;
     }
     
     // Update cart total display
@@ -190,7 +190,7 @@ export const CartManager = (() => {
         const totals = calculateTotals();
         const cartTotal = document.getElementById('cartTotal');
         if (cartTotal) {
-            cartTotal.textContent = `R${totals.total.toFixed(2)}`;
+            cartTotal.textContent = `$${totals.total.toFixed(2)}`;
         }
     }
     

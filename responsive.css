@@ -985,3 +985,150 @@ body.menu-open {
         flex-direction: row !important;
     }
 }
+
+
+/* =========================
+   PRODUCT MODAL - MOBILE OPTIMIZATION
+========================= */
+
+/* Tablet Landscape (992px and below) */
+@media (max-width: 992px) {
+    /* PRODUCT MODAL - MOBILE OPTIMIZATION */
+    .modal-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        max-height: 90vh;
+    }
+    
+    .modal-image-section {
+        height: 400px; /* Increased image height for mobile */
+    }
+    
+    .main-image-container {
+        height: 400px;
+    }
+    
+    .modal-details {
+        height: auto;
+        max-height: calc(90vh - 400px);
+        overflow-y: auto;
+        padding: var(--spacing-md);
+    }
+    
+    .modal-details h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-price .price {
+        font-size: 1.5rem;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .additional-images {
+        padding: 0.5rem;
+        bottom: 10px;
+    }
+    
+    .image-thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Tablet Portrait (768px and below) */
+@media (max-width: 768px) {
+    /* PRODUCT MODAL - SMALLER SCREENS */
+    .modal-content {
+        margin: 1rem;
+        max-height: 95vh;
+    }
+    
+    .modal-image-section {
+        height: 350px; /* Adjusted for smaller screens */
+    }
+    
+    .main-image-container {
+        height: 350px;
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    /* PRODUCT MODAL - VERY SMALL SCREENS */
+    .modal-image-section {
+        height: 300px; /* Increased image height for mobile */
+    }
+    
+    .main-image-container {
+        height: 300px;
+    }
+    
+    .modal-details h2 {
+        font-size: 1.3rem;
+    }
+    
+    .modal-description {
+        font-size: 0.9rem;
+    }
+    
+    .additional-images {
+        gap: 0.25rem;
+        padding: 0.25rem;
+    }
+    
+    .image-thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Very small mobile devices (360px and below) */
+@media (max-width: 360px) {
+    /* PRODUCT MODAL - EXTRA SMALL */
+    .modal-image-section {
+        height: 250px;
+    }
+    
+    .main-image-container {
+        height: 250px;
+    }
+    
+    .modal-details {
+        padding: var(--spacing-sm);
+    }
+}
+
+/* Fix for iOS Safari */
+@supports (-webkit-touch-callout: none) {
+    .modal-grid,
+    .modal-image-section,
+    .main-image-container {
+        height: -webkit-fill-available;
+    }
+}
+
+/* Fix for Android Chrome in landscape */
+@media (max-width: 992px) and (orientation: landscape) {
+    /* PRODUCT MODAL - LANDSCAPE */
+    .modal-grid {
+        grid-template-columns: 1fr 1fr;
+        height: 90vh;
+    }
+    
+    .modal-image-section {
+        height: 90vh;
+    }
+    
+    .main-image-container {
+        height: 90vh;
+    }
+    
+    .modal-details {
+        height: 90vh;
+        max-height: none;
+    }
+}

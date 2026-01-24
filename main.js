@@ -95,14 +95,14 @@ const productAdditionalImages = {
         additional2: "img/shop/kid-top-b3.JPG"
     },
     6: {
-        main: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80",
-        additional1: "https://images.unsplash.com/photo-1542327897-d73f4005b533?auto=format&fit=crop&w=800&q=80",
-        additional2: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80"
+        main: "img/shop/bubu-g.png",
+        additional1: "img/shop/bubu-g2.png",
+        additional2: "img/shop/bubu-g3.png"
     },
     7: {
-        main: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
-        additional1: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
-        additional2: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80"
+        main: "img/shop/7.jpg",
+        additional1: "img/shop/7-1.jpg",
+        additional2: "img/shop/7-2.jpg"
     },
     8: {
         main: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
@@ -130,6 +130,9 @@ function init() {
     
     // Check user preferences
     checkUserPreferences();
+    
+    // Setup product image hover effects
+    setupProductImageHover();
     
     console.log('Bebeys Collection initialized with manual products');
 }
@@ -399,6 +402,37 @@ function setupEventListeners() {
                 this.classList.add('active');
             }
         });
+    });
+}
+
+// NEW FUNCTION: Setup product image hover effects
+function setupProductImageHover() {
+    document.querySelectorAll('.shop-card').forEach(card => {
+        const productId = parseInt(card.getAttribute('data-id'));
+        const images = productAdditionalImages[productId];
+        
+        if (images && images.additional1) {
+            const imageContainer = card.querySelector('.shop-image');
+            const img = imageContainer.querySelector('img');
+            const originalSrc = img.src;
+            
+            card.addEventListener('mouseenter', () => {
+                img.src = images.additional1;
+                img.style.transition = 'opacity 0.3s ease';
+                img.style.opacity = '0.8';
+                setTimeout(() => {
+                    img.style.opacity = '1';
+                }, 50);
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                img.src = originalSrc;
+                img.style.opacity = '0.8';
+                setTimeout(() => {
+                    img.style.opacity = '1';
+                }, 50);
+            });
+        }
     });
 }
 
