@@ -1,4 +1,4 @@
-import { products, storeInfo, storeEvents, storeExclusives, cart, user } from './data.js';
+import { products, storeInfo, storeEvents, storeExclusives, user } from './data.js';
 
 // DOM Elements
 const elements = {
@@ -36,6 +36,11 @@ const elements = {
     modalAddToCart: document.getElementById('modalAddToCart'),
     modalViewInStore: document.getElementById('modalViewInStore'),
     
+    // Modal Thumbnails
+    thumbnail1: document.getElementById('thumbnail1'),
+    thumbnail2: document.getElementById('thumbnail2'),
+    thumbnail3: document.getElementById('thumbnail3'),
+    
     // Search and Account
     searchBtn: document.querySelector('.search-btn'),
     accountBtn: document.querySelector('.account-btn'),
@@ -58,22 +63,60 @@ const elements = {
 let currentProduct = null;
 let selectedSize = null;
 let selectedColor = null;
-let currentCart = [];
 
-// Home page shop pagination variables
-let currentShopPage = 1;
-const homeProductsPerPage = 4;
-let currentHomeFilter = 'all';
+// Cart state
+let cart = [];
+
+// Product additional images mapping
+const productAdditionalImages = {
+    1: {
+        main: "img/shop/a1.jpg",
+        additional1: "img/shop/2P-set.png",
+        additional2: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?auto=format&fit=crop&w=800&q=80"
+    },
+    2: {
+        main: "img/shop/2P-set.png",
+        additional1: "img/shop/2P-set1.png",
+        additional2: "img/shop/2P-set2.png"
+    },
+    3: {
+        main: "img/shop/akara-pant-bnw.png",
+        additional1: "img/shop/akara-pant-bnw1.png",
+        additional2: "img/shop/akara-pant-bnw2.png"
+    },
+    4: {
+        main: "img/shop/dress-01.png",
+        additional1: "img/shop/dress-02.png",
+        additional2: "img/shop/dress-03.JPG"
+    },
+    5: {
+        main: "img/shop/kid-top-b.JPG",
+        additional1: "img/shop/kid-top-b2.JPG",
+        additional2: "img/shop/kid-top-b3.JPG"
+    },
+    6: {
+        main: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80",
+        additional1: "https://images.unsplash.com/photo-1542327897-d73f4005b533?auto=format&fit=crop&w=800&q=80",
+        additional2: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80"
+    },
+    7: {
+        main: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
+        additional1: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
+        additional2: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80"
+    },
+    8: {
+        main: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+        additional1: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80",
+        additional2: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80"
+    }
+};
 
 // Initialize App
 function init() {
     // Load cart from localStorage
     loadCartFromStorage();
     
-    // Load shop products with pagination
-    renderShopProducts();
-    
-    // Setup event listeners
+    // Setup event listeners for manual products
     setupEventListeners();
     
     // Update cart display
@@ -88,7 +131,7 @@ function init() {
     // Check user preferences
     checkUserPreferences();
     
-    console.log('Bebeys Collection initialized');
+    console.log('Bebeys Collection initialized with manual products');
 }
 
 // Setup Event Listeners
@@ -129,7 +172,7 @@ function setupEventListeners() {
         elements.continueShopping.addEventListener('click', closeCart);
     }
     
-    // Shop filters - FIXED: Proper event delegation
+    // Shop filters for manual products
     if (elements.shopGrid) {
         const shopFiltersContainer = document.querySelector('.shop-filters');
         if (shopFiltersContainer) {
@@ -150,12 +193,14 @@ function setupEventListeners() {
         }
     }
     
-    // Event delegation for shop grid
+    // Event delegation for shop grid (manual products)
     if (elements.shopGrid) {
         elements.shopGrid.addEventListener('click', function(e) {
             const target = e.target;
             const addToCartBtn = target.closest('.add-to-cart');
             const viewDetailsBtn = target.closest('.view-details');
+            const productImageLink = target.closest('.product-image-link');
+            const productTitleLink = target.closest('.product-title-link');
             
             if (addToCartBtn) {
                 const productId = parseInt(addToCartBtn.dataset.id);
@@ -164,6 +209,16 @@ function setupEventListeners() {
             
             if (viewDetailsBtn) {
                 const productId = parseInt(viewDetailsBtn.dataset.id);
+                openProductModal(productId);
+            }
+            
+            if (productImageLink) {
+                const productId = parseInt(productImageLink.dataset.id);
+                openProductModal(productId);
+            }
+            
+            if (productTitleLink) {
+                const productId = parseInt(productTitleLink.dataset.id);
                 openProductModal(productId);
             }
         });
@@ -248,7 +303,7 @@ function setupEventListeners() {
         }
     });
     
-    // Search button functionality - FIXED
+    // Search button functionality
     if (elements.searchBtn) {
         elements.searchBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -256,7 +311,7 @@ function setupEventListeners() {
         });
     }
     
-    // Account button functionality - FIXED: Redirect to account.html
+    // Account button functionality
     if (elements.accountBtn) {
         elements.accountBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -319,6 +374,32 @@ function setupEventListeners() {
             }
         });
     }
+    
+    // Modal thumbnail click events
+    document.querySelectorAll('.image-thumbnail').forEach(thumbnail => {
+        thumbnail.addEventListener('click', function() {
+            const imageType = this.getAttribute('data-image');
+            const productId = currentProduct.id;
+            const images = productAdditionalImages[productId];
+            
+            if (images) {
+                // Update main image
+                if (imageType === 'main') {
+                    elements.modalImage.src = images.main;
+                } else if (imageType === 'additional1') {
+                    elements.modalImage.src = images.additional1;
+                } else if (imageType === 'additional2') {
+                    elements.modalImage.src = images.additional2;
+                }
+                
+                // Update active thumbnail
+                document.querySelectorAll('.image-thumbnail').forEach(t => {
+                    t.classList.remove('active');
+                });
+                this.classList.add('active');
+            }
+        });
+    });
 }
 
 // Setup Gallery Filtering
@@ -359,6 +440,42 @@ function setupGalleryFiltering() {
     });
 }
 
+// Filter Manual Shop Products
+function filterShopProducts(filter) {
+    const shopCards = document.querySelectorAll('.shop-card');
+    
+    shopCards.forEach(card => {
+        const availability = card.getAttribute('data-availability');
+        const tags = card.getAttribute('data-tags');
+        
+        let shouldShow = false;
+        
+        if (filter === 'all') {
+            shouldShow = true;
+        } else if (filter === 'in-store') {
+            shouldShow = availability === 'in-store';
+        } else if (filter === 'online') {
+            shouldShow = availability === 'online' || availability === 'both';
+        } else if (filter === 'new') {
+            shouldShow = tags && tags.includes('new');
+        } else if (filter === 'sale') {
+            shouldShow = tags && tags.includes('sale');
+        }
+        
+        if (shouldShow) {
+            card.style.display = 'block';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.display = 'none';
+            }, 300);
+        }
+    });
+}
+
 // Setup Animations
 function setupAnimations() {
     // Fade-in animations on scroll
@@ -382,206 +499,6 @@ function setupAnimations() {
     window.addEventListener('scroll', fadeInOnScroll);
 }
 
-// Render Shop Products - UPDATED WITH PAGINATION
-function renderShopProducts(filter = 'all') {
-    if (!elements.shopGrid) return;
-    
-    currentHomeFilter = filter;
-    
-    let filteredProducts = products;
-    
-    // Apply filter - FIXED: Proper filtering logic
-    if (filter !== 'all') {
-        filteredProducts = products.filter(product => {
-            if (filter === 'in-store') return product.availability === 'in-store';
-            if (filter === 'online') return product.availability === 'online' || product.availability === 'both';
-            if (filter === 'new') return product.tags && product.tags.includes('new');
-            if (filter === 'sale') return product.tags && product.tags.includes('sale');
-            return true;
-        });
-    }
-    
-    // Calculate pagination
-    const totalPages = Math.ceil(filteredProducts.length / homeProductsPerPage);
-    const startIndex = (currentShopPage - 1) * homeProductsPerPage;
-    const endIndex = startIndex + homeProductsPerPage;
-    const productsToShow = filteredProducts.slice(startIndex, endIndex);
-    
-    // Clear grid
-    elements.shopGrid.innerHTML = '';
-    
-    if (filteredProducts.length === 0) {
-        elements.shopGrid.innerHTML = `
-            <div class="no-products" style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-                <i class="fas fa-search" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                <h3>No products found</h3>
-                <p>Try selecting a different filter</p>
-            </div>
-        `;
-        
-        // Update pagination
-        updateHomePagination(totalPages, filteredProducts.length);
-        return;
-    }
-    
-    // Add products
-    productsToShow.forEach(product => {
-        const shopCard = createShopCard(product);
-        elements.shopGrid.appendChild(shopCard);
-    });
-    
-    // Update pagination
-    updateHomePagination(totalPages, filteredProducts.length);
-}
-
-// Create Shop Card - REMOVED View in Store button
-function createShopCard(product) {
-    const card = document.createElement('div');
-    card.className = 'shop-card fade-in';
-    card.dataset.id = product.id;
-    card.dataset.availability = product.availability;
-    
-    // Calculate discount if applicable
-    const hasDiscount = product.originalPrice !== null;
-    const discountPercent = hasDiscount ? 
-        Math.round((1 - product.price / product.originalPrice) * 100) : 0;
-    
-    // Format prices
-    const formatPrice = (price) => `R${price.toFixed(2)}`;
-    
-    card.innerHTML = `
-        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
-        
-        <div class="shop-image">
-            <img src="${product.image}" alt="${product.name}" loading="lazy">
-        </div>
-        
-        <div class="shop-content">
-            <div class="shop-category">${product.category}</div>
-            <h3 class="shop-title">${product.name}</h3>
-            <p class="shop-description">${product.description}</p>
-            
-            <div class="shop-price">
-                <div>
-                    ${hasDiscount ? `<span class="original-price">${formatPrice(product.originalPrice)}</span>` : ''}
-                    <span class="price">${formatPrice(product.price)}</span>
-                    ${hasDiscount ? `<div class="discount">Save ${discountPercent}%</div>` : ''}
-                </div>
-                ${product.availability === 'in-store' ? 
-                    `<span class="availability-tag">In-Store Only</span>` : 
-                    product.availability === 'online' ?
-                    `<span class="availability-tag">Available Online</span>` :
-                    `<span class="availability-tag">Available Both</span>`}
-            </div>
-            
-            <div class="shop-actions">
-                <button class="btn btn-primary add-to-cart" data-id="${product.id}">
-                    <i class="fas fa-shopping-cart"></i> Add to Cart
-                </button>
-                
-                <button class="btn btn-secondary view-details" data-id="${product.id}">
-                    <i class="fas fa-eye"></i> Details
-                </button>
-            </div>
-        </div>
-    `;
-    
-    return card;
-}
-
-// Filter Shop Products - FIXED: Proper filtering with pagination reset
-function filterShopProducts(filter) {
-    currentShopPage = 1; // Reset to first page when filter changes
-    renderShopProducts(filter);
-}
-
-// Update Home Page Pagination
-function updateHomePagination(totalPages, totalProducts) {
-    // Remove existing pagination if any
-    let existingPagination = document.getElementById('homeShopPagination');
-    if (existingPagination) {
-        existingPagination.remove();
-    }
-    
-    if (totalPages <= 1) return;
-    
-    // Create pagination container
-    const paginationContainer = document.createElement('div');
-    paginationContainer.id = 'homeShopPagination';
-    paginationContainer.className = 'shop-pagination';
-    paginationContainer.style.cssText = 'display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 2rem;';
-    
-    // Create Previous button
-    const prevButton = document.createElement('button');
-    prevButton.className = 'pagination-btn';
-    prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
-    prevButton.disabled = currentShopPage === 1;
-    prevButton.addEventListener('click', () => {
-        if (currentShopPage > 1) {
-            currentShopPage--;
-            renderShopProducts(currentHomeFilter);
-            window.scrollTo({
-                top: document.getElementById('shop').offsetTop - 100,
-                behavior: 'smooth'
-            });
-        }
-    });
-    
-    // Create page info
-    const pageInfo = document.createElement('span');
-    pageInfo.textContent = `Page ${currentShopPage} of ${totalPages} (${totalProducts} products)`;
-    pageInfo.style.cssText = 'font-size: 0.9rem; color: var(--text-light);';
-    
-    // Create Next button
-    const nextButton = document.createElement('button');
-    nextButton.className = 'pagination-btn';
-    nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
-    nextButton.disabled = currentShopPage === totalPages;
-    nextButton.addEventListener('click', () => {
-        if (currentShopPage < totalPages) {
-            currentShopPage++;
-            renderShopProducts(currentHomeFilter);
-            window.scrollTo({
-                top: document.getElementById('shop').offsetTop - 100,
-                behavior: 'smooth'
-            });
-        }
-    });
-    
-    // Add CSS for pagination buttons
-    const style = document.createElement('style');
-    style.textContent = `
-        .pagination-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: none;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            color: var(--text);
-            transition: var(--transition-normal);
-        }
-        .pagination-btn:hover:not(:disabled) {
-            border-color: var(--accent);
-            background-color: var(--accent);
-            color: var(--primary);
-        }
-        .pagination-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-    `;
-    document.head.appendChild(style);
-    
-    paginationContainer.appendChild(prevButton);
-    paginationContainer.appendChild(pageInfo);
-    paginationContainer.appendChild(nextButton);
-    
-    // Add pagination after shop grid
-    if (elements.shopGrid && elements.shopGrid.parentNode) {
-        elements.shopGrid.parentNode.insertBefore(paginationContainer, elements.shopGrid.nextSibling);
-    }
-}
-
 // Product Modal Functions
 function openProductModal(productId) {
     const product = products.find(p => p.id === productId);
@@ -590,6 +507,9 @@ function openProductModal(productId) {
     currentProduct = product;
     selectedSize = product.sizes[0];
     selectedColor = product.colors[0];
+    
+    // Get additional images for this product
+    const additionalImages = productAdditionalImages[productId];
     
     // Calculate discount if applicable
     const hasDiscount = product.originalPrice !== null;
@@ -600,11 +520,36 @@ function openProductModal(productId) {
     const formatPrice = (price) => `R${price.toFixed(2)}`;
     
     // Update modal content
-    if (elements.modalImage) elements.modalImage.src = product.image;
-    if (elements.modalImage) elements.modalImage.alt = product.name;
+    if (elements.modalImage && additionalImages) {
+        elements.modalImage.src = additionalImages.main;
+        elements.modalImage.alt = product.name;
+    }
+    
     if (elements.modalTitle) elements.modalTitle.textContent = product.name;
     if (elements.modalCategory) elements.modalCategory.textContent = product.category;
     if (elements.modalDescription) elements.modalDescription.textContent = product.description;
+    
+    // Update thumbnails
+    if (additionalImages) {
+        if (elements.thumbnail1) {
+            elements.thumbnail1.src = additionalImages.main;
+            elements.thumbnail1.alt = `${product.name} - Main`;
+        }
+        if (elements.thumbnail2) {
+            elements.thumbnail2.src = additionalImages.additional1;
+            elements.thumbnail2.alt = `${product.name} - View 2`;
+        }
+        if (elements.thumbnail3) {
+            elements.thumbnail3.src = additionalImages.additional2;
+            elements.thumbnail3.alt = `${product.name} - View 3`;
+        }
+    }
+    
+    // Reset thumbnail active state
+    document.querySelectorAll('.image-thumbnail').forEach((thumbnail, index) => {
+        thumbnail.classList.remove('active');
+        if (index === 0) thumbnail.classList.add('active');
+    });
     
     // Update prices
     if (elements.modalPrice) {
@@ -752,13 +697,39 @@ function getColorValue(colorName) {
         'Blue/Green': '#1e40af',
         'Custom': '#6b7280',
         'Blue/Gold': '#1e40af',
-        'Green/White': '#065f46'
+        'Green/White': '#065f46',
+        'Navy/Gold': '#1e3a8a',
+        'Emerald/Silver': '#065f46',
+        'Burgundy': '#800020',
+        'Yellow/Black': '#fbbf24',
+        'Blue/White': '#1e40af',
+        'Pink/Orange': '#fb7185',
+        'Red/Black': '#7f1d1d',
+        'Green/Gold': '#065f46',
+        'Purple/White': '#7e22ce',
+        'Emerald': '#065f46',
+        'Royal Blue': '#1e40af',
+        'Deep Red': '#7f1d1d',
+        'Pink/White': '#f472b6',
+        'Blue/Grey': '#4b5563',
+        'Green/Beige': '#065f46',
+        'Red/Black': '#7f1d1d',
+        'Blue/Gold': '#1e40af',
+        'Purple/Orange': '#7e22ce',
+        'White': '#ffffff',
+        'Ivory': '#fffff0',
+        'Light Blue': '#93c5fd',
+        'Black': '#000000',
+        'Navy': '#1e3a8a',
+        'Olive': '#3f6212',
+        'Red': '#dc2626',
+        'Brown': '#8b4513'
     };
     
     return colorMap[colorName] || '#cccccc';
 }
 
-// Cart Functions - FIXED: Working cart system
+// Cart Functions
 function addToCart(productId, size = 'M', color = null) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
@@ -768,7 +739,7 @@ function addToCart(productId, size = 'M', color = null) {
     const defaultSize = size || (product.sizes && product.sizes[0]) || 'M';
     
     // Check if product is already in cart
-    const existingItem = currentCart.find(item => 
+    const existingItem = cart.find(item => 
         item.id === productId && 
         item.size === defaultSize && 
         item.color === defaultColor
@@ -777,7 +748,7 @@ function addToCart(productId, size = 'M', color = null) {
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
-        currentCart.push({
+        cart.push({
             id: product.id,
             name: product.name,
             price: product.price,
@@ -797,10 +768,10 @@ function addToCart(productId, size = 'M', color = null) {
 }
 
 function removeFromCart(productId) {
-    const index = currentCart.findIndex(item => item.id === productId);
-    if (index !== -1) {
-        const productName = currentCart[index].name;
-        currentCart.splice(index, 1);
+    const item = cart.find(item => item.id === productId);
+    if (item) {
+        const productName = item.name;
+        cart = cart.filter(item => item.id !== productId);
         updateCartDisplay();
         showToast(`${productName} removed from cart`, 'error');
         saveCartToStorage();
@@ -808,7 +779,7 @@ function removeFromCart(productId) {
 }
 
 function updateQuantity(productId, change) {
-    const item = currentCart.find(item => item.id === productId);
+    const item = cart.find(item => item.id === productId);
     if (item) {
         const newQuantity = item.quantity + change;
         if (newQuantity <= 0) {
@@ -824,7 +795,7 @@ function updateQuantity(productId, change) {
 function updateCartDisplay() {
     // Update cart count
     const cartCounts = document.querySelectorAll('.cart-count');
-    const totalItems = currentCart.reduce((total, item) => total + item.quantity, 0);
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
     
     cartCounts.forEach(count => {
         count.textContent = totalItems;
@@ -838,7 +809,7 @@ function updateCartDisplay() {
 function updateCartSidebar() {
     if (!elements.cartItems) return;
     
-    if (currentCart.length === 0) {
+    if (cart.length === 0) {
         elements.cartItems.innerHTML = `
             <div class="empty-cart">
                 <i class="fas fa-shopping-bag"></i>
@@ -856,7 +827,7 @@ function updateCartSidebar() {
     let html = '';
     let total = 0;
     
-    currentCart.forEach(item => {
+    cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
         
@@ -871,7 +842,7 @@ function updateCartSidebar() {
                     <div class="cart-item-meta">Size: ${item.size} | Color: ${item.color}</div>
                     <div class="cart-item-actions">
                         <div class="quantity-control">
-                            <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                            <button class="quantity-btn minus" data-id="${item.id}"></button>
                             <span class="quantity">${item.quantity}</span>
                             <button class="quantity-btn plus" data-id="${item.id}">+</button>
                         </div>
@@ -890,7 +861,7 @@ function updateCartSidebar() {
 
 function saveCartToStorage() {
     try {
-        localStorage.setItem('bebeysCart', JSON.stringify(currentCart));
+        localStorage.setItem('bebeysCart', JSON.stringify(cart));
     } catch (e) {
         console.error('Failed to save cart to localStorage:', e);
     }
@@ -900,11 +871,11 @@ function loadCartFromStorage() {
     try {
         const savedCart = localStorage.getItem('bebeysCart');
         if (savedCart) {
-            currentCart = JSON.parse(savedCart);
+            cart = JSON.parse(savedCart);
         }
     } catch (e) {
         console.error('Failed to load cart from localStorage:', e);
-        currentCart = [];
+        cart = [];
     }
 }
 
@@ -1224,7 +1195,6 @@ window.BebeysCollection = {
     showToast,
     trackStoreVisit,
     filterShopProducts,
-    renderShopProducts,
     openProductModal,
     closeProductModal,
     openSearchModal,
@@ -1232,19 +1202,12 @@ window.BebeysCollection = {
     performSearch
 };
 
-// In the existing setupEventListeners function in main.js, ensure shop links point to shop.html
+// Update shop link to point to shop.html
 document.querySelectorAll('a[href="#shop"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = 'shop.html';
-    });
-});
-
-// Also update the mobile menu shop link
-document.querySelectorAll('.mobile-nav-links a[href="#shop"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        closeMobileMenu();
-        window.location.href = 'shop.html';
-    });
+    if (link.getAttribute('href') === '#shop') {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'shop.html';
+        });
+    }
 });

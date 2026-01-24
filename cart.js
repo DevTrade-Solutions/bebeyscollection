@@ -1,4 +1,6 @@
 // Cart Management Module
+import { products } from './data.js';
+
 export const CartManager = (() => {
     let cart = [];
     
@@ -10,7 +12,7 @@ export const CartManager = (() => {
     
     // Add product to cart
     function addToCart(productId, size = 'M', color = null) {
-        const product = Data.products.find(p => p.id === productId);
+        const product = products.find(p => p.id === productId);
         if (!product) return;
         
         // Get default color if not provided
@@ -26,7 +28,6 @@ export const CartManager = (() => {
         
         if (existingItem) {
             existingItem.quantity++;
-            UI.showToast(`${product.name} quantity increased`, 'success');
         } else {
             cart.push({
                 id: product.id,
@@ -37,7 +38,6 @@ export const CartManager = (() => {
                 size: defaultSize,
                 color: defaultColor
             });
-            UI.showToast(`${product.name} added to cart!`, 'success');
         }
         
         updateDisplay();
@@ -55,7 +55,6 @@ export const CartManager = (() => {
         if (itemIndex !== -1) {
             const item = cart[itemIndex];
             cart.splice(itemIndex, 1);
-            UI.showToast(`${item.name} removed from cart`, 'error');
             updateDisplay();
             saveCartToStorage();
         }

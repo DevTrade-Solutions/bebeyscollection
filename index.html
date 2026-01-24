@@ -26,12 +26,11 @@
                 </div>
                 
                 <ul class="nav-links">
-                    <li><a href="eg.html" class="active">Home</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="shop.html">Shop</a></li>
                     <li><a href="lookbook.html">Lookbook</a></li>
                     <li><a href="heritage.html">Heritage</a></li>
                     <li><a href="store.html">Contact Us</a></li>
-                    <li><a href="contact.html"></a></li>
                 </ul>
                 
                 <div class="nav-actions">
@@ -75,7 +74,7 @@
             <li><a href="lookbook.html"><i class="fas fa-images"></i> Lookbook</a></li>
             <li><a href="heritage.html"><i class="fas fa-book"></i> Heritage</a></li>
             <li><a href="store.html"><i class="fas fa-store"></i> Store</a></li>
-            <li><a href="contact.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
             <li><a href="#appointment"><i class="fas fa-calendar-alt"></i> Book Appointment</a></li>
             <li><a href="#search"><i class="fas fa-search"></i> Search</a></li>
             <li><a href="account.html"><i class="fas fa-user"></i> Account</a></li>
@@ -175,12 +174,235 @@
             </div>
             
             <div class="shop-grid" id="shopGrid">
-                <!-- Products loaded by JavaScript -->
+                <!-- Product 1 -->
+                <div class="shop-card" 
+                     data-id="1" 
+                     data-availability="in-store" 
+                     data-tags="new,exclusive,featured">
+                    <div class="product-badge">IN-STORE EXCLUSIVE</div>
+                    <div class="shop-image">
+                        <a href="javascript:void(0);" class="product-image-link" data-id="1">
+                            <img src="img/shop/a1.jpg" alt="Adinkra Heritage Dress" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="shop-content">
+                        <div class="shop-category">Dresses</div>
+                        <h3 class="shop-title">
+                            <a href="javascript:void(0);" class="product-title-link" data-id="1">
+                                Adinkra Heritage Dress
+                            </a>
+                        </h3>
+                        <p class="shop-description">Elegant dress featuring traditional Adinkra symbols with a modern silhouette.</p>
+                        <div class="shop-price">
+                            <div>
+                                <span class="original-price">R3200.00</span>
+                                <span class="price">R2850.00</span>
+                                <div class="discount">Save 11%</div>
+                            </div>
+                            <span class="availability-tag">In-Store Only</span>
+                        </div>
+                        <div class="shop-actions" style="display: flex; flex-direction: row;">
+                            <button class="btn btn-primary add-to-cart" data-id="1">
+                                <i class="fas fa-shopping-cart"></i> 
+                            </button>
+                            <button class="btn btn-secondary view-details" data-id="1">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="shop-card" 
+                     data-id="2" 
+                     data-availability="online" 
+                     data-tags="new,bestseller,featured">
+                    <div class="product-badge">NEW ARRIVAL</div>
+                    <div class="shop-image">
+                        <a href="javascript:void(0);" class="product-image-link" data-id="2">
+                            <img src="img/shop/2P-set.png" alt="Golden Sands Top" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="shop-content">
+                        <div class="shop-category">Tops</div>
+                        <h3 class="shop-title">
+                            <a href="javascript:void(0);" class="product-title-link" data-id="2">
+                                Golden Sands Top
+                            </a>
+                        </h3>
+                        <p class="shop-description">Luxurious top with gold thread embroidery and intricate beadwork.</p>
+                        <div class="shop-price">
+                            <div>
+                                <span class="original-price">R1950.00</span>
+                                <span class="price">R1650.00</span>
+                                <div class="discount">Save 15%</div>
+                            </div>
+                            <span class="availability-tag">Available Online</span>
+                        </div>
+                        <div class="shop-actions" style="display: flex; flex-direction: row;">
+                            <button class="btn btn-primary add-to-cart" data-id="2">
+                                <i class="fas fa-shopping-cart"></i> 
+                            </button>
+                            <button class="btn btn-secondary view-details" data-id="2">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="shop-card" 
+                     data-id="3" 
+                     data-availability="both" 
+                     data-tags="popular">
+                    <div class="shop-image">
+                        <a href="javascript:void(0);" class="product-image-link" data-id="3">
+                            <img src="img/shop/akara-pant-bnw.png" alt="Ankara Palazzo Pants" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="shop-content">
+                        <div class="shop-category">Bottoms</div>
+                        <h3 class="shop-title">
+                            <a href="javascript:void(0);" class="product-title-link" data-id="3">
+                                Ankara Palazzo Pants
+                            </a>
+                        </h3>
+                        <p class="shop-description">Wide-leg pants in vibrant Ankara print with comfortable elastic waist.</p>
+                        <div class="shop-price">
+                            <div>
+                                <span class="price">R1200.00</span>
+                            </div>
+                            <span class="availability-tag">Available Both</span>
+                        </div>
+                        <div class="shop-actions" style="display: flex; flex-direction: row;">
+                            <button class="btn btn-primary add-to-cart" data-id="3">
+                                <i class="fas fa-shopping-cart"></i> 
+                            </button>
+                            <button class="btn btn-secondary view-details" data-id="3">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="shop-card" 
+                     data-id="4" 
+                     data-availability="online" 
+                     data-tags="sale,accessory">
+                    <div class="product-badge">SALE</div>
+                    <div class="shop-image">
+                        <a href="javascript:void(0);" class="product-image-link" data-id="4">
+                            <img src="img/shop/dress-01.png" alt="Kente Stole" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="shop-content">
+                        <div class="shop-category">Accessories</div>
+                        <h3 class="shop-title">
+                            <a href="javascript:void(0);" class="product-title-link" data-id="4">
+                                Kente Stole
+                            </a>
+                        </h3>
+                        <p class="shop-description">Handwoven Kente stole with traditional Ashanti patterns.</p>
+                        <div class="shop-price">
+                            <div>
+                                <span class="original-price">R1100.00</span>
+                                <span class="price">R890.00</span>
+                                <div class="discount">Save 19%</div>
+                            </div>
+                            <span class="availability-tag">Available Online</span>
+                        </div>
+                        <div class="shop-actions" style="display: flex; flex-direction: row;">
+                            <button class="btn btn-primary add-to-cart" data-id="4">
+                                <i class="fas fa-shopping-cart"></i> 
+                            </button>
+                            <button class="btn btn-secondary view-details" data-id="4">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="shop-card" 
+                     data-id="5" 
+                     data-availability="in-store" 
+                     data-tags="exclusive,premium">
+                    <div class="product-badge">IN-STORE EXCLUSIVE</div>
+                    <div class="shop-image">
+                        <a href="javascript:void(0);" class="product-image-link" data-id="5">
+                            <img src="img/shop/kid-top-b.JPG" alt="Mudcloth Jacket" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="shop-content">
+                        <div class="shop-category">Kids Wear</div>
+                        <h3 class="shop-title">
+                            <a href="javascript:void(0);" class="product-title-link" data-id="5">
+                                Mudcloth Jacket
+                            </a>
+                        </h3>
+                        <p class="shop-description">Contemporary jacket made from authentic Malian mudcloth.</p>
+                        <div class="shop-price">
+                            <div>
+                                <span class="price">R250.00</span>
+                            </div>
+                            <span class="availability-tag">In-Store Only</span>
+                        </div>
+                        <div class="shop-actions" style="display: flex; flex-direction: row;">
+                            <button class="btn btn-primary add-to-cart" data-id="5">
+                                <i class="fas fa-shopping-cart"></i> 
+                            </button>
+                            <button class="btn btn-secondary view-details" data-id="5">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="shop-card" 
+                     data-id="6" 
+                     data-availability="both" 
+                     data-tags="new,accessory">
+                    <div class="product-badge">NEW</div>
+                    <div class="shop-image">
+                        <a href="javascript:void(0);" class="product-image-link" data-id="6">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80" alt="Beaded Statement Earrings" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="shop-content">
+                        <div class="shop-category">Jewelry</div>
+                        <h3 class="shop-title">
+                            <a href="javascript:void(0);" class="product-title-link" data-id="6">
+                                Beaded Statement Earrings
+                            </a>
+                        </h3>
+                        <p class="shop-description">Handcrafted beaded earrings with traditional African patterns.</p>
+                        <div class="shop-price">
+                            <div>
+                                <span class="original-price">R850.00</span>
+                                <span class="price">R650.00</span>
+                                <div class="discount">Save 24%</div>
+                            </div>
+                            <span class="availability-tag">Available Both</span>
+                        </div>
+                        <div class="shop-actions" style="display: flex; flex-direction: row;">
+                            <button class="btn btn-primary add-to-cart" data-id="6">
+                                <i class="fas fa-shopping-cart"></i> 
+                            </button>
+                            <button class="btn btn-secondary view-details" data-id="6">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                
             </div>
             
             <div class="view-all">
-                <a href="#store" class="btn btn-primary">
-                    <i class="fas fa-store"></i> Visit Our Store
+                <a href="shop.html" class="btn btn-primary">
+                    <i class="fas fa-store"></i> View All Products
                 </a>
             </div>
         </div>
@@ -639,8 +861,21 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-grid">
-                <div class="modal-image">
-                    <img id="modalImage" src="" alt="Product Image">
+                <div class="modal-image-section">
+                    <div class="main-image-container">
+                        <img id="modalImage" src="" alt="Product Image" class="main-image">
+                    </div>
+                    <div class="additional-images">
+                        <div class="image-thumbnail active" data-image="main">
+                            <img id="thumbnail1" src="" alt="Thumbnail 1">
+                        </div>
+                        <div class="image-thumbnail" data-image="additional1">
+                            <img id="thumbnail2" src="" alt="Thumbnail 2">
+                        </div>
+                        <div class="image-thumbnail" data-image="additional2">
+                            <img id="thumbnail3" src="" alt="Thumbnail 3">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-details">
                     <h2 id="modalTitle">Product Title</h2>
@@ -677,7 +912,7 @@
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                         <a href="#store" class="btn btn-secondary" id="modalViewInStore">
-                            <i class="fas fa-store"></i> View in Store
+                            <i class="fas fa-store"></i> Go To Store
                         </a>
                     </div>
                 </div>
@@ -689,8 +924,6 @@
     <div class="toast" id="toast"></div>
 
     <!-- JavaScript -->
-    <script type="module" src="data.js"></script>
     <script type="module" src="main.js"></script>
 </body>
-
 </html>

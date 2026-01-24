@@ -911,3 +911,77 @@ body.menu-open {
     opacity: 1;
     transform: translateY(0);
 }
+
+
+
+/* Add to the existing responsive.css file */
+
+@media (max-width: 768px) {
+    .shop-actions {
+        flex-direction: row !important;
+        gap: 0.5rem;
+    }
+    
+    .shop-actions .btn {
+        padding: 0.5rem !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+    
+    .shop-actions .btn i {
+        margin: 0 !important;
+    }
+    
+    /* Ensure buttons are touch-friendly */
+    .add-to-cart,
+    .view-details {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 992px) {
+    .shop-actions {
+        flex-direction: row !important;
+    }
+}
+
+/* Add to the existing responsive.css file */
+
+@media (max-width: 768px) {
+    .shop-actions {
+        flex-direction: row !important;
+        gap: 0.5rem;
+    }
+    
+    .shop-actions .btn {
+        padding: 0.5rem !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+    
+    .shop-actions .btn i {
+        margin: 0 !important;
+    }
+    
+    /* Ensure buttons are touch-friendly */
+    .add-to-cart,
+    .view-details {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 992px) {
+    .shop-actions {
+        flex-direction: row !important;
+    }
+}
