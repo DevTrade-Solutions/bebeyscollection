@@ -12,174 +12,6 @@
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
-
-
-    <style>
-        /* =========================
-   PRODUCT MODAL - MOBILE OPTIMIZATION
-========================= */
-
-/* Tablet (max-width: 992px) */
-@media (max-width: 992px) {
-    .modal-content {
-        margin: 1rem auto;
-        max-height: 95vh;
-        width: 95%;
-    }
-
-    .modal-grid {
-        grid-template-columns: 1fr;
-        height: auto;
-        overflow-y: visible;
-    }
-
-    .modal-image-section {
-        height: 50vh; /* Half of viewport height */
-        max-height: 400px;
-    }
-
-    .main-image-container {
-        height: 100%;
-    }
-
-    .modal-details {
-        height: auto;
-        max-height: 45vh; /* Remaining space */
-        padding: var(--spacing-md);
-        overflow-y: auto;
-    }
-
-    .modal-details h2 {
-        font-size: 1.5rem;
-        margin-bottom: var(--spacing-xs);
-    }
-
-    .modal-description {
-        font-size: 0.9rem;
-        margin-bottom: var(--spacing-md);
-    }
-
-    .modal-price {
-        padding: var(--spacing-sm) 0;
-        margin-bottom: var(--spacing-md);
-    }
-
-    .modal-price .price {
-        font-size: 1.4rem;
-    }
-
-    .modal-actions {
-        flex-direction: column;
-        gap: var(--spacing-xs);
-        padding-top: var(--spacing-md);
-    }
-
-    .modal-actions .btn {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-    }
-
-    .additional-images {
-        bottom: 10px;
-    }
-
-    .image-thumbnail {
-        width: 60px;
-        height: 60px;
-    }
-}
-
-/* Mobile (max-width: 576px) */
-@media (max-width: 576px) {
-    .modal-image-section {
-        height: 80vh;
-        max-height: 500px;
-    }
-
-    .modal-details {
-        max-height: 55vh;
-        padding: var(--spacing-sm);
-    }
-
-    .modal-details h2 {
-        font-size: 1.3rem;
-    }
-
-    .modal-category {
-        font-size: 0.75rem;
-    }
-
-    .modal-description {
-        font-size: 0.85rem;
-        -webkit-line-clamp: 3;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    .info-group h4 {
-        font-size: 0.9rem;
-        margin-bottom: var(--spacing-xs);
-    }
-
-    .size {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-    }
-
-    .color {
-        width: 25px;
-        height: 25px;
-    }
-
-    .modal-price {
-        margin: var(--spacing-sm) 0;
-    }
-
-    .modal-price .price {
-        font-size: 1.2rem;
-    }
-
-    .modal-availability {
-        font-size: 0.7rem;
-        padding: 0.3rem 0.6rem;
-    }
-
-    .image-thumbnail {
-        width: 50px;
-        height: 50px;
-    }
-
-    .additional-images {
-        gap: 0.3rem;
-        padding: 0.3rem;
-    }
-}
-
-/* Very small mobile (max-width: 380px) */
-@media (max-width: 380px) {
-    .modal-image-section {
-        height: 35vh;
-    }
-
-    .modal-details {
-        padding: var(--spacing-xs);
-    }
-
-    .modal-details h2 {
-        font-size: 1.2rem;
-    }
-
-    .sizes {
-        gap: 0.2rem;
-    }
-
-    .size {
-        padding: 0.3rem 0.6rem;
-    }
-}
-    </style>
-    
 </head>
 <body>
     <!-- Header -->
@@ -256,10 +88,10 @@
         </div>
         
         <div class="store-info">
-            <h4><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
-            <p><i class="fas fa-location-dot"></i> 123 Luxury Avenue, Sandton, Johannesburg</p>
-            <p><i class="fas fa-clock"></i> Mon-Sat: 10AM-7PM | Sun: 12PM-5PM</p>
-            <p><i class="fas fa-phone"></i> (011) 234-5678</p>
+            <h4 style="align-items: center; text-align: center;"><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
+            <p><i class="fas fa-location-dot"></i> Rosebank Mall, Johannesburg, 2196</p>
+            <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-6PM | Sun: 9PM-5PM</p>
+            <p><i class="fas fa-phone"></i> 071 929 2111 </p>
         </div>
     </div>
 
@@ -286,14 +118,13 @@
 
     <!-- Hero Section with Video Background -->
     <section class="hero">
-        <div class="hero-background">
-            <!-- Video Background -->
-            <div class="video-background">
-                <video autoplay muted loop playsinline>
-                    <source src="img/shop/video/vid1.MP4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+        <div class="hero-background"></div>
+        <!-- Video Background -->
+        <div class="video-background">
+            <video autoplay muted loop playsinline >
+                <source src="img/shop/YTDown.com_YouTube_Behind-the-Scene-with-Bebey-s-Collection_Media_nVNyGZfwULY_001_720p.mp4" type="video/mp4" style="object-fit: cover;">
+                Your browser does not support the video tag.
+            </video>
         </div>
         <div class="container">
             <div class="hero-content">
@@ -348,8 +179,7 @@
             </div>
             
             <div class="shop-grid" id="shopGrid">
-                <!-- Product cards remain unchanged -->
-                <!-- Product 1 -->
+                <!-- Product cards remain unchanged (1-6) -->
                 <div class="shop-card" data-id="1" data-availability="in-store" data-tags="new,exclusive,featured">
                     <div class="product-badge">IN-STORE EXCLUSIVE</div>
                     <div class="shop-image">
@@ -384,7 +214,6 @@
                     </div>
                 </div>
                 
-                <!-- Product 2 -->
                 <div class="shop-card" data-id="2" data-availability="online" data-tags="new,bestseller,featured">
                     <div class="product-badge">NEW ARRIVAL</div>
                     <div class="shop-image">
@@ -419,7 +248,6 @@
                     </div>
                 </div>
                 
-                <!-- Product 3 -->
                 <div class="shop-card" data-id="3" data-availability="both" data-tags="popular">
                     <div class="shop-image">
                         <a href="javascript:void(0);" class="product-image-link" data-id="3">
@@ -451,7 +279,6 @@
                     </div>
                 </div>
                 
-                <!-- Product 4 -->
                 <div class="shop-card" data-id="4" data-availability="online" data-tags="sale,accessory">
                     <div class="product-badge">SALE</div>
                     <div class="shop-image">
@@ -486,7 +313,6 @@
                     </div>
                 </div>
                 
-                <!-- Product 5 -->
                 <div class="shop-card" data-id="5" data-availability="in-store" data-tags="exclusive,premium">
                     <div class="product-badge">IN-STORE EXCLUSIVE</div>
                     <div class="shop-image">
@@ -519,7 +345,6 @@
                     </div>
                 </div>
                 
-                <!-- Product 6 -->
                 <div class="shop-card" data-id="6" data-availability="both" data-tags="new,accessory">
                     <div class="product-badge">NEW</div>
                     <div class="shop-image">
@@ -691,60 +516,69 @@
         </div>
     </section>
 
-    <!-- Store Location & Hours - HIDDEN -->
-    <section class="store-location hidden">
+    <!-- Store Location & Hours - UPDATED with correct info -->
+    <section class="store-location" id="location">
         <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Visit Our Store</h2>
+                <p class="section-subtitle">Find us at the Rosebank Mall in Johannesburg.</p>
+            </div>
             <div class="location-grid">
                 <div class="location-info">
-                    <h2>Visit Our Flagship Store</h2>
-                    
+                    <h2>Bebeys Collection</h2>
+
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4>Location</h4>
-                            <p>123 Luxury Avenue<br>Sandton, Johannesburg 2196</p>
+                            <p>Rosebank Mall<br>Rosebank, Johannesburg, 2196</p>
+                            <p><small>Located inside Rosebank Mall</small></p>
                         </div>
                     </div>
-                    
+
                     <div class="info-item">
                         <i class="fas fa-clock"></i>
                         <div>
                             <h4>Opening Hours</h4>
-                            <p>Monday - Saturday: 10:00 AM - 7:00 PM</p>
-                            <p>Sunday: 12:00 PM - 5:00 PM</p>
+                            <p>Open daily · Closes at 6:30 PM</p>
+                            <p><small>(Hours may vary on public holidays)</small></p>
                         </div>
                     </div>
-                    
+
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
                         <div>
                             <h4>Contact</h4>
-                            <p>Store: (011) 234-5678</p>
-                            <p>Styling: (011) 234-5679</p>
-                            <p>Email: store@bebeyscollection.com</p>
+                            <p><strong>Phone:</strong> 071 929 2111</p>
                         </div>
                     </div>
-                    
+
                     <div class="info-item">
                         <i class="fas fa-car"></i>
                         <div>
                             <h4>Parking</h4>
-                            <p>Complimentary valet parking available</p>
-                            <p>Underground parking accessible</p>
+                            <p>Ample parking available at Rosebank Mall</p>
                         </div>
                     </div>
-                    
-                    <a href="#directions" class="btn btn-primary">
+
+                    <a href="https://maps.google.com/?q=Rosebank+Mall,+Johannesburg" target="_blank" class="btn btn-primary">
                         <i class="fas fa-directions"></i> Get Directions
                     </a>
                 </div>
-                
+
                 <div class="location-map">
-                    <div class="map-placeholder">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <p>Interactive store map</p>
-                        <small>Click to explore our store layout</small>
-                    </div>
+                    <!-- Google Maps Embed – Replace the src with the correct embed link for Bebeys Collection at Rosebank Mall -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.123456!2d28.045!3d-26.146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950d460823e087%3A0xffc0cfc5d29878bf!2sRosebank%20Mall!5e0!3m2!1sen!2sza!4v1234567890" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                    <p style="text-align: center; margin-top: 10px;">
+                        <small>⚠️ Please replace the map embed with the correct one for Bebeys Collection at Rosebank Mall. You can get it by searching for the store on Google Maps, clicking "Share" → "Embed a map".</small>
+                    </p>
                 </div>
             </div>
         </div>
@@ -925,18 +759,12 @@
                 </div>
                 
                 <!-- Store Info -->
-                <div class="footer-store-section">
-                    <h4>Our Store</h4>
-                    <div class="store-info">
-                        <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Sandton, Johannesburg</p>
-                        <p><i class="fas fa-phone"></i> (011) 234-5678</p>
-                        <p><i class="fas fa-envelope"></i> hello@bebeyscollection.com</p>
-                        <p><i class="fas fa-clock"></i> Mon-Sat: 10AM-7PM | Sun: 12PM-5PM</p>
-                    </div>
-                    <a href="#appointment" class="btn btn-outline btn-small">
-                        <i class="fas fa-calendar-alt"></i> Book Store Visit
-                    </a>
-                </div>
+               <div class="store-info">
+            <h4 style="align-items: center; text-align: center;"><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
+            <p><i class="fas fa-location-dot"></i> Rosebank Mall, Johannesburg, 2196</p>
+            <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-6PM | Sun: 9PM-5PM</p>
+            <p><i class="fas fa-phone"></i> 071 929 2111 </p>
+        </div>
                 
                 <!-- Services -->
                 <div class="footer-services-section">

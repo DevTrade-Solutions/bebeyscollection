@@ -604,7 +604,7 @@ function renderProducts() {
     updatePagination(totalProducts);
 }
 
-// Create Product Card
+// Create Product Card (modified: buttons now show only icons with aria-label)
 function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'shop-card fade-in';
@@ -655,12 +655,13 @@ function createProductCard(product) {
                 </div>
                 
                 <div class="shop-actions">
-                    <button class="btn btn-primary add-to-cart" data-id="${product.id}">
-                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    <!-- MODIFIED: Only icons with aria-label -->
+                    <button class="btn btn-primary add-to-cart" data-id="${product.id}" aria-label="Add to Cart">
+                        <i class="fas fa-shopping-cart"></i>
                     </button>
                     
-                    <button class="btn btn-secondary view-details" data-id="${product.id}">
-                        <i class="fas fa-eye"></i> Details
+                    <button class="btn btn-secondary view-details" data-id="${product.id}" aria-label="View Details">
+                        <i class="fas fa-eye"></i>
                     </button>
                 </div>
             </div>
@@ -689,12 +690,13 @@ function createProductCard(product) {
                 </div>
                 
                 <div class="shop-actions">
-                    <button class="btn btn-primary add-to-cart" data-id="${product.id}">
-                        <i class="fas fa-shopping-cart"></i> 
+                    <!-- MODIFIED: Only icons with aria-label -->
+                    <button class="btn btn-primary add-to-cart" data-id="${product.id}" aria-label="Add to Cart">
+                        <i class="fas fa-shopping-cart"></i>
                     </button>
                     
-                    <button class="btn btn-secondary view-details" data-id="${product.id}">
-                        <i class="fas fa-eye"></i> 
+                    <button class="btn btn-secondary view-details" data-id="${product.id}" aria-label="View Details">
+                        <i class="fas fa-eye"></i>
                     </button>
                 </div>
             </div>
