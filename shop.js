@@ -690,11 +690,11 @@ function createProductCard(product) {
                 
                 <div class="shop-actions">
                     <button class="btn btn-primary add-to-cart" data-id="${product.id}">
-                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <i class="fas fa-shopping-cart"></i> 
                     </button>
                     
                     <button class="btn btn-secondary view-details" data-id="${product.id}">
-                        <i class="fas fa-eye"></i> Details
+                        <i class="fas fa-eye"></i> 
                     </button>
                 </div>
             </div>

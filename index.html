@@ -12,6 +12,174 @@
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
+
+
+    <style>
+        /* =========================
+   PRODUCT MODAL - MOBILE OPTIMIZATION
+========================= */
+
+/* Tablet (max-width: 992px) */
+@media (max-width: 992px) {
+    .modal-content {
+        margin: 1rem auto;
+        max-height: 95vh;
+        width: 95%;
+    }
+
+    .modal-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .modal-image-section {
+        height: 50vh; /* Half of viewport height */
+        max-height: 400px;
+    }
+
+    .main-image-container {
+        height: 100%;
+    }
+
+    .modal-details {
+        height: auto;
+        max-height: 45vh; /* Remaining space */
+        padding: var(--spacing-md);
+        overflow-y: auto;
+    }
+
+    .modal-details h2 {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .modal-description {
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .modal-price {
+        padding: var(--spacing-sm) 0;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .modal-price .price {
+        font-size: 1.4rem;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        padding-top: var(--spacing-md);
+    }
+
+    .modal-actions .btn {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .additional-images {
+        bottom: 10px;
+    }
+
+    .image-thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+    .modal-image-section {
+        height: 80vh;
+        max-height: 500px;
+    }
+
+    .modal-details {
+        max-height: 55vh;
+        padding: var(--spacing-sm);
+    }
+
+    .modal-details h2 {
+        font-size: 1.3rem;
+    }
+
+    .modal-category {
+        font-size: 0.75rem;
+    }
+
+    .modal-description {
+        font-size: 0.85rem;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .info-group h4 {
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .size {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .color {
+        width: 25px;
+        height: 25px;
+    }
+
+    .modal-price {
+        margin: var(--spacing-sm) 0;
+    }
+
+    .modal-price .price {
+        font-size: 1.2rem;
+    }
+
+    .modal-availability {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .image-thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+
+    .additional-images {
+        gap: 0.3rem;
+        padding: 0.3rem;
+    }
+}
+
+/* Very small mobile (max-width: 380px) */
+@media (max-width: 380px) {
+    .modal-image-section {
+        height: 35vh;
+    }
+
+    .modal-details {
+        padding: var(--spacing-xs);
+    }
+
+    .modal-details h2 {
+        font-size: 1.2rem;
+    }
+
+    .sizes {
+        gap: 0.2rem;
+    }
+
+    .size {
+        padding: 0.3rem 0.6rem;
+    }
+}
+    </style>
+    
 </head>
 <body>
     <!-- Header -->
@@ -28,8 +196,6 @@
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="shop.html">Shop</a></li>
-                    <li><a href="lookbook.html">Lookbook</a></li>
-                    <li><a href="heritage.html">Heritage</a></li>
                     <li><a href="store.html">Contact Us</a></li>
                 </ul>
                 
@@ -118,9 +284,17 @@
         </div>
     </div>
 
-    <!-- Hero Section - SIMPLIFIED -->
+    <!-- Hero Section with Video Background -->
     <section class="hero">
-        <div class="hero-background"></div>
+        <div class="hero-background">
+            <!-- Video Background -->
+            <div class="video-background">
+                <video autoplay muted loop playsinline>
+                    <source src="img/shop/video/vid1.MP4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">
@@ -129,7 +303,7 @@
                 <h1 class="hero-title">African Luxury Reimagined</h1>
                 <p class="hero-subtitle">Heritage craftsmanship meets contemporary design</p>
                 <div class="hero-buttons">
-                    <a href="#store" class="btn btn-primary">
+                    <a href="#location" class="btn btn-primary">
                         <i class="fas fa-map-marker-alt"></i> Visit Store
                     </a>
                     <a href="#shop" class="btn btn-secondary">
@@ -174,11 +348,9 @@
             </div>
             
             <div class="shop-grid" id="shopGrid">
+                <!-- Product cards remain unchanged -->
                 <!-- Product 1 -->
-                <div class="shop-card" 
-                     data-id="1" 
-                     data-availability="in-store" 
-                     data-tags="new,exclusive,featured">
+                <div class="shop-card" data-id="1" data-availability="in-store" data-tags="new,exclusive,featured">
                     <div class="product-badge">IN-STORE EXCLUSIVE</div>
                     <div class="shop-image">
                         <a href="javascript:void(0);" class="product-image-link" data-id="1">
@@ -213,10 +385,7 @@
                 </div>
                 
                 <!-- Product 2 -->
-                <div class="shop-card" 
-                     data-id="2" 
-                     data-availability="online" 
-                     data-tags="new,bestseller,featured">
+                <div class="shop-card" data-id="2" data-availability="online" data-tags="new,bestseller,featured">
                     <div class="product-badge">NEW ARRIVAL</div>
                     <div class="shop-image">
                         <a href="javascript:void(0);" class="product-image-link" data-id="2">
@@ -251,10 +420,7 @@
                 </div>
                 
                 <!-- Product 3 -->
-                <div class="shop-card" 
-                     data-id="3" 
-                     data-availability="both" 
-                     data-tags="popular">
+                <div class="shop-card" data-id="3" data-availability="both" data-tags="popular">
                     <div class="shop-image">
                         <a href="javascript:void(0);" class="product-image-link" data-id="3">
                             <img src="img/shop/akara-pant-bnw.png" alt="Ankara Palazzo Pants" loading="lazy">
@@ -286,10 +452,7 @@
                 </div>
                 
                 <!-- Product 4 -->
-                <div class="shop-card" 
-                     data-id="4" 
-                     data-availability="online" 
-                     data-tags="sale,accessory">
+                <div class="shop-card" data-id="4" data-availability="online" data-tags="sale,accessory">
                     <div class="product-badge">SALE</div>
                     <div class="shop-image">
                         <a href="javascript:void(0);" class="product-image-link" data-id="4">
@@ -324,10 +487,7 @@
                 </div>
                 
                 <!-- Product 5 -->
-                <div class="shop-card" 
-                     data-id="5" 
-                     data-availability="in-store" 
-                     data-tags="exclusive,premium">
+                <div class="shop-card" data-id="5" data-availability="in-store" data-tags="exclusive,premium">
                     <div class="product-badge">IN-STORE EXCLUSIVE</div>
                     <div class="shop-image">
                         <a href="javascript:void(0);" class="product-image-link" data-id="5">
@@ -360,10 +520,7 @@
                 </div>
                 
                 <!-- Product 6 -->
-                <div class="shop-card" 
-                     data-id="6" 
-                     data-availability="both" 
-                     data-tags="new,accessory">
+                <div class="shop-card" data-id="6" data-availability="both" data-tags="new,accessory">
                     <div class="product-badge">NEW</div>
                     <div class="shop-image">
                         <a href="javascript:void(0);" class="product-image-link" data-id="6">
@@ -382,7 +539,6 @@
                             <div>
                                 <span class="original-price">R850.00</span>
                                 <span class="price">R650.00</span>
-                               
                             </div>
                             <span class="availability-tag">Available Both</span>
                         </div>
@@ -396,8 +552,6 @@
                         </div>
                     </div>
                 </div>
-                
-                
             </div>
             
             <div class="view-all">
@@ -425,37 +579,37 @@
 
             <div class="gallery-grid">
                 <div class="gallery-item" data-category="adinkra">
-                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3" alt="Adinkra Look 1">
+                    <img src="img/look/l1.jpeg" alt="Adinkra Look 1">
                     <div class="gallery-overlay">
                         <p>Adinkra Heritage Collection</p>
                     </div>
                 </div>
                 <div class="gallery-item" data-category="golden">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb" alt="Golden Sands Look 1">
+                    <img src="img/look/l2.jpeg" alt="Golden Sands Look 1">
                     <div class="gallery-overlay">
                         <p>Golden Sands Collection</p>
                     </div>
                 </div>
                 <div class="gallery-item" data-category="modern">
-                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="Modern Ankara Look 1">
+                    <img src="img/look/l3.jpeg" alt="Modern Ankara Look 1">
                     <div class="gallery-overlay">
                         <p>Modern Ankara Collection</p>
                     </div>
                 </div>
                 <div class="gallery-item" data-category="adinkra">
-                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446" alt="Adinkra Look 2">
+                    <img src="img/look/l4.jpeg" alt="Adinkra Look 2">
                     <div class="gallery-overlay">
                         <p>Adinkra Heritage Collection</p>
                     </div>
                 </div>
                 <div class="gallery-item" data-category="golden">
-                    <img src="https://images.unsplash.com/photo-1544728265-df0e6f5d7d72" alt="Golden Sands Look 2">
+                    <img src="img/look/l1.jpeg" alt="Golden Sands Look 2">
                     <div class="gallery-overlay">
                         <p>Golden Sands Collection</p>
                     </div>
                 </div>
                 <div class="gallery-item" data-category="modern">
-                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e" alt="Modern Ankara Look 2">
+                    <img src="img/look/l2.jpeg" alt="Modern Ankara Look 2">
                     <div class="gallery-overlay">
                         <p>Modern Ankara Collection</p>
                     </div>
@@ -464,8 +618,8 @@
         </div>
     </section>
 
-    <!-- Heritage Section -->
-    <section class="heritage" id="heritage">
+    <!-- Heritage Section - HIDDEN -->
+    <section class="heritage hidden" id="heritage">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Heritage Story</h2>
@@ -498,8 +652,8 @@
         </div>
     </section>
 
-    <!-- Store Experience Section -->
-    <section class="store-experience" id="store">
+    <!-- Store Experience Section - HIDDEN -->
+    <section class="store-experience hidden" id="store">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Elevated Store Experience</h2>
@@ -533,21 +687,12 @@
                     <p>On-site master tailors for perfect fit adjustments</p>
                     <a href="#appointment" class="btn-link">Schedule <i class="fas fa-arrow-right"></i></a>
                 </div>
-                
-                <div class="experience-card">
-                    <div class="experience-icon">
-                        <i class="fas fa-calendar-star"></i>
-                    </div>
-                    <h3>Exclusive Events</h3>
-                    <p>Private viewings, fashion shows, and designer meet-and-greets</p>
-                    <a href="#events" class="btn-link">View Calendar <i class="fas fa-arrow-right"></i></a>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Store Location & Hours - CENTERED FOR MOBILE -->
-    <section class="store-location">
+    <!-- Store Location & Hours - HIDDEN -->
+    <section class="store-location hidden">
         <div class="container">
             <div class="location-grid">
                 <div class="location-info">
@@ -605,8 +750,8 @@
         </div>
     </section>
 
-    <!-- In-Store Exclusives -->
-    <section class="store-exclusives">
+    <!-- In-Store Exclusives - HIDDEN -->
+    <section class="store-exclusives hidden">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">In-Store Exclusives</h2>

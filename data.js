@@ -296,7 +296,24 @@ const products = [
         tags: ["sale", "accessory"],
         sizes: ["One Size"],
         colors: ["Red", "Black", "Brown"]
+    },
+    {
+        id: 22,
+        name : "Kids Akara Dress",
+        categories: "Kids Dress",
+        price: 450,
+        originalPrice: 1200.00,
+        image: "img/shop/img/kids-akara-1.jpg",
+        description: "Kiddies colorful Akara Dress",
+        badge: "SALE",
+        availability: "both",
+        tags: ["sale", "accessory"],
+        sizes: ["One Size"],
+        colors: ["Red", "Black", "Brown"]
+
     }
+
+    
 ];
 
 // Store Information
@@ -416,7 +433,7 @@ const user = {
 
 // Categories for filtering
 const categories = [
-    { id: "all", name: "All Products", count: 20 },
+    { id: "all", name: "All Products", count: 30 },
     { id: "dresses", name: "Dresses", count: 4 },
     { id: "tops", name: "Tops", count: 4 },
     { id: "bottoms", name: "Bottoms", count: 4 },
