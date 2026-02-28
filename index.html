@@ -12,6 +12,30 @@
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
+
+    <style>
+        .video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none; /* This ensures clicks go through to your buttons */
+}
+
+.video-background iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw; /* Use viewport width for better coverage */
+    height: 100vh; /* Use viewport height */
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* This property works for iframes too */
+    border: none;
+}
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -120,12 +144,15 @@
     <section class="hero">
         <div class="hero-background"></div>
         <!-- Video Background -->
-        <div class="video-background">
-            <video autoplay muted loop playsinline >
-                <source src="img/shop/YTDown.com_YouTube_Behind-the-Scene-with-Bebey-s-Collection_Media_nVNyGZfwULY_001_720p.mp4" type="video/mp4" style="object-fit: cover;">
-                Your browser does not support the video tag.
-            </video>
-        </div>
+       <div class="video-background">
+    <!-- Replace the existing <video> tag with this <iframe> -->
+    <iframe 
+        src="https://www.youtube.com/embed/JnIsHjL34Hw?autoplay=1&mute=1&loop=1&playlist=JnIsHjL34Hw&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        allowfullscreen>
+    </iframe>
+</div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">
