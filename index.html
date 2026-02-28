@@ -14,46 +14,61 @@
     <link rel="stylesheet" href="responsive.css">
 
     <style>
-        /* In style.css, find the .hero-content block and modify/add: */
 
-        .hero-content {
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            /* keep existing padding, max-width etc. */
-        }
+        /* Ensure the hero section takes full viewport height on all devices */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 90vh;           /* Use viewport height for consistent full-screen */
+    min-height: 600px;       /* Optional fallback for very small screens */
+    overflow: hidden;
+}
 
-        .hero:hover .hero-content {
-            opacity: 1;
-        }
+/* Video background container – fill the entire hero */
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
 
-        /* On mobile, keep content visible (since hover isn't reliable) */
-        @media (max-width: 768px) {
-            .hero-content {
-                opacity: 1;
-            }
-        }
+/* YouTube iframe – cover the container completely */
+.video-background iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;       /* Ensures video covers area without black bars */
+    border: none;
+}
 
+/* Hero content – hidden by default, appears on hover (desktop only) */
+.hero-content {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    /* Keep your existing positioning/padding */
+}
 
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none; /* so clicks pass through to the content */
-        }
+.hero:hover .hero-content {
+    opacity: 1;
+}
 
-        .video-background iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;   /* ensures the video covers the area without distortion */
-            border: none;
-        }
+/* On mobile, always show content and adjust hero height if needed */
+@media (max-width: 768px) {
+    .hero {
+        height: 80vh;       /* Keep full screen on mobile */
+    }
+    .hero-content {
+        opacity: 1;           /* Always visible on touch devices */
+        padding-top: 80px;    /* Adjust for header if needed */
+    }
+}
 
     </style>
 </head>
