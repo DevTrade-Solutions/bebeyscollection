@@ -1,14 +1,14 @@
 // Product Data - EXPANDED FOR SHOP PAGE
 const products = [
-    // Original products (1-8)
+    // Original products (1-8) with corrected images
     {
         id: 1,
-        name: "Adinkra Heritage Dress",
-        category: "Dresses",
-        price: 2850.00,
-        originalPrice: 3200.00,
-        image: "img/shop/a1.jpg",
-        description: "Elegant dress featuring traditional Adinkra symbols with a modern silhouette.",
+        name: "Kids Akara Dress",
+        category: "Kids Wear",
+        price: 350.00,
+        originalPrice: 450.00,
+        image: "img/shop/kids/kids-akara-1.JPG",
+        description: "Elegant kids dress featuring traditional Adinkra symbols with a modern silhouette.",
         badge: "IN-STORE EXCLUSIVE",
         availability: "in-store",
         tags: ["new", "exclusive", "featured"],
@@ -17,17 +17,17 @@ const products = [
     },
     {
         id: 2,
-        name: "Golden Sands Top",
+        name: "Rainbow Dashiki Top",
         category: "Tops",
         price: 1650.00,
         originalPrice: 1950.00,
-        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80",
-        description: "Luxurious top with gold thread embroidery and intricate beadwork.",
+        image: "img/shop/men/tops/rainbow.JPG",
+        description: "Vibrant dashiki with colorful rainbow pattern, perfect for celebrations.",
         badge: "NEW ARRIVAL",
         availability: "online",
         tags: ["new", "bestseller", "featured"],
-        sizes: ["XS", "S", "M"],
-        colors: ["Gold", "Ivory", "Bronze"]
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Multicolor"]
     },
     {
         id: 3,
@@ -35,41 +35,41 @@ const products = [
         category: "Bottoms",
         price: 1200.00,
         originalPrice: null,
-        image: "img/shop/2P-set.png",
+        image: "img/shop/akara-pant-bnw.png",
         description: "Wide-leg pants in vibrant Ankara print with comfortable elastic waist.",
         badge: null,
         availability: "both",
         tags: ["popular"],
         sizes: ["S", "M", "L", "XL", "XXL"],
-        colors: ["Multi-color", "Blue/White", "Red/Black"]
+        colors: ["Black/White"]
     },
     {
         id: 4,
-        name: "Kente Stole",
+        name: "Handwoven Scarf",
         category: "Accessories",
         price: 890.00,
         originalPrice: 1100.00,
-        image: "img/shop/dress-01.png",
-        description: "Handwoven Kente stole with traditional Ashanti patterns.",
+        image: "img/shop/a1.JPG",
+        description: "Soft handwoven scarf with traditional patterns.",
         badge: "SALE",
         availability: "online",
         tags: ["sale", "accessory"],
         sizes: ["One Size"],
-        colors: ["Gold/Green", "Red/Black", "Blue/White"]
+        colors: ["Multicolor"]
     },
     {
         id: 5,
-        name: "Kids Top",
+        name: "Kids Ankara Top",
         category: "Kids Wear",
         price: 250.00,
         originalPrice: null,
         image: "img/shop/kid-top-b.JPG",
-        description: "Contemporary jacket made from authentic Malian mudcloth.",
+        description: "Colorful Ankara top for kids with comfortable fit.",
         badge: "IN-STORE EXCLUSIVE",
         availability: "in-store",
         tags: ["exclusive", "premium"],
         sizes: ["S", "M", "L"],
-        colors: ["Natural", "Indigo", "Brown"]
+        colors: ["Blue/White", "Red/Black"]
     },
     {
         id: 6,
@@ -91,7 +91,7 @@ const products = [
         category: "Evening Wear",
         price: 8500.00,
         originalPrice: null,
-        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
+        image: "img/shop/dress-01.png",
         description: "Exclusive hand-embroidered gown with authentic African beads.",
         badge: "STORE EXCLUSIVE",
         availability: "in-store",
@@ -105,7 +105,7 @@ const products = [
         category: "Sets",
         price: 3500.00,
         originalPrice: 4200.00,
-        image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+        image: "img/shop/video/2P-set.png",
         description: "Complete Ankara set with top and skirt, perfect for special occasions.",
         badge: "BESTSELLER",
         availability: "online",
@@ -114,14 +114,14 @@ const products = [
         colors: ["Red/Black", "Blue/Gold", "Green/White"]
     },
     
-    // Additional products for shop page (9-20)
+    // Additional products (9-22) with local images
     {
         id: 9,
         name: "Royal Kaftan",
         category: "Dresses",
         price: 1950.00,
         originalPrice: 2400.00,
-        image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80",
+        image: "img/shop/dress-02.png",
         description: "Elegant kaftan with intricate embroidery and flowing silhouette.",
         badge: "SALE",
         availability: "online",
@@ -131,31 +131,31 @@ const products = [
     },
     {
         id: 10,
-        name: "Ankara Crop Top",
+        name: "Colorful Print Shirt",
         category: "Tops",
         price: 950.00,
         originalPrice: null,
-        image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80",
-        description: "Modern crop top with vibrant Ankara print and puff sleeves.",
+        image: "img/shop/men/tops/rainbow1.JPG",
+        description: "Modern shirt with vibrant African print and comfortable fit.",
         badge: "NEW ARRIVAL",
         availability: "both",
         tags: ["new", "trending"],
-        sizes: ["XS", "S", "M"],
-        colors: ["Yellow/Black", "Blue/White", "Pink/Orange"]
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Multicolor"]
     },
     {
         id: 11,
-        name: "Wax Print Midi Skirt",
+        name: "Ankara Print Trousers",
         category: "Bottoms",
         price: 1350.00,
         originalPrice: 1600.00,
-        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80",
-        description: "Flowy midi skirt in authentic wax print fabric with elastic waist.",
+        image: "img/shop/akara-pant-bnw1.png",
+        description: "Stylish Ankara trousers with slim fit and elastic waist.",
         badge: null,
         availability: "online",
         tags: ["popular"],
-        sizes: ["S", "M", "L"],
-        colors: ["Red/Black", "Green/Gold", "Purple/White"]
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Black/White"]
     },
     {
         id: 12,
@@ -163,7 +163,7 @@ const products = [
         category: "Accessories",
         price: 750.00,
         originalPrice: 950.00,
-        image: "https://images.unsplash.com/photo-1542327897-d73f4005b533?auto=format&fit=crop&w=800&q=80",
+        image: "img/shop/a2.JPG",
         description: "Handcrafted leather belt with traditional beadwork.",
         badge: "SALE",
         availability: "both",
@@ -173,17 +173,17 @@ const products = [
     },
     {
         id: 13,
-        name: "Mudcloth Blazer",
-        category: "Outerwear",
+        name: "Blue African Print Top",
+        category: "Tops",
         price: 2450.00,
         originalPrice: null,
-        image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80",
-        description: "Tailored blazer in authentic mudcloth for a sophisticated look.",
+        image: "img/shop/men/tops/d-blue-top.JPG",
+        description: "Tailored top in deep blue African print with intricate patterns.",
         badge: "NEW ARRIVAL",
         availability: "in-store",
         tags: ["new", "exclusive"],
-        sizes: ["S", "M", "L"],
-        colors: ["Indigo", "Natural", "Brown/White"]
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Blue/White"]
     },
     {
         id: 14,
@@ -191,7 +191,7 @@ const products = [
         category: "Jewelry",
         price: 1200.00,
         originalPrice: 1500.00,
-        image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80",
+        image: "img/shop/a3.JPG",
         description: "Statement necklace with matching earrings in vibrant colors.",
         badge: "BESTSELLER",
         availability: "online",
@@ -205,7 +205,7 @@ const products = [
         category: "Evening Wear",
         price: 4200.00,
         originalPrice: 5000.00,
-        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
+        image: "img/shop/wrap-dress-blue-01.png",
         description: "Silk wrap dress with traditional embroidery for elegant evenings.",
         badge: "SALE",
         availability: "both",
@@ -219,7 +219,7 @@ const products = [
         category: "Sets",
         price: 1850.00,
         originalPrice: null,
-        image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80",
+        image: "img/shop/video/2P-set1.png",
         description: "Comfortable lounge set in soft Ankara cotton.",
         badge: "NEW ARRIVAL",
         availability: "online",
@@ -229,12 +229,12 @@ const products = [
     },
     {
         id: 17,
-        name: "Maxi Kimono",
+        name: "Bubu Kimono Dress",
         category: "Dresses",
         price: 1750.00,
         originalPrice: 2100.00,
-        image: "https://images.unsplash.com/photo-1542280756-1e9d9774cac6?auto=format&fit=crop&w=800&q=80",
-        description: "Lightweight kimono with bold African prints and tassel details.",
+        image: "img/shop/bubu-g2.png",
+        description: "Lightweight bubu dress with bold African prints and tassel details.",
         badge: null,
         availability: "both",
         tags: ["popular", "featured"],
@@ -247,76 +247,59 @@ const products = [
         category: "Tops",
         price: 1250.00,
         originalPrice: null,
-        image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=800&q=80",
+        image: "img/shop/men/tops/white-red-longsleeve.JPG",
         description: "Delicate blouse with hand-embroidered traditional motifs.",
         badge: "BESTSELLER",
         availability: "online",
         tags: ["bestseller", "featured"],
         sizes: ["XS", "S", "M"],
-        colors: ["White", "Ivory", "Light Blue"]
+        colors: ["White/Red"]
     },
     {
         id: 19,
-        name: "Tailored Trousers",
-        category: "Bottoms",
-        price: 1650.00,
-        originalPrice: 1950.00,
-        image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
-        description: "Wide-leg tailored trousers in premium cotton blend.",
+        name: "Kids Ankara Shorts",
+        category: "Kids Wear",
+        price: 450.00,
+        originalPrice: 650.00,
+        image: "img/shop/kids/b-kid-short.JPG",
+        description: "Comfortable Ankara shorts for kids with elastic waist.",
         badge: "SALE",
         availability: "both",
-        tags: ["sale", "featured"],
-        sizes: ["S", "M", "L", "XL"],
-        colors: ["Black", "Navy", "Olive"]
-    },
-    {
-        id: 20,
-        name: "Tailored Trousers",
-        category: "Bottoms",
-        price: 1650.00,
-        originalPrice: 1950.00,
-        image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
-        description: "Wide-leg tailored trousers in premium cotton blend.",
-        badge: "SALE",
-        availability: "both",
-        tags: ["sale", "featured"],
-        sizes: ["S", "M", "L", "XL"],
-        colors: ["Black", "Navy", "Olive"]
+        tags: ["sale", "kids"],
+        sizes: ["S", "M", "L"],
+        colors: ["Multicolor"]
     },
     {
         id: 21,
-        name: "Leather Clutch with Beads",
-        category: "Accessories",
+        name: "Rainbow Print Shirt",
+        category: "Tops",
         price: 950.00,
         originalPrice: 1200.00,
-        image: "img/shop/2P-set.png",
-        description: "Handcrafted leather clutch with traditional bead embroidery.",
-        badge: "SALE",
+        image: "img/shop/men/tops/rainbow2.JPG",
+        description: "Bright and colorful shirt with traditional African print.",
+        badge: "NEW ARRIVAL",
         availability: "online",
-        tags: ["sale", "accessory"],
-        sizes: ["One Size"],
-        colors: ["Red", "Black", "Brown"]
+        tags: ["new", "trending"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Multicolor"]
     },
     {
         id: 22,
-        name : "Kids Akara Dress",
-        categories: "Kids Dress",
-        price: 450,
-        originalPrice: 1200.00,
-        image: "img/shop/img/kids-akara-1.jpg",
-        description: "Kiddies colorful Akara Dress",
-        badge: "SALE",
+        name: "Kids Akara Dress - Blue",
+        category: "Kids Wear",
+        price: 380.00,
+        originalPrice: 480.00,
+        image: "img/shop/kids/kids-akara-2.JPG",
+        description: "Beautiful kids Akara dress in blue tones with traditional patterns.",
+        badge: "NEW",
         availability: "both",
-        tags: ["sale", "accessory"],
-        sizes: ["One Size"],
-        colors: ["Red", "Black", "Brown"]
-
+        tags: ["new", "kids"],
+        sizes: ["S", "M", "L"],
+        colors: ["Blue/White", "Blue/Gold"]
     }
-
-    
 ];
 
-// Store Information
+// Store Information (unchanged)
 const storeInfo = {
     name: "Bebeys Collection Flagship Store",
     address: "123 Luxury Avenue, Sandton, Johannesburg 2196",
@@ -343,7 +326,7 @@ const storeInfo = {
     ]
 };
 
-// Store Events
+// Store Events (unchanged)
 const storeEvents = [
     {
         id: 1,
@@ -383,7 +366,7 @@ const storeEvents = [
     }
 ];
 
-// In-Store Exclusives
+// In-Store Exclusives (unchanged)
 const storeExclusives = [
     {
         id: 1,
@@ -431,17 +414,17 @@ const user = {
     lastVisit: null
 };
 
-// Categories for filtering
+// Categories for filtering (counts updated roughly)
 const categories = [
-    { id: "all", name: "All Products", count: 30 },
+    { id: "all", name: "All Products", count: 22 },
     { id: "dresses", name: "Dresses", count: 4 },
-    { id: "tops", name: "Tops", count: 4 },
-    { id: "bottoms", name: "Bottoms", count: 4 },
-    { id: "accessories", name: "Accessories", count: 4 },
-    { id: "outerwear", name: "Outerwear", count: 2 },
-    { id: "jewelry", name: "Jewelry", count: 2 },
+    { id: "tops", name: "Tops", count: 6 },
+    { id: "bottoms", name: "Bottoms", count: 3 },
+    { id: "accessories", name: "Accessories", count: 3 },
+    { id: "kids-wear", name: "Kids Wear", count: 4 },
+    { id: "sets", name: "Sets", count: 2 },
     { id: "evening-wear", name: "Evening Wear", count: 2 },
-    { id: "sets", name: "Sets", count: 2 }
+    { id: "jewelry", name: "Jewelry", count: 1 }
 ];
 
 // Export data
