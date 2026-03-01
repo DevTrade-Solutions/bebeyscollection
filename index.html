@@ -77,10 +77,16 @@
 
 @media (max-width: 768px) {
     
-    .modal-content {
-        width: 90%;
-        overflow-x: auto;                /* Enable vertical scroll */
-        
+    .product-modal .modal-content {
+        max-height: 90vh;
+        overflow: auto;                /* Enable vertical scroll */
+        display: flex;
+        flex-direction: column;
+    }
+
+    
+    .modal-availability{
+        display: none;
     }
     
     
@@ -106,7 +112,7 @@
     .modal-image-section {
         grid-column: 1 / 2;
         height: 100%;
-        width: 160px;
+        width: 180px;
     }
 
     /* Move the thumbnail container into the right column */
@@ -139,10 +145,23 @@
     /* Optional: keep the details in right column, below thumbnails */
     .modal-details {
         grid-column: 2 / 3;
+        width: 100%;
+        padding: 9px;
         margin-top: 1rem;
         max-height: none;
-        overflow-y: visible;
+        overflow: visible;
         
+    }
+
+    .modal-actions{
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+    }
+
+    .modal-actions button{
+        height: auto;
     }
 }
 
@@ -1004,11 +1023,9 @@
                     
                     <div class="modal-actions">
                         <button class="btn btn-primary" id="modalAddToCart">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                            <i class="fas fa-shopping-cart"></i> 
                         </button>
-                        <a href="#store" class="btn btn-secondary" id="modalViewInStore">
-                            <i class="fas fa-store"></i> Go To Store
-                        </a>
+                        
                     </div>
                 </div>
             </div>
