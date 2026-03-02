@@ -5,17 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop All – Bebeys Collection | African Luxury</title>
     
-    <!-- Fonts & Icons (same as index.html) -->
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
-    <!-- CSS (same as index.html) -->
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="store-contact.css">
     
     <style>
-        /* Additional styles for filter bar and pagination */
+        /* Additional styles for filter bar, pagination, spacing, and enhanced hover animation */
+        .shop-page {
+            padding-top: 100px; /* Clear fixed header */
+        }
+        
+        /* Product card image container - increased height */
+        .shop-card .shop-image {
+            height: 380px !important;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Enhanced hover animation - smooth transition with creative effect */
+        .shop-card .shop-image {
+            position: relative;
+        }
+        
+        .shop-card .shop-image img {
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity, transform;
+        }
+        
+        /* Creative hover effect: diagonal slice + zoom */
+        .shop-card:hover .shop-image img {
+            opacity: 0;
+            transform: scale(1.1) rotate(1deg);
+        }
+        
+        /* Create a pseudo-element for the second image with creative animation */
+        .shop-card .shop-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), clip-path 0.8s ease;
+            pointer-events: none;
+            z-index: 2;
+            transform: scale(0.95);
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); /* Start as a thin line */
+        }
+        
+        /* On hover, reveal with a diagonal wipe effect */
+        .shop-card:hover .shop-image::after {
+            opacity: 1;
+            transform: scale(1.05);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Full rectangle */
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), clip-path 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        /* Add a subtle shine effect on hover */
+        .shop-card .shop-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s ease;
+            z-index: 3;
+            pointer-events: none;
+        }
+        
+        .shop-card:hover .shop-image::before {
+            left: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .shop-card .shop-image {
+                height: 280px !important;
+            }
+            .shop-page {
+                padding-top: 80px;
+            }
+        }
+        
+        /* Filter section styles */
         .filter-section {
             background: white;
             padding: 1.5rem;
@@ -23,6 +105,35 @@
             margin-bottom: 2rem;
             box-shadow: var(--shadow-sm);
             border: 2px solid var(--border);
+        }
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .filter-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+        .filter-toggle {
+            display: none;
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        .filter-toggle:hover {
+            background: var(--accent-light);
+        }
+        .filter-body {
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            overflow: hidden;
         }
         .filter-row {
             display: flex;
@@ -98,6 +209,7 @@
             align-items: center;
             gap: 1rem;
             margin: 2rem 0;
+            flex-wrap: wrap;
         }
         .pagination-btn {
             padding: 0.5rem 1rem;
@@ -127,6 +239,8 @@
         .pagination-info {
             color: var(--text-light);
             font-size: 0.875rem;
+            text-align: center;
+            margin-top: 0.5rem;
         }
 
         /* Why shop section */
@@ -169,6 +283,147 @@
         .benefit-card p {
             color: var(--accent-light);
             font-size: 0.875rem;
+        }
+
+        /* Mobile collapsible filter */
+        @media (max-width: 768px) {
+            .filter-toggle {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .filter-body {
+                max-height: 0;
+                opacity: 0;
+            }
+            .filter-body.expanded {
+                max-height: 400px;
+                opacity: 1;
+                margin-top: 1rem;
+            }
+            .filter-row {
+                align-items: center;
+            }
+            .filter-group {
+                width: 100%;
+            }
+            .filter-actions {
+                flex-direction: column;
+            }
+            .filter-actions .btn {
+                width: 100%;
+            }
+        }
+
+        /* FIXED: Mobile modal styles - properly scoped to modal only */
+        @media (max-width: 768px) {
+            /* Only target elements inside the product modal */
+            .product-modal .modal-content {
+                max-height: 90vh;
+                overflow: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .product-modal .modal-availability {
+                display: none;
+            }
+            
+            .product-modal .main-image {
+                object-fit: contain !important;
+                width: 100%;
+                height: auto;
+                max-height: 40vh;
+            }
+
+            .product-modal .modal-grid {
+                flex: 1;
+                overflow-y: auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                align-items: start;
+            }
+
+            .product-modal .modal-image-section {
+                grid-column: 1 / 2;
+                height: 100%;
+                width: 180px;
+            }
+
+            .product-modal .additional-images {
+                position: static;
+                grid-column: 2 / 3;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                opacity: 1 !important;
+                filter: none !important;
+                backdrop-filter: none;
+                background: transparent;
+                padding: 0;
+                transform: none;
+                width: 100%;
+                align-items: center;
+            }
+
+            .product-modal .image-thumbnail {
+                width: 90px;
+                height: 90px;
+                border-radius: 15px;
+                border: 2px solid rgba(255,255,255,0.3);
+                transition: all 0.2s ease;
+            }
+
+            .product-modal .modal-details {
+                grid-column: 2 / 3;
+                width: 100%;
+                padding: 9px;
+                margin-top: 1rem;
+                max-height: none;
+                overflow: visible;
+            }
+
+            .product-modal .modal-actions {
+                padding: 5px;
+                display: flex;
+                flex-direction: row;
+                width: 90%;
+            }
+
+            .product-modal .modal-actions button {
+                height: auto;
+            }
+        }
+
+        /* Ensure product grid images display properly on mobile */
+        @media (max-width: 768px) {
+            .shop-grid .shop-image img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+            
+            .shop-grid .shop-image::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: var(--hover-image, none);
+                background-size: cover;
+                background-position: center;
+                opacity: 0;
+                transition: opacity 0.8s ease;
+                pointer-events: none;
+                z-index: 2;
+            }
+            
+            .shop-grid .shop-card:hover .shop-image::after {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -213,7 +468,6 @@
 
     <!-- MOBILE MENU (exact copy from index.html) -->
     <div class="mobile-menu" id="mobileMenu">
-        <!-- ... same as before ... (truncated for brevity, keep full content) -->
         <div class="mobile-menu-header">
             <div class="logo">
                 <div class="logo-icon">
@@ -225,6 +479,7 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
+        
         <ul class="mobile-nav-links">
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="shop.html" class="active"><i class="fas fa-shopping-bag"></i> Shop</a></li>
@@ -236,12 +491,18 @@
             <li><a href="#search"><i class="fas fa-search"></i> Search</a></li>
             <li><a href="account.html"><i class="fas fa-user"></i> Account</a></li>
         </ul>
+        
         <div class="mobile-actions">
-            <a href="account.html" class="mobile-action-btn"><i class="fas fa-user"></i> Account</a>
-            <div class="mobile-action-btn cart-btn" id="mobileCartBtn"><i class="fas fa-shopping-bag"></i> Cart <span class="cart-count">0</span></div>
+            <a href="account.html" class="mobile-action-btn">
+                <i class="fas fa-user"></i> Account
+            </a>
+            <div class="mobile-action-btn cart-btn" id="mobileCartBtn">
+                <i class="fas fa-shopping-bag"></i> Cart <span class="cart-count">0</span>
+            </div>
         </div>
+        
         <div class="store-info">
-            <h4><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
+            <h4 style="align-items: center; text-align: center;"><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
             <p><i class="fas fa-location-dot"></i> Rosebank Mall, Johannesburg, 2196</p>
             <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-6PM | Sun: 9PM-5PM</p>
             <p><i class="fas fa-phone"></i> 071 929 2111 </p>
@@ -253,63 +514,77 @@
         <div class="search-modal-content">
             <div class="search-modal-header">
                 <h3><i class="fas fa-search"></i> Search Bebeys Collection</h3>
-                <button class="close-search-modal" id="closeSearchModal"><i class="fas fa-times"></i></button>
+                <button class="close-search-modal" id="closeSearchModal">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
+            
             <div class="search-input-container">
                 <input type="text" id="searchInput" placeholder="Search for products, events, categories...">
                 <button id="searchButton"><i class="fas fa-search"></i> Search</button>
             </div>
-            <div class="search-results" id="searchResults"></div>
+            
+            <div class="search-results" id="searchResults">
+                <!-- Search results will appear here -->
+            </div>
         </div>
     </div>
 
-    <!-- MAIN CONTENT: SHOP SECTION -->
-    <section class="shop" id="shop">
+    <!-- MAIN CONTENT: SHOP SECTION with padding-top -->
+    <section class="shop shop-page" id="shop">
         <div class="container">
             <div class="section-header">
                 <h1 class="section-title">All Products</h1>
                 <p class="section-subtitle">Discover our full collection of handcrafted African luxury</p>
             </div>
 
-            <!-- Enhanced Filter Bar -->
+            <!-- Enhanced Filter Bar (collapsible on mobile) -->
             <div class="filter-section">
-                <div class="filter-row">
-                    <div class="filter-group">
-                        <label>Category</label>
-                        <select id="filterCategory">
-                            <option value="all">All Categories</option>
-                            <option value="Dresses">Dresses</option>
-                            <option value="Tops">Tops</option>
-                            <option value="Bottoms">Bottoms</option>
-                            <option value="Accessories">Accessories</option>
-                            <option value="Kids Wear">Kids Wear</option>
-                            <option value="Sets">Sets</option>
-                            <option value="Evening Wear">Evening Wear</option>
-                            <option value="Jewelry">Jewelry</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>Price Range (R)</label>
-                        <div class="price-range">
-                            <input type="number" id="filterPriceMin" placeholder="Min" min="0" step="50">
-                            <input type="number" id="filterPriceMax" placeholder="Max" min="0" step="50">
+                <div class="filter-header">
+                    <h3><i class="fas fa-sliders-h"></i> Filter Products</h3>
+                    <button class="filter-toggle" id="filterToggle">
+                        <i class="fas fa-chevron-down"></i> Show Filters
+                    </button>
+                </div>
+                <div class="filter-body" id="filterBody">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label>Category</label>
+                            <select id="filterCategory">
+                                <option value="all">All Categories</option>
+                                <option value="Dresses">Dresses</option>
+                                <option value="Tops">Tops</option>
+                                <option value="Bottoms">Bottoms</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Kids Wear">Kids Wear</option>
+                                <option value="Sets">Sets</option>
+                                <option value="Evening Wear">Evening Wear</option>
+                                <option value="Jewelry">Jewelry</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Price Range (R)</label>
+                            <div class="price-range">
+                                <input type="number" id="filterPriceMin" placeholder="Min" min="0" step="50">
+                                <input type="number" id="filterPriceMax" placeholder="Max" min="0" step="50">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>Availability</label>
+                            <select id="filterAvailability">
+                                <option value="all">All</option>
+                                <option value="online">Online Only</option>
+                                <option value="in-store">In-Store Only</option>
+                                <option value="both">Available Both</option>
+                            </select>
+                        </div>
+                        <div class="filter-actions">
+                            <button class="btn btn-primary" id="applyFilters">Apply Filters</button>
+                            <button class="btn btn-secondary" id="resetFilters">Reset</button>
                         </div>
                     </div>
-                    <div class="filter-group">
-                        <label>Availability</label>
-                        <select id="filterAvailability">
-                            <option value="all">All</option>
-                            <option value="online">Online Only</option>
-                            <option value="in-store">In-Store Only</option>
-                            <option value="both">Available Both</option>
-                        </select>
-                    </div>
-                    <div class="filter-actions">
-                        <button class="btn btn-primary" id="applyFilters">Apply Filters</button>
-                        <button class="btn btn-secondary" id="resetFilters">Reset</button>
-                    </div>
                 </div>
-                <!-- Quick filter buttons (reused from index) -->
+                <!-- Quick filter buttons (always visible) -->
                 <div class="quick-filters">
                     <button class="filter-btn active" data-filter="all">All Products</button>
                     <button class="filter-btn" data-filter="in-store">In-Store Exclusive</button>
@@ -319,7 +594,7 @@
                 </div>
             </div>
 
-            <!-- Product grid – will be populated by JavaScript -->
+            <!-- Product grid (will be populated by JS) -->
             <div class="shop-grid" id="shopGrid"></div>
 
             <!-- Pagination Controls -->
@@ -364,13 +639,18 @@
 
     <!-- FOOTER (exact copy from index.html) -->
     <footer class="footer">
-        <!-- ... same as before ... (truncated, keep full content) -->
         <div class="container">
             <div class="footer-content">
+                <!-- Footer Logo -->
                 <div class="footer-logo-section">
                     <div class="footer-logo">
-                        <div class="logo-icon"><i class="fas fa-crown"></i></div>
-                        <div class="logo-text"><h3>BEBEYS COLLECTION</h3><p>African Luxury Reimagined</p></div>
+                        <div class="logo-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h3>BEBEYS COLLECTION</h3>
+                            <p>African Luxury Reimagined</p>
+                        </div>
                     </div>
                     <p class="footer-description">Celebrating heritage through contemporary African luxury fashion.</p>
                     <div class="social-links">
@@ -381,6 +661,8 @@
                         <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
+                
+                <!-- Quick Links -->
                 <div class="footer-links-section">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
@@ -392,12 +674,16 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
+                
+                <!-- Store Info -->
                 <div class="store-info">
-                    <h4><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
+                    <h4 style="align-items: center; text-align: center;"><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
                     <p><i class="fas fa-location-dot"></i> Rosebank Mall, Johannesburg, 2196</p>
                     <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-6PM | Sun: 9PM-5PM</p>
                     <p><i class="fas fa-phone"></i> 071 929 2111 </p>
                 </div>
+                
+                <!-- Services -->
                 <div class="footer-services-section">
                     <h4>Services</h4>
                     <ul class="footer-links">
@@ -410,6 +696,7 @@
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
                 <div class="payment-methods">
                     <i class="fab fa-cc-visa"></i>
@@ -431,71 +718,110 @@
 
     <!-- CART SIDEBAR (exact copy from index.html) -->
     <div class="cart-sidebar" id="cartSidebar">
-        <!-- ... same ... -->
         <div class="cart-header">
             <h3><i class="fas fa-shopping-bag"></i> Your Shopping Bag</h3>
-            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-        <div class="cart-items" id="cartItems"></div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        
         <div class="cart-footer">
-            <div class="cart-total"><span>Total:</span> <span id="cartTotal">R0.00</span></div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">R0.00</span>
+            </div>
             <a href="#checkout" class="btn btn-primary">Proceed to Checkout</a>
             <button class="btn btn-secondary" id="continueShopping">Continue Shopping</button>
-            <div class="cart-note"><i class="fas fa-info-circle"></i><p>Looking for in-store exclusives? <a href="store.html">Visit our store</a> for premium pieces.</p></div>
+            
+            <div class="cart-note">
+                <i class="fas fa-info-circle"></i>
+                <p>Looking for in-store exclusives? <a href="store.html">Visit our store</a> for premium pieces.</p>
+            </div>
         </div>
     </div>
 
     <!-- PRODUCT MODAL (exact copy from index.html) -->
     <div class="product-modal" id="productModal">
         <div class="modal-content">
-            <button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button>
+            <button class="close-modal" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
             <div class="modal-grid">
                 <div class="modal-image-section">
                     <div class="main-image-container">
                         <img id="modalImage" src="" alt="Product Image" class="main-image">
                     </div>
                     <div class="additional-images">
-                        <div class="image-thumbnail active" data-image="main"><img id="thumbnail1" src="" alt="Thumbnail 1"></div>
-                        <div class="image-thumbnail" data-image="additional1"><img id="thumbnail2" src="" alt="Thumbnail 2"></div>
-                        <div class="image-thumbnail" data-image="additional2"><img id="thumbnail3" src="" alt="Thumbnail 3"></div>
+                        <div class="image-thumbnail active" data-image="main">
+                            <img id="thumbnail1" src="" alt="Thumbnail 1">
+                        </div>
+                        <div class="image-thumbnail" data-image="additional1">
+                            <img id="thumbnail2" src="" alt="Thumbnail 2">
+                        </div>
+                        <div class="image-thumbnail" data-image="additional2">
+                            <img id="thumbnail3" src="" alt="Thumbnail 3">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-details">
                     <h2 id="modalTitle">Product Title</h2>
                     <div class="modal-category" id="modalCategory">Category</div>
-                    <p class="modal-description" id="modalDescription"></p>
+                    <p class="modal-description" id="modalDescription">Product description goes here.</p>
+                    
                     <div class="modal-info">
-                        <div class="info-group"><h4>Available Sizes</h4><div class="sizes" id="modalSizes"></div></div>
-                        <div class="info-group"><h4>Available Colors</h4><div class="colors" id="modalColors"></div></div>
+                        <div class="info-group">
+                            <h4>Available Sizes</h4>
+                            <div class="sizes" id="modalSizes">
+                                <!-- Sizes will be added by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="info-group">
+                            <h4>Available Colors</h4>
+                            <div class="colors" id="modalColors">
+                                <!-- Colors will be added by JavaScript -->
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="modal-price">
-                        <div><span class="original-price" id="modalOriginalPrice"></span><span class="price" id="modalPrice">R0.00</span><div class="discount" id="modalDiscount"></div></div>
+                        <div>
+                            <span class="original-price" id="modalOriginalPrice"></span>
+                            <span class="price" id="modalPrice">R0.00</span>
+                            <div class="discount" id="modalDiscount"></div>
+                        </div>
                         <span class="modal-availability" id="modalAvailability">Available Online</span>
                     </div>
+                    
                     <div class="modal-actions">
-                        <button class="btn btn-primary" id="modalAddToCart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        <button class="btn btn-primary" id="modalAddToCart">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- TOAST NOTIFICATION (exact copy from index.html) -->
+    <!-- TOAST NOTIFICATION -->
     <div class="toast" id="toast"></div>
 
     <!-- JavaScript -->
     <script type="module" src="main.js"></script>
     
-    <!-- Dynamic product grid, filtering, pagination -->
+    <!-- Dynamic product grid, filtering, pagination, and collapsible filter -->
     <script type="module">
         import { products } from './data.js';
 
         // ---------- Configuration ----------
-        const ITEMS_PER_PAGE = 6; // 2 rows of 3 columns
+        const ITEMS_PER_PAGE = 6;
 
-        // Additional images mapping (same as before)
+        // Additional images mapping (used for hover effect)
         const productAdditionalImages = {
-            // ... (keep the full mapping from earlier) ...
             1: { main: "img/shop/a1.jpg", additional1: "img/shop/2P-set.png", additional2: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?auto=format&fit=crop&w=800&q=80" },
             2: { main: "img/shop/2P-set.png", additional1: "img/shop/2P-set1.png", additional2: "img/shop/2P-set2.png" },
             3: { main: "img/shop/akara-pant-bnw.png", additional1: "img/shop/akara-pant-bnw1.png", additional2: "img/shop/akara-pant-bnw2.png" },
@@ -536,19 +862,38 @@
         const nextPageBtn = document.getElementById('nextPage');
         const pageNumbersDiv = document.getElementById('pageNumbers');
         const paginationInfo = document.getElementById('paginationInfo');
+        const filterToggle = document.getElementById('filterToggle');
+        const filterBody = document.getElementById('filterBody');
 
-        // ---------- Helper: Generate product card HTML ----------
+        // Collapsible filter on mobile
+        if (filterToggle && filterBody) {
+            filterToggle.addEventListener('click', () => {
+                filterBody.classList.toggle('expanded');
+                if (filterBody.classList.contains('expanded')) {
+                    filterToggle.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Filters';
+                } else {
+                    filterToggle.innerHTML = '<i class="fas fa-chevron-down"></i> Show Filters';
+                }
+            });
+        }
+
+        // Helper: generate product card HTML with hover image styling
         function generateProductCard(product) {
             const hasDiscount = product.originalPrice !== null;
             const discountPercent = hasDiscount ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
             const availabilityAttr = product.availability || 'online';
             const tagsAttr = product.tags ? product.tags.join(',') : '';
+            
+            // Get additional image for hover effect (use additional1 if available, otherwise fallback to main)
+            const hoverImage = (productAdditionalImages[product.id]?.additional1) || product.image;
 
+            // Build price HTML
             let priceHtml = `<span class="price">R${product.price.toFixed(2)}</span>`;
             if (hasDiscount) {
                 priceHtml = `<span class="original-price">R${product.originalPrice.toFixed(2)}</span> ${priceHtml} <div class="discount">Save ${discountPercent}%</div>`;
             }
-
+            
+            // Determine badge text
             let badgeHtml = '';
             if (product.badge) {
                 badgeHtml = `<div class="product-badge">${product.badge}</div>`;
@@ -559,11 +904,11 @@
             } else if (product.availability === 'in-store') {
                 badgeHtml = `<div class="product-badge">IN-STORE EXCLUSIVE</div>`;
             }
-
+            
             return `
                 <div class="shop-card" data-id="${product.id}" data-availability="${availabilityAttr}" data-tags="${tagsAttr}">
                     ${badgeHtml}
-                    <div class="shop-image">
+                    <div class="shop-image" style="--hover-image: url('${hoverImage}');">
                         <a href="javascript:void(0);" class="product-image-link" data-id="${product.id}">
                             <img src="${product.image}" alt="${product.name}" loading="lazy">
                         </a>
@@ -575,20 +920,27 @@
                                 ${product.name}
                             </a>
                         </h3>
+                        
                         <div class="shop-price">
-                            <div>${priceHtml}</div>
+                            <div>
+                                ${priceHtml}
+                            </div>
                             <span class="availability-tag">${product.availability === 'in-store' ? 'In-Store Only' : (product.availability === 'online' ? 'Available Online' : 'Available Both')}</span>
                         </div>
                         <div class="shop-actions" style="display: flex; flex-direction: row;">
-                            <button class="btn btn-primary add-to-cart" data-id="${product.id}"><i class="fas fa-shopping-cart"></i></button>
-                            <button class="btn btn-secondary view-details" data-id="${product.id}"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-primary add-to-cart" data-id="${product.id}">
+                                <i class="fas fa-shopping-cart"></i> 
+                            </button>
+                            <button class="btn btn-secondary view-details" data-id="${product.id}">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
             `;
         }
 
-        // ---------- Render current page ----------
+        // Render current page
         function renderGrid() {
             const start = (currentPage - 1) * ITEMS_PER_PAGE;
             const end = start + ITEMS_PER_PAGE;
@@ -605,11 +957,19 @@
             pageProducts.forEach(p => html += generateProductCard(p));
             grid.innerHTML = html;
 
-            // Update pagination UI
+            // Apply hover image backgrounds using CSS custom properties
+            document.querySelectorAll('.shop-card').forEach(card => {
+                const id = card.dataset.id;
+                const hoverImg = productAdditionalImages[id]?.additional1;
+                if (hoverImg) {
+                    card.querySelector('.shop-image').style.setProperty('--hover-image', `url('${hoverImg}')`);
+                }
+            });
+
             updatePaginationControls();
         }
 
-        // ---------- Filter logic ----------
+        // Filter logic
         function applyFilters() {
             const category = filterCategory.value;
             const minPrice = parseFloat(filterPriceMin.value) || 0;
@@ -630,11 +990,10 @@
                 return true;
             });
 
-            // Reset to first page
             currentPage = 1;
             renderGrid();
 
-            // Update quick filter buttons active state (if any match)
+            // Update quick filter buttons active state
             quickFilterBtns.forEach(btn => btn.classList.remove('active'));
             document.querySelector('.quick-filters .filter-btn[data-filter="all"]').classList.add('active');
         }
@@ -652,7 +1011,7 @@
             document.querySelector('.quick-filters .filter-btn[data-filter="all"]').classList.add('active');
         }
 
-        // Quick filter handler (mirrors existing filter buttons)
+        // Quick filter handler
         function handleQuickFilter(filter) {
             // Reset the detailed filters to match quick filter
             filterCategory.value = 'all';
@@ -678,7 +1037,7 @@
             renderGrid();
         }
 
-        // ---------- Pagination UI ----------
+        // Pagination UI
         function updatePaginationControls() {
             const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
             prevPageBtn.disabled = currentPage === 1;
@@ -702,7 +1061,7 @@
             paginationInfo.textContent = `Showing ${filteredProducts.length} products • Page ${currentPage} of ${totalPages || 1}`;
         }
 
-        // ---------- Event Listeners ----------
+        // Event listeners
         applyFiltersBtn.addEventListener('click', applyFilters);
         resetFiltersBtn.addEventListener('click', resetFilters);
 
@@ -733,5 +1092,13 @@
         // Initialize
         renderGrid();
     </script>
+    
+    <!-- Additional CSS for hover effect using custom properties -->
+    <style>
+        /* Set the hover image from the custom property */
+        .shop-card .shop-image::after {
+            background-image: var(--hover-image, none);
+        }
+    </style>
 </body>
 </html>
