@@ -12,24 +12,163 @@
     <!-- CSS (same as index.html) -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
-    <link rel="stylesheet" href="store-contact.css"> <!-- included for consistency, even if not used -->
+    <link rel="stylesheet" href="store-contact.css">
     
     <style>
-        /* Ensure hero is not shown on shop page, but keep any needed overrides */
-        .shop-page-title {
-            text-align: center;
-            margin: 120px 0 20px;
-            font-size: 2.5rem;
+        /* Additional styles for filter bar and pagination */
+        .filter-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--border);
+        }
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+        .filter-group {
+            flex: 1 1 200px;
+            min-width: 150px;
+        }
+        .filter-group label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.875rem;
+            background: var(--secondary);
+        }
+        .price-range {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .price-range input {
+            width: 50%;
+        }
+        .filter-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .filter-actions .btn {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.875rem;
+        }
+        .quick-filters {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        .quick-filters .filter-btn {
+            padding: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+            background: var(--secondary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        .quick-filters .filter-btn.active {
+            border-color: var(--accent);
+            background: var(--accent);
             color: var(--primary);
         }
-        .shop-page-subtitle {
-            text-align: center;
-            color: var(--text-light);
-            margin-bottom: 40px;
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
         }
-        /* Make sure the shop section uses the same spacing as index */
-        .shop {
-            padding-top: 0;
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            min-width: 40px;
+            text-align: center;
+        }
+        .pagination-btn:hover:not(:disabled) {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: var(--primary);
+        }
+        .pagination-btn.active {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: var(--primary);
+        }
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .pagination-info {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        /* Why shop section */
+        .why-shop {
+            padding: 4rem 0;
+            background: var(--primary);
+            color: var(--secondary);
+            margin-top: 3rem;
+        }
+        .why-shop .section-title {
+            color: var(--secondary);
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .benefit-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition-normal);
+        }
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+        .benefit-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .benefit-card h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .benefit-card p {
+            color: var(--accent-light);
+            font-size: 0.875rem;
         }
     </style>
 </head>
@@ -74,6 +213,7 @@
 
     <!-- MOBILE MENU (exact copy from index.html) -->
     <div class="mobile-menu" id="mobileMenu">
+        <!-- ... same as before ... (truncated for brevity, keep full content) -->
         <div class="mobile-menu-header">
             <div class="logo">
                 <div class="logo-icon">
@@ -85,7 +225,6 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        
         <ul class="mobile-nav-links">
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="shop.html" class="active"><i class="fas fa-shopping-bag"></i> Shop</a></li>
@@ -97,18 +236,12 @@
             <li><a href="#search"><i class="fas fa-search"></i> Search</a></li>
             <li><a href="account.html"><i class="fas fa-user"></i> Account</a></li>
         </ul>
-        
         <div class="mobile-actions">
-            <a href="account.html" class="mobile-action-btn">
-                <i class="fas fa-user"></i> Account
-            </a>
-            <div class="mobile-action-btn cart-btn" id="mobileCartBtn">
-                <i class="fas fa-shopping-bag"></i> Cart <span class="cart-count">0</span>
-            </div>
+            <a href="account.html" class="mobile-action-btn"><i class="fas fa-user"></i> Account</a>
+            <div class="mobile-action-btn cart-btn" id="mobileCartBtn"><i class="fas fa-shopping-bag"></i> Cart <span class="cart-count">0</span></div>
         </div>
-        
         <div class="store-info">
-            <h4 style="align-items: center; text-align: center;"><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
+            <h4><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
             <p><i class="fas fa-location-dot"></i> Rosebank Mall, Johannesburg, 2196</p>
             <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-6PM | Sun: 9PM-5PM</p>
             <p><i class="fas fa-phone"></i> 071 929 2111 </p>
@@ -120,19 +253,13 @@
         <div class="search-modal-content">
             <div class="search-modal-header">
                 <h3><i class="fas fa-search"></i> Search Bebeys Collection</h3>
-                <button class="close-search-modal" id="closeSearchModal">
-                    <i class="fas fa-times"></i>
-                </button>
+                <button class="close-search-modal" id="closeSearchModal"><i class="fas fa-times"></i></button>
             </div>
-            
             <div class="search-input-container">
                 <input type="text" id="searchInput" placeholder="Search for products, events, categories...">
                 <button id="searchButton"><i class="fas fa-search"></i> Search</button>
             </div>
-            
-            <div class="search-results" id="searchResults">
-                <!-- Search results will appear here -->
-            </div>
+            <div class="search-results" id="searchResults"></div>
         </div>
     </div>
 
@@ -142,8 +269,48 @@
             <div class="section-header">
                 <h1 class="section-title">All Products</h1>
                 <p class="section-subtitle">Discover our full collection of handcrafted African luxury</p>
-                <!-- Filter buttons (same as index) -->
-                <div class="shop-filters">
+            </div>
+
+            <!-- Enhanced Filter Bar -->
+            <div class="filter-section">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>Category</label>
+                        <select id="filterCategory">
+                            <option value="all">All Categories</option>
+                            <option value="Dresses">Dresses</option>
+                            <option value="Tops">Tops</option>
+                            <option value="Bottoms">Bottoms</option>
+                            <option value="Accessories">Accessories</option>
+                            <option value="Kids Wear">Kids Wear</option>
+                            <option value="Sets">Sets</option>
+                            <option value="Evening Wear">Evening Wear</option>
+                            <option value="Jewelry">Jewelry</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Price Range (R)</label>
+                        <div class="price-range">
+                            <input type="number" id="filterPriceMin" placeholder="Min" min="0" step="50">
+                            <input type="number" id="filterPriceMax" placeholder="Max" min="0" step="50">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Availability</label>
+                        <select id="filterAvailability">
+                            <option value="all">All</option>
+                            <option value="online">Online Only</option>
+                            <option value="in-store">In-Store Only</option>
+                            <option value="both">Available Both</option>
+                        </select>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="btn btn-primary" id="applyFilters">Apply Filters</button>
+                        <button class="btn btn-secondary" id="resetFilters">Reset</button>
+                    </div>
+                </div>
+                <!-- Quick filter buttons (reused from index) -->
+                <div class="quick-filters">
                     <button class="filter-btn active" data-filter="all">All Products</button>
                     <button class="filter-btn" data-filter="in-store">In-Store Exclusive</button>
                     <button class="filter-btn" data-filter="online">Available Online</button>
@@ -151,28 +318,59 @@
                     <button class="filter-btn" data-filter="sale">On Sale</button>
                 </div>
             </div>
-            
+
             <!-- Product grid – will be populated by JavaScript -->
             <div class="shop-grid" id="shopGrid"></div>
-            
-            <!-- Optional view all (already on page) -->
+
+            <!-- Pagination Controls -->
+            <div class="pagination">
+                <button class="pagination-btn" id="prevPage" disabled>« Prev</button>
+                <div id="pageNumbers" class="pagination-numbers"></div>
+                <button class="pagination-btn" id="nextPage">Next »</button>
+            </div>
+            <div class="pagination-info" id="paginationInfo"></div>
+        </div>
+    </section>
+
+    <!-- Additional Section: Why Shop With Us -->
+    <section class="why-shop">
+        <div class="container">
+            <h2 class="section-title">Why Shop With Bebeys</h2>
+            <p class="section-subtitle">Experience the finest African craftsmanship with every purchase</p>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-hand-sparkles"></i>
+                    <h4>Handcrafted Quality</h4>
+                    <p>Each piece is made by skilled artisans using traditional techniques.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Sustainable Materials</h4>
+                    <p>We source eco-friendly fabrics and support ethical production.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-truck"></i>
+                    <h4>Fast & Secure Shipping</h4>
+                    <p>Tracked delivery worldwide with easy returns.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-gem"></i>
+                    <h4>Exclusive Collections</h4>
+                    <p>Limited editions you won't find anywhere else.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- FOOTER (exact copy from index.html) -->
     <footer class="footer">
+        <!-- ... same as before ... (truncated, keep full content) -->
         <div class="container">
             <div class="footer-content">
-                <!-- Footer Logo -->
                 <div class="footer-logo-section">
                     <div class="footer-logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <div class="logo-text">
-                            <h3>BEBEYS COLLECTION</h3>
-                            <p>African Luxury Reimagined</p>
-                        </div>
+                        <div class="logo-icon"><i class="fas fa-crown"></i></div>
+                        <div class="logo-text"><h3>BEBEYS COLLECTION</h3><p>African Luxury Reimagined</p></div>
                     </div>
                     <p class="footer-description">Celebrating heritage through contemporary African luxury fashion.</p>
                     <div class="social-links">
@@ -183,8 +381,6 @@
                         <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                
-                <!-- Quick Links -->
                 <div class="footer-links-section">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
@@ -196,16 +392,12 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                
-                <!-- Store Info -->
                 <div class="store-info">
-                    <h4 style="align-items: center; text-align: center;"><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
+                    <h4><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
                     <p><i class="fas fa-location-dot"></i> Rosebank Mall, Johannesburg, 2196</p>
                     <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-6PM | Sun: 9PM-5PM</p>
                     <p><i class="fas fa-phone"></i> 071 929 2111 </p>
                 </div>
-                
-                <!-- Services -->
                 <div class="footer-services-section">
                     <h4>Services</h4>
                     <ul class="footer-links">
@@ -218,7 +410,6 @@
                     </ul>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 <div class="payment-methods">
                     <i class="fab fa-cc-visa"></i>
@@ -240,89 +431,49 @@
 
     <!-- CART SIDEBAR (exact copy from index.html) -->
     <div class="cart-sidebar" id="cartSidebar">
+        <!-- ... same ... -->
         <div class="cart-header">
             <h3><i class="fas fa-shopping-bag"></i> Your Shopping Bag</h3>
-            <button class="close-cart" id="closeCart">
-                <i class="fas fa-times"></i>
-            </button>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
         </div>
-        
-        <div class="cart-items" id="cartItems">
-            <!-- Cart items will be loaded here -->
-        </div>
-        
+        <div class="cart-items" id="cartItems"></div>
         <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cartTotal">R0.00</span>
-            </div>
+            <div class="cart-total"><span>Total:</span> <span id="cartTotal">R0.00</span></div>
             <a href="#checkout" class="btn btn-primary">Proceed to Checkout</a>
             <button class="btn btn-secondary" id="continueShopping">Continue Shopping</button>
-            
-            <div class="cart-note">
-                <i class="fas fa-info-circle"></i>
-                <p>Looking for in-store exclusives? <a href="store.html">Visit our store</a> for premium pieces.</p>
-            </div>
+            <div class="cart-note"><i class="fas fa-info-circle"></i><p>Looking for in-store exclusives? <a href="store.html">Visit our store</a> for premium pieces.</p></div>
         </div>
     </div>
 
     <!-- PRODUCT MODAL (exact copy from index.html) -->
     <div class="product-modal" id="productModal">
         <div class="modal-content">
-            <button class="close-modal" id="closeModal">
-                <i class="fas fa-times"></i>
-            </button>
+            <button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button>
             <div class="modal-grid">
                 <div class="modal-image-section">
                     <div class="main-image-container">
                         <img id="modalImage" src="" alt="Product Image" class="main-image">
                     </div>
                     <div class="additional-images">
-                        <div class="image-thumbnail active" data-image="main">
-                            <img id="thumbnail1" src="" alt="Thumbnail 1">
-                        </div>
-                        <div class="image-thumbnail" data-image="additional1">
-                            <img id="thumbnail2" src="" alt="Thumbnail 2">
-                        </div>
-                        <div class="image-thumbnail" data-image="additional2">
-                            <img id="thumbnail3" src="" alt="Thumbnail 3">
-                        </div>
+                        <div class="image-thumbnail active" data-image="main"><img id="thumbnail1" src="" alt="Thumbnail 1"></div>
+                        <div class="image-thumbnail" data-image="additional1"><img id="thumbnail2" src="" alt="Thumbnail 2"></div>
+                        <div class="image-thumbnail" data-image="additional2"><img id="thumbnail3" src="" alt="Thumbnail 3"></div>
                     </div>
                 </div>
                 <div class="modal-details">
                     <h2 id="modalTitle">Product Title</h2>
                     <div class="modal-category" id="modalCategory">Category</div>
-                    <p class="modal-description" id="modalDescription">Product description goes here.</p>
-                    
+                    <p class="modal-description" id="modalDescription"></p>
                     <div class="modal-info">
-                        <div class="info-group">
-                            <h4>Available Sizes</h4>
-                            <div class="sizes" id="modalSizes">
-                                <!-- Sizes will be added by JavaScript -->
-                            </div>
-                        </div>
-                        
-                        <div class="info-group">
-                            <h4>Available Colors</h4>
-                            <div class="colors" id="modalColors">
-                                <!-- Colors will be added by JavaScript -->
-                            </div>
-                        </div>
+                        <div class="info-group"><h4>Available Sizes</h4><div class="sizes" id="modalSizes"></div></div>
+                        <div class="info-group"><h4>Available Colors</h4><div class="colors" id="modalColors"></div></div>
                     </div>
-                    
                     <div class="modal-price">
-                        <div>
-                            <span class="original-price" id="modalOriginalPrice"></span>
-                            <span class="price" id="modalPrice">R0.00</span>
-                            <div class="discount" id="modalDiscount"></div>
-                        </div>
+                        <div><span class="original-price" id="modalOriginalPrice"></span><span class="price" id="modalPrice">R0.00</span><div class="discount" id="modalDiscount"></div></div>
                         <span class="modal-availability" id="modalAvailability">Available Online</span>
                     </div>
-                    
                     <div class="modal-actions">
-                        <button class="btn btn-primary" id="modalAddToCart">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
+                        <button class="btn btn-primary" id="modalAddToCart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -335,12 +486,16 @@
     <!-- JavaScript -->
     <script type="module" src="main.js"></script>
     
-    <!-- Dynamic product grid generation (runs after main.js, but delegation will work) -->
+    <!-- Dynamic product grid, filtering, pagination -->
     <script type="module">
         import { products } from './data.js';
-        
-        // Additional images mapping (same as in main.js – kept here for clarity)
+
+        // ---------- Configuration ----------
+        const ITEMS_PER_PAGE = 6; // 2 rows of 3 columns
+
+        // Additional images mapping (same as before)
         const productAdditionalImages = {
+            // ... (keep the full mapping from earlier) ...
             1: { main: "img/shop/a1.jpg", additional1: "img/shop/2P-set.png", additional2: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?auto=format&fit=crop&w=800&q=80" },
             2: { main: "img/shop/2P-set.png", additional1: "img/shop/2P-set1.png", additional2: "img/shop/2P-set2.png" },
             3: { main: "img/shop/akara-pant-bnw.png", additional1: "img/shop/akara-pant-bnw1.png", additional2: "img/shop/akara-pant-bnw2.png" },
@@ -364,19 +519,36 @@
             22: { main: "img/shop/kids/kids-akara-2.JPG", additional1: "img/shop/kids/kids-akara-1.JPG", additional2: "img/shop/kid-top-b.JPG" }
         };
 
+        // ---------- State ----------
+        let filteredProducts = [...products];
+        let currentPage = 1;
+
+        // DOM elements
+        const grid = document.getElementById('shopGrid');
+        const filterCategory = document.getElementById('filterCategory');
+        const filterPriceMin = document.getElementById('filterPriceMin');
+        const filterPriceMax = document.getElementById('filterPriceMax');
+        const filterAvailability = document.getElementById('filterAvailability');
+        const applyFiltersBtn = document.getElementById('applyFilters');
+        const resetFiltersBtn = document.getElementById('resetFilters');
+        const quickFilterBtns = document.querySelectorAll('.quick-filters .filter-btn');
+        const prevPageBtn = document.getElementById('prevPage');
+        const nextPageBtn = document.getElementById('nextPage');
+        const pageNumbersDiv = document.getElementById('pageNumbers');
+        const paginationInfo = document.getElementById('paginationInfo');
+
+        // ---------- Helper: Generate product card HTML ----------
         function generateProductCard(product) {
             const hasDiscount = product.originalPrice !== null;
             const discountPercent = hasDiscount ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
             const availabilityAttr = product.availability || 'online';
             const tagsAttr = product.tags ? product.tags.join(',') : '';
-            
-            // Build price HTML
+
             let priceHtml = `<span class="price">R${product.price.toFixed(2)}</span>`;
             if (hasDiscount) {
                 priceHtml = `<span class="original-price">R${product.originalPrice.toFixed(2)}</span> ${priceHtml} <div class="discount">Save ${discountPercent}%</div>`;
             }
-            
-            // Determine badge text
+
             let badgeHtml = '';
             if (product.badge) {
                 badgeHtml = `<div class="product-badge">${product.badge}</div>`;
@@ -387,7 +559,7 @@
             } else if (product.availability === 'in-store') {
                 badgeHtml = `<div class="product-badge">IN-STORE EXCLUSIVE</div>`;
             }
-            
+
             return `
                 <div class="shop-card" data-id="${product.id}" data-availability="${availabilityAttr}" data-tags="${tagsAttr}">
                     ${badgeHtml}
@@ -403,46 +575,163 @@
                                 ${product.name}
                             </a>
                         </h3>
-                        
                         <div class="shop-price">
-                            <div>
-                                ${priceHtml}
-                            </div>
+                            <div>${priceHtml}</div>
                             <span class="availability-tag">${product.availability === 'in-store' ? 'In-Store Only' : (product.availability === 'online' ? 'Available Online' : 'Available Both')}</span>
                         </div>
                         <div class="shop-actions" style="display: flex; flex-direction: row;">
-                            <button class="btn btn-primary add-to-cart" data-id="${product.id}">
-                                <i class="fas fa-shopping-cart"></i> 
-                            </button>
-                            <button class="btn btn-secondary view-details" data-id="${product.id}">
-                                <i class="fas fa-eye"></i>
-                            </button>
+                            <button class="btn btn-primary add-to-cart" data-id="${product.id}"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="btn btn-secondary view-details" data-id="${product.id}"><i class="fas fa-eye"></i></button>
                         </div>
                     </div>
                 </div>
             `;
         }
 
-        function renderAllProducts() {
-            const grid = document.getElementById('shopGrid');
-            if (!grid) return;
-            
+        // ---------- Render current page ----------
+        function renderGrid() {
+            const start = (currentPage - 1) * ITEMS_PER_PAGE;
+            const end = start + ITEMS_PER_PAGE;
+            const pageProducts = filteredProducts.slice(start, end);
+
+            if (pageProducts.length === 0 && filteredProducts.length > 0) {
+                // If current page is empty (e.g., after filter), go to last page
+                currentPage = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+                renderGrid();
+                return;
+            }
+
             let html = '';
-            products.forEach(product => {
-                html += generateProductCard(product);
-            });
+            pageProducts.forEach(p => html += generateProductCard(p));
             grid.innerHTML = html;
-            
-            // After adding cards, reapply any necessary event listeners? 
-            // No need – main.js uses event delegation on the grid.
+
+            // Update pagination UI
+            updatePaginationControls();
         }
 
-        // Run after DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', renderAllProducts);
-        } else {
-            renderAllProducts();
+        // ---------- Filter logic ----------
+        function applyFilters() {
+            const category = filterCategory.value;
+            const minPrice = parseFloat(filterPriceMin.value) || 0;
+            const maxPrice = parseFloat(filterPriceMax.value) || Infinity;
+            const availability = filterAvailability.value;
+
+            filteredProducts = products.filter(p => {
+                // Category filter
+                if (category !== 'all' && p.category !== category) return false;
+                // Price filter
+                if (p.price < minPrice || p.price > maxPrice) return false;
+                // Availability filter
+                if (availability !== 'all') {
+                    if (availability === 'online' && p.availability !== 'online' && p.availability !== 'both') return false;
+                    if (availability === 'in-store' && p.availability !== 'in-store' && p.availability !== 'both') return false;
+                    if (availability === 'both' && p.availability !== 'both') return false;
+                }
+                return true;
+            });
+
+            // Reset to first page
+            currentPage = 1;
+            renderGrid();
+
+            // Update quick filter buttons active state (if any match)
+            quickFilterBtns.forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.quick-filters .filter-btn[data-filter="all"]').classList.add('active');
         }
+
+        function resetFilters() {
+            filterCategory.value = 'all';
+            filterPriceMin.value = '';
+            filterPriceMax.value = '';
+            filterAvailability.value = 'all';
+            filteredProducts = [...products];
+            currentPage = 1;
+            renderGrid();
+
+            quickFilterBtns.forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.quick-filters .filter-btn[data-filter="all"]').classList.add('active');
+        }
+
+        // Quick filter handler (mirrors existing filter buttons)
+        function handleQuickFilter(filter) {
+            // Reset the detailed filters to match quick filter
+            filterCategory.value = 'all';
+            filterPriceMin.value = '';
+            filterPriceMax.value = '';
+            filterAvailability.value = 'all';
+
+            if (filter === 'all') {
+                filteredProducts = [...products];
+            } else if (filter === 'in-store') {
+                filteredProducts = products.filter(p => p.availability === 'in-store' || p.availability === 'both');
+                filterAvailability.value = 'in-store';
+            } else if (filter === 'online') {
+                filteredProducts = products.filter(p => p.availability === 'online' || p.availability === 'both');
+                filterAvailability.value = 'online';
+            } else if (filter === 'new') {
+                filteredProducts = products.filter(p => p.tags && p.tags.includes('new'));
+            } else if (filter === 'sale') {
+                filteredProducts = products.filter(p => p.originalPrice !== null);
+            }
+
+            currentPage = 1;
+            renderGrid();
+        }
+
+        // ---------- Pagination UI ----------
+        function updatePaginationControls() {
+            const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+            prevPageBtn.disabled = currentPage === 1;
+            nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
+
+            // Build page numbers
+            let pagesHtml = '';
+            for (let i = 1; i <= totalPages; i++) {
+                pagesHtml += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+            }
+            pageNumbersDiv.innerHTML = pagesHtml;
+
+            // Attach event listeners to page number buttons
+            document.querySelectorAll('.pagination-numbers .pagination-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentPage = parseInt(btn.dataset.page);
+                    renderGrid();
+                });
+            });
+
+            paginationInfo.textContent = `Showing ${filteredProducts.length} products • Page ${currentPage} of ${totalPages || 1}`;
+        }
+
+        // ---------- Event Listeners ----------
+        applyFiltersBtn.addEventListener('click', applyFilters);
+        resetFiltersBtn.addEventListener('click', resetFilters);
+
+        quickFilterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                quickFilterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                handleQuickFilter(filter);
+            });
+        });
+
+        prevPageBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderGrid();
+            }
+        });
+
+        nextPageBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderGrid();
+            }
+        });
+
+        // Initialize
+        renderGrid();
     </script>
 </body>
 </html>
