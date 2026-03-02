@@ -3,840 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop | Bebeys Collection - African Luxury Reimagined</title>
+    <title>Shop All – Bebeys Collection | African Luxury</title>
     
-    <!-- Fonts & Icons -->
+    <!-- Fonts & Icons (same as index.html) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
-    <!-- CSS -->
+    <!-- CSS (same as index.html) -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="store-contact.css"> <!-- included for consistency, even if not used -->
     
     <style>
-        /* Shop Page Specific Styles */
-        .shop-hero {
-            background: linear-gradient(rgba(11,11,11,0.9), rgba(11,11,11,0.8)),
-                        url('https://images.unsplash.com/photo-1558769132-cb1a40ed0ada?auto=format&fit=crop&w=1600&q=80') center/cover;
-            color: var(--secondary);
-            padding: 140px 0 60px;
+        /* Ensure hero is not shown on shop page, but keep any needed overrides */
+        .shop-page-title {
             text-align: center;
-        }
-        
-        .shop-hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .shop-hero h1 {
-            font-size: 3rem;
-            margin-bottom: var(--spacing-sm);
-            color: var(--accent);
-        }
-        
-        .shop-hero p {
-            font-size: 1.125rem;
-            color: var(--accent-light);
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        /* Shop Controls */
-        .shop-controls {
-            background-color: white;
-            padding: var(--spacing-md) 0;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 80px;
-            z-index: 100;
-        }
-        
-        .shop-controls-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: var(--spacing-md);
-        }
-        
-        .view-options {
-            display: flex;
-            gap: var(--spacing-sm);
-            align-items: center;
-        }
-        
-        .view-btn {
-            background: none;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 0.5rem 0.75rem;
-            cursor: pointer;
-            color: var(--text);
-            transition: var(--transition-normal);
-        }
-        
-        .view-btn.active,
-        .view-btn:hover {
-            border-color: var(--accent);
-            background-color: var(--accent);
+            margin: 120px 0 20px;
+            font-size: 2.5rem;
             color: var(--primary);
         }
-        
-        .sort-select {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            background-color: white;
-            color: var(--text);
-            font-family: inherit;
-            font-size: 0.875rem;
-            min-width: 150px;
-        }
-        
-        .products-count {
-            color: var(--text-light);
-            font-size: 0.875rem;
-        }
-        
-        /* Shop Layout */
-        .shop-layout {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: var(--spacing-lg);
-            padding: var(--spacing-lg) 0;
-        }
-        
-        /* Shop Sidebar */
-        .shop-sidebar {
-            background-color: white;
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-lg);
-            height: fit-content;
-            position: sticky;
-            top: 160px;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .sidebar-section {
-            margin-bottom: var(--spacing-lg);
-            padding-bottom: var(--spacing-lg);
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .sidebar-section:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-        
-        .sidebar-section h3 {
-            font-size: 1rem;
-            margin-bottom: var(--spacing-md);
-            color: var(--primary);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .clear-filters {
-            background: none;
-            border: none;
-            color: var(--accent);
-            font-size: 0.75rem;
-            cursor: pointer;
-            padding: 0;
-        }
-        
-        .category-list,
-        .filter-list {
-            list-style: none;
-        }
-        
-        .category-item,
-        .filter-item {
-            margin-bottom: 0.5rem;
-        }
-        
-        .category-link,
-        .filter-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text);
-            text-decoration: none;
-            padding: 0.5rem 0;
-            transition: var(--transition-normal);
-            cursor: pointer;
-        }
-        
-        .category-link:hover,
-        .category-link.active {
-            color: var(--accent);
-        }
-        
-        .category-count,
-        .filter-count {
-            background-color: var(--border);
-            color: var(--text-light);
-            font-size: 0.75rem;
-            padding: 0.125rem 0.5rem;
-            border-radius: 10px;
-        }
-        
-        .category-link.active .category-count,
-        .filter-label.active .filter-count {
-            background-color: var(--accent);
-            color: var(--primary);
-        }
-        
-        .filter-label {
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        
-        .filter-label input {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .price-range {
-            margin-top: var(--spacing-md);
-        }
-        
-        .price-inputs {
-            display: flex;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .price-inputs input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            font-family: inherit;
-        }
-        
-        .price-slider {
-            width: 100%;
-            margin: var(--spacing-md) 0;
-        }
-        
-        .apply-price {
-            width: 100%;
-            padding: 0.5rem;
-            background-color: var(--accent);
-            color: var(--primary);
-            border: none;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        /* Shop Main Content */
-        .shop-main {
-            display: flex;
-            flex-direction: column;
-        }
-        
-
-        
-    /* Add this CSS to fix any display issues */
-    .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: var(--spacing-lg);
-        margin-bottom: var(--spacing-xl);
-    }
-    
-    .products-list {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-md);
-        margin-bottom: var(--spacing-xl);
-    }
-    
-    .products-list .shop-card {
-        display: grid;
-        grid-template-columns: 200px 1fr;
-        height: 200px;
-    }
-    
-    .products-list .shop-image {
-        height: 200px;
-    }
-    
-    .products-list .shop-content {
-        padding: var(--spacing-md);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    
-    /* Ensure products are visible */
-    .shop-card {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-    }
-    
-    /* Debug styles - remove in production */
-    .debug-info {
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: rgba(0,0,0,0.8);
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        z-index: 9999;
-        font-size: 12px;
-        display: none; /* Set to block for debugging */
-    }
-
-
-
-        /* PRODUCTS GRID - RESPONSIVE */
-        /* Desktop & Tablet: 3 products per row */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-xl);
-        }
-        
-        /* Mobile: 2 products per row */
-        @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--spacing-sm);
-            }
-        }
-        
-        /* Very small mobile: 1 product per row */
-        @media (max-width: 480px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* List View */
-        .products-list {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-xl);
-        }
-        
-        .products-list .shop-card {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            height: 200px;
-        }
-        
-        .products-list .shop-image {
-            height: 200px;
-        }
-        
-        .products-list .shop-content {
-            padding: var(--spacing-md);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .products-list .shop-description {
-            display: block;
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        /* NEW SECTIONS */
-        .shop-featured-section {
-            margin-top: var(--spacing-xl);
-            padding-top: var(--spacing-xl);
-            border-top: 1px solid var(--border);
-        }
-        
-        /* ENHANCED FEATURED ITEMS SECTION */
-        .featured-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-lg);
-        }
-        
-        .featured-item {
-            background: white;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition-normal);
-            border: 2px solid transparent;
-        }
-        
-        .featured-item:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--accent);
-        }
-        
-        .featured-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .featured-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .featured-item:hover .featured-image img {
-            transform: scale(1.1);
-        }
-        
-        .featured-content {
-            padding: var(--spacing-lg);
+        .shop-page-subtitle {
             text-align: center;
-        }
-        
-        .featured-content h4 {
-            color: var(--primary);
-            margin-bottom: var(--spacing-xs);
-            font-size: 1.125rem;
-        }
-        
-        .featured-content p {
             color: var(--text-light);
-            font-size: 0.875rem;
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: 40px;
         }
-        
-        /* ENHANCED ADD TO CART BUTTON FOR FEATURED ITEMS */
-        .featured-content .btn-small {
-            background-color: var(--accent);
-            color: var(--primary);
-            border: 2px solid var(--accent);
-            padding: 0.75rem 1.5rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            width: 100%;
-            margin-top: 1rem;
-        }
-        
-        .featured-content .btn-small:hover {
-            background-color: var(--primary);
-            color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(198, 167, 94, 0.3);
-        }
-        
-        /* Featured item price styling */
-        .featured-content .shop-price {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 0.75rem 0;
-        }
-        
-        .featured-content .price {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .featured-content .original-price {
-            color: var(--text-light);
-            text-decoration: line-through;
-            font-size: 0.9rem;
-        }
-        
-        .featured-content .discount {
-            background-color: var(--accent);
-            color: var(--primary);
-            padding: 0.25rem 0.5rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        
-        /* Collections Grid */
-        .collections-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-        }
-        
-        .collection-item {
-            position: relative;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            height: 250px;
-        }
-        
-        .collection-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .collection-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: var(--spacing-md);
-            color: white;
-        }
-        
-        .collection-overlay h4 {
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
-        }
-        
-        .collection-overlay p {
-            font-size: 0.875rem;
-            opacity: 0.9;
-        }
-        
-        /* Pagination */
-        .shop-pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: var(--spacing-sm);
-            margin-top: var(--spacing-xl);
-        }
-        
-        .pagination-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: none;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            color: var(--text);
-            transition: var(--transition-normal);
-        }
-        
-        .pagination-btn:hover:not(:disabled) {
-            border-color: var(--accent);
-            background-color: var(--accent);
-            color: var(--primary);
-        }
-        
-        .pagination-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .pagination-numbers {
-            display: flex;
-            gap: 0.25rem;
-        }
-        
-        .page-number {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-        
-        .page-number.active,
-        .page-number:hover {
-            border-color: var(--accent);
-            background-color: var(--accent);
-            color: var(--primary);
-        }
-        
-        /* Mobile Sidebar Toggle */
-        .mobile-sidebar-toggle {
-            display: none;
-            width: 100%;
-            padding: 0.75rem;
-            background-color: var(--accent);
-            color: var(--primary);
-            border: none;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: var(--spacing-md);
-            align-items: center;
-            justify-content: center;
-            gap: var(--spacing-xs);
-        }
-        
-        /* CART MODAL - 80% WIDTH */
-        .cart-sidebar {
-            width: 80%;
-            max-width: 400px;
-        }
-        
-        /* SEARCH SUGGESTIONS */
-        .search-suggestions {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-lg);
-            z-index: 1001;
-            max-height: 300px;
-            overflow-y: auto;
-            display: none;
-        }
-        
-        .search-suggestions.active {
-            display: block;
-        }
-        
-        .suggestion-item {
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-bottom: 1px solid var(--border);
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-        
-        .suggestion-item:hover {
-            background-color: rgba(198, 167, 94, 0.1);
-        }
-        
-        .suggestion-item:last-child {
-            border-bottom: none;
-        }
-        
-        .suggestion-item h5 {
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-        }
-        
-        .suggestion-item p {
-            color: var(--text-light);
-            font-size: 0.875rem;
-        }
-        
-        /* ENHANCED PRODUCT MODAL WITH IMAGE GALLERY */
-        .modal-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-        }
-        
-        /* Increased modal height for desktop */
-        @media (min-width: 769px) {
-            .modal-content {
-                max-height: 85vh;
-                overflow-y: auto;
-            }
-            
-            .modal-image {
-                height: 600px;
-            }
-        }
-        
-        .modal-image-container {
-            position: relative;
-            height: 100%;
-        }
-        
-        .modal-main-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* Modal image gallery */
-        .modal-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-            padding: 0.5rem;
-        }
-        
-        .modal-gallery-item {
-            height: 80px;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: var(--radius-sm);
-            border: 2px solid transparent;
-            transition: var(--transition-normal);
-        }
-        
-        .modal-gallery-item.active,
-        .modal-gallery-item:hover {
-            border-color: var(--accent);
-        }
-        
-        .modal-gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* Modal actions enhancement */
-        .modal-actions {
-            display: flex;
-            gap: var(--spacing-sm);
-            margin-top: var(--spacing-md);
-        }
-        
-        .modal-actions .btn {
-            flex: 1;
-            padding: 1rem;
-            font-weight: 600;
-        }
-        
-        @media (max-width: 992px) {
-            .shop-layout {
-                grid-template-columns: 1fr;
-            }
-            
-            .shop-sidebar {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 320px;
-                height: 100vh;
-                z-index: 2001;
-                transition: var(--transition-normal);
-                overflow-y: auto;
-            }
-            
-            .shop-sidebar.active {
-                left: 0;
-            }
-            
-            .mobile-sidebar-toggle {
-                display: flex;
-            }
-            
-            .shop-controls {
-                position: static;
-            }
-            
-            .shop-controls-container {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--spacing-sm);
-            }
-            
-            .cart-sidebar {
-                width: 90%;
-            }
-            
-            /* Mobile modal adjustments */
-            .modal-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .modal-image {
-                height: 300px;
-            }
-            
-            .modal-gallery {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .shop-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .products-list .shop-card {
-                grid-template-columns: 150px 1fr;
-                height: 150px;
-            }
-            
-            .products-list .shop-image {
-                height: 150px;
-            }
-            
-            .featured-grid,
-            .collections-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            /* Mobile: 2 featured items per row */
-            @media (max-width: 768px) {
-                .featured-grid {
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: var(--spacing-sm);
-                }
-            }
-            
-            /* Very small mobile: 1 featured item per row */
-            @media (max-width: 480px) {
-                .featured-grid {
-                    grid-template-columns: 1fr;
-                }
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .shop-hero {
-                padding: 120px 0 40px;
-            }
-            
-            .shop-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .view-options {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            /* Mobile modal full height */
-            .modal-content {
-                margin: 0;
-                border-radius: 0;
-                min-height: 100vh;
-            }
+        /* Make sure the shop section uses the same spacing as index */
+        .shop {
+            padding-top: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- HEADER (exact copy from index.html) -->
     <header class="header">
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
                     <div class="logo-icon">
-                       <img src="img/bebey-logo2.png" alt="">
+                        <img src="img/bebey-logo2.png" alt="Bebeys Collection">
                     </div>
                     <span class="logo-text">BEBEYS<br>COLLECTION</span>
                 </div>
@@ -844,12 +48,7 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="shop.html" class="active">Shop</a></li>
-                   <!--   
-                    <li><a href="lookbook.html#lookbook">Lookbook</a></li>
-                    <li><a href="heritage.html#heritage">Heritage</a></li>
-                    <li><a href="index.html#store">Store</a></li>
-                    -->
-                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="store.html">Contact Us</a></li>
                 </ul>
                 
                 <div class="nav-actions">
@@ -873,12 +72,12 @@
         </div>
     </header>
 
-    <!-- Mobile Menu -->
+    <!-- MOBILE MENU (exact copy from index.html) -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <div class="logo">
                 <div class="logo-icon">
-                   <img src="img/bebey-logo2.png" alt="">
+                    <img src="img/bebey-logo2.png" alt="">
                 </div>
                 <span class="logo-text">BEBEYS<br>COLLECTION</span>
             </div>
@@ -890,10 +89,11 @@
         <ul class="mobile-nav-links">
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="shop.html" class="active"><i class="fas fa-shopping-bag"></i> Shop</a></li>
-            <li><a href="index.html#lookbook"><i class="fas fa-images"></i> Lookbook</a></li>
-           
-            <li><a href="store.html"><i class="fas fa-envelope"></i> Contact</a></li>
-            <li><a href="index.html#appointment"><i class="fas fa-calendar-alt"></i> Book Appointment</a></li>
+            <li><a href="lookbook.html"><i class="fas fa-images"></i> Lookbook</a></li>
+            <li><a href="heritage.html"><i class="fas fa-book"></i> Heritage</a></li>
+            <li><a href="store.html"><i class="fas fa-store"></i> Store</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="#appointment"><i class="fas fa-calendar-alt"></i> Book Appointment</a></li>
             <li><a href="#search"><i class="fas fa-search"></i> Search</a></li>
             <li><a href="account.html"><i class="fas fa-user"></i> Account</a></li>
         </ul>
@@ -915,7 +115,7 @@
         </div>
     </div>
 
-    <!-- Search Modal with Suggestions -->
+    <!-- SEARCH MODAL (exact copy from index.html) -->
     <div class="search-modal" id="searchModal">
         <div class="search-modal-content">
             <div class="search-modal-header">
@@ -926,13 +126,8 @@
             </div>
             
             <div class="search-input-container">
-                <input type="text" id="searchInput" placeholder="Search for products, collections, categories...">
+                <input type="text" id="searchInput" placeholder="Search for products, events, categories...">
                 <button id="searchButton"><i class="fas fa-search"></i> Search</button>
-            </div>
-            
-            <!-- Search Suggestions Container -->
-            <div class="search-suggestions" id="searchSuggestions">
-                <!-- Suggestions will be populated by JavaScript -->
             </div>
             
             <div class="search-results" id="searchResults">
@@ -941,289 +136,30 @@
         </div>
     </div>
 
-    <!-- Shop Hero -->
-    <section class="shop-hero">
+    <!-- MAIN CONTENT: SHOP SECTION -->
+    <section class="shop" id="shop">
         <div class="container">
-            <div class="shop-hero-content">
-                <h1>Shop Our Collection</h1>
-                <p>Discover handcrafted luxury pieces that blend traditional African artistry with modern design. Each piece tells a story of heritage and craftsmanship.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Shop Controls -->
-    <section class="shop-controls">
-        <div class="container">
-            <div class="shop-controls-container">
-                <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">
-                    <i class="fas fa-filter"></i> Filter Products
-                </button>
-                
-                <div class="view-options">
-                    <span class="products-count" id="productsCount">Loading products...</span>
-                    <div class="view-buttons">
-                        <button class="view-btn active" id="viewGrid" title="Grid View">
-                            <i class="fas fa-th-large"></i>
-                        </button>
-                        <button class="view-btn" id="viewList" title="List View">
-                            <i class="fas fa-list"></i>
-                        </button>
-                    </div>
-                    <select class="sort-select" id="sortSelect">
-                        <option value="default">Sort by: Featured</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="name-asc">Name: A to Z</option>
-                        <option value="name-desc">Name: Z to A</option>
-                        <option value="newest">Newest Arrivals</option>
-                        <option value="bestselling">Bestselling</option>
-                    </select>
+            <div class="section-header">
+                <h1 class="section-title">All Products</h1>
+                <p class="section-subtitle">Discover our full collection of handcrafted African luxury</p>
+                <!-- Filter buttons (same as index) -->
+                <div class="shop-filters">
+                    <button class="filter-btn active" data-filter="all">All Products</button>
+                    <button class="filter-btn" data-filter="in-store">In-Store Exclusive</button>
+                    <button class="filter-btn" data-filter="online">Available Online</button>
+                    <button class="filter-btn" data-filter="new">New Arrivals</button>
+                    <button class="filter-btn" data-filter="sale">On Sale</button>
                 </div>
             </div>
+            
+            <!-- Product grid – will be populated by JavaScript -->
+            <div class="shop-grid" id="shopGrid"></div>
+            
+            <!-- Optional view all (already on page) -->
         </div>
     </section>
 
-    <!-- Shop Content -->
-    <section class="shop-content">
-        <div class="container">
-            <div class="shop-layout">
-                <!-- Shop Sidebar -->
-                <aside class="shop-sidebar" id="shopSidebar">
-                    <div class="sidebar-section">
-                        <h3>Categories <button class="clear-filters" id="clearFilters">Clear All</button></h3>
-                        <ul class="category-list" id="categoryList">
-                            <!-- Categories will be loaded by JavaScript -->
-                        </ul>
-                    </div>
-                    
-                    <div class="sidebar-section">
-                        <h3>Availability</h3>
-                        <ul class="filter-list" id="availabilityList">
-                            <li class="filter-item">
-                                <label class="filter-label" data-filter="all">
-                                    <input type="checkbox" checked>
-                                    All Products
-                                    <span class="filter-count">22</span>
-                                </label>
-                            </li>
-                            <li class="filter-item">
-                                <label class="filter-label" data-filter="in-store">
-                                    <input type="checkbox">
-                                    In-Store Only
-                                    <span class="filter-count">5</span>
-                                </label>
-                            </li>
-                            <li class="filter-item">
-                                <label class="filter-label" data-filter="online">
-                                    <input type="checkbox">
-                                    Available Online
-                                    <span class="filter-count">12</span>
-                                </label>
-                            </li>
-                            <li class="filter-item">
-                                <label class="filter-label" data-filter="both">
-                                    <input type="checkbox">
-                                    Available Both
-                                    <span class="filter-count">8</span>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="sidebar-section">
-                        <h3>Price Range</h3>
-                        <div class="price-filter">
-                            <div class="price-inputs">
-                                <input type="number" id="minPrice" placeholder="Min" min="0" value="0">
-                                <input type="number" id="maxPrice" placeholder="Max" min="0" value="10000">
-                            </div>
-                            <input type="range" class="price-slider" id="priceSlider" min="0" max="10000" value="10000">
-                            <button class="apply-price" id="applyPrice">Apply Price Filter</button>
-                        </div>
-                    </div>
-                    
-                    <div class="sidebar-section">
-                        <h3>Collections</h3>
-                        <ul class="filter-list" id="collectionList">
-                            <li class="filter-item">
-                                <label class="filter-label" data-tag="new">
-                                    <input type="checkbox">
-                                    New Arrivals
-                                    <span class="filter-count">7</span>
-                                </label>
-                            </li>
-                            <li class="filter-item">
-                                <label class="filter-label" data-tag="sale">
-                                    <input type="checkbox">
-                                    On Sale
-                                    <span class="filter-count">8</span>
-                                </label>
-                            </li>
-                            <li class="filter-item">
-                                <label class="filter-label" data-tag="bestseller">
-                                    <input type="checkbox">
-                                    Bestsellers
-                                    <span class="filter-count">4</span>
-                                </label>
-                            </li>
-                            <li class="filter-item">
-                                <label class="filter-label" data-tag="exclusive">
-                                    <input type="checkbox">
-                                    Store Exclusives
-                                    <span class="filter-count">3</span>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="sidebar-section">
-                        <h3>Size</h3>
-                        <ul class="filter-list" id="sizeList">
-                            <li class="filter-item">
-                                <label class="filter-label" data-size="xs">
-                                    <input type="checkbox">
-                                    XS
-                                    <span class="filter-count">3</span>
-                                </label>
-                            </li>
-                            <li class="filter-item">
-                                <label class="filter-label" data-size="s">
-                                    <input type="checkbox">
-                                    S
-                                    <span class="filter-count">16</span>
-                                </label>
-                            </li>
-                            <li class="filter-item">
-                                <label class="filter-label" data-size="m">
-                                    <input type="checkbox">
-                                    M
-                                    <span class="filter-count">18</span>
-                                </label>
-                            </li>
-                            <li class="filter-item">
-                                <label class="filter-label" data-size="l">
-                                    <input type="checkbox">
-                                    L
-                                    <span class="filter-count">17</span>
-                                </label>
-                            </li>
-                            <li class="filter-item">
-                                <label class="filter-label" data-size="xl">
-                                    <input type="checkbox">
-                                    XL
-                                    <span class="filter-count">8</span>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                </aside>
-                
-                <!-- Shop Main Content -->
-                <main class="shop-main">
-                    <div class="products-grid" id="productsContainer">
-                        <!-- Products will be loaded by JavaScript -->
-                    </div>
-                    
-                    <!-- Pagination -->
-                    <div class="shop-pagination">
-                        <button class="pagination-btn" id="prevPage" disabled>
-                            <i class="fas fa-chevron-left"></i> Previous
-                        </button>
-                        
-                        <div class="pagination-numbers" id="paginationNumbers">
-                            <!-- Page numbers will be generated by JavaScript -->
-                        </div>
-                        
-                        <button class="pagination-btn" id="nextPage">
-                            Next <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Suggested Items Section -->
-                    <div class="shop-featured-section">
-                        <h2 class="section-title">You Might Also Like</h2>
-                        <p class="section-subtitle">Discover more pieces from our collection</p>
-                        
-                        <div class="featured-grid" id="suggestedItems">
-                            <!-- Suggested items will be loaded by JavaScript -->
-                        </div>
-                    </div>
-                    
-                    <!-- Shop by Collections Section -->
-                    <div class="shop-featured-section">
-                        <h2 class="section-title">Shop by Collections</h2>
-                        <p class="section-subtitle">Browse our curated collections</p>
-                        
-                        <div class="collections-grid">
-                            <div class="collection-item">
-                                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8" alt="Heritage Collection">
-                                <div class="collection-overlay">
-                                    <h4>Heritage Collection</h4>
-                                    <p>Traditional craftsmanship</p>
-                                </div>
-                            </div>
-                            <div class="collection-item">
-                                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="Modern Ankara">
-                                <div class="collection-overlay">
-                                    <h4>Modern Ankara</h4>
-                                    <p>Contemporary prints</p>
-                                </div>
-                            </div>
-                            <div class="collection-item">
-                                <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446" alt="Golden Sands">
-                                <div class="collection-overlay">
-                                    <h4>Golden Sands</h4>
-                                    <p>Luxury embroidery</p>
-                                </div>
-                            </div>
-                            <div class="collection-item">
-                                <img src="https://images.unsplash.com/photo-1567401893416-8f1f9e5b46ab" alt="Artisan Series">
-                                <div class="collection-overlay">
-                                    <h4>Artisan Series</h4>
-                                    <p>Handcrafted pieces</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2>New Collection Alerts</h2>
-                <p>Be the first to know about new arrivals, exclusive offers, and store events</p>
-                
-                <form class="newsletter-form" id="newsletterForm">
-                    <div class="form-group">
-                        <input type="email" placeholder="Enter your email" required>
-                        <button type="submit" class="btn btn-primary">Subscribe</button>
-                    </div>
-                    <div class="form-options">
-                        <label class="checkbox">
-                            <input type="checkbox" checked>
-                            <span>New collection alerts</span>
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox" checked>
-                            <span>Exclusive offers</span>
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            <span>Store event invitations</span>
-                        </label>
-                    </div>
-                </form>
-                
-                <p class="note">By subscribing, you agree to our Privacy Policy</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- FOOTER (exact copy from index.html) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -1231,8 +167,8 @@
                 <div class="footer-logo-section">
                     <div class="footer-logo">
                         <div class="logo-icon">
-                   <img src="img/bebey-logo2.png" alt="">
-                </div>
+                            <i class="fas fa-crown"></i>
+                        </div>
                         <div class="logo-text">
                             <h3>BEBEYS COLLECTION</h3>
                             <p>African Luxury Reimagined</p>
@@ -1250,35 +186,35 @@
                 
                 <!-- Quick Links -->
                 <div class="footer-links-section">
-                    <h4>Shop Categories</h4>
+                    <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="shop.html?category=dresses">Dresses</a></li>
-                        <li><a href="shop.html?category=tops">Tops</a></li>
-                        <li><a href="shop.html?category=bottoms">Bottoms</a></li>
-                        <li><a href="shop.html?category=accessories">Accessories</a></li>
-                        <li><a href="shop.html?category=outerwear">Outerwear</a></li>
-                        <li><a href="shop.html?category=jewelry">Jewelry</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="lookbook.html">Lookbook</a></li>
+                        <li><a href="store.html">In-Store</a></li>
+                        <li><a href="heritage.html">Our Story</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 
                 <!-- Store Info -->
                 <div class="store-info">
-            <h4 style="align-items: center; text-align: center;"><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
-            <p><i class="fas fa-location-dot"></i> Rosebank Mall, Johannesburg, 2196</p>
-            <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-6PM | Sun: 9PM-5PM</p>
-            <p><i class="fas fa-phone"></i> 071 929 2111 </p>
-        </div>
+                    <h4 style="align-items: center; text-align: center;"><i class="fas fa-map-marker-alt"></i> Visit Our Store</h4>
+                    <p><i class="fas fa-location-dot"></i> Rosebank Mall, Johannesburg, 2196</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-6PM | Sun: 9PM-5PM</p>
+                    <p><i class="fas fa-phone"></i> 071 929 2111 </p>
+                </div>
                 
                 <!-- Services -->
                 <div class="footer-services-section">
                     <h4>Services</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html#appointment">Personal Styling</a></li>
-                        <li><a href="index.html#custom">Custom Design</a></li>
-                        <li><a href="index.html#alterations">Alterations</a></li>
-                        <li><a href="index.html#events">Store Events</a></li>
-                        <li><a href="index.html#vip">VIP Experience</a></li>
-                        <li><a href="index.html#gift">Gift Cards</a></li>
+                        <li><a href="#appointment">Personal Styling</a></li>
+                        <li><a href="#custom">Custom Design</a></li>
+                        <li><a href="#alterations">Alterations</a></li>
+                        <li><a href="#events">Store Events</a></li>
+                        <li><a href="#vip">VIP Experience</a></li>
+                        <li><a href="#gift">Gift Cards</a></li>
                     </ul>
                 </div>
             </div>
@@ -1302,7 +238,7 @@
         </div>
     </footer>
 
-    <!-- Cart Sidebar -->
+    <!-- CART SIDEBAR (exact copy from index.html) -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h3><i class="fas fa-shopping-bag"></i> Your Shopping Bag</h3>
@@ -1325,25 +261,32 @@
             
             <div class="cart-note">
                 <i class="fas fa-info-circle"></i>
-                <p>Looking for in-store exclusives? <a href="index.html#store">Visit our store</a> for premium pieces.</p>
+                <p>Looking for in-store exclusives? <a href="store.html">Visit our store</a> for premium pieces.</p>
             </div>
         </div>
     </div>
 
-    <!-- ENHANCED Product Modal with 3-image gallery -->
+    <!-- PRODUCT MODAL (exact copy from index.html) -->
     <div class="product-modal" id="productModal">
         <div class="modal-content">
             <button class="close-modal" id="closeModal">
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-grid">
-                <div class="modal-image">
-                    <div class="modal-image-container">
-                        <img id="modalImage" src="" alt="Product Image" class="modal-main-image">
+                <div class="modal-image-section">
+                    <div class="main-image-container">
+                        <img id="modalImage" src="" alt="Product Image" class="main-image">
                     </div>
-                    <!-- Image Gallery with 3 images -->
-                    <div class="modal-gallery" id="modalGallery">
-                        <!-- Gallery images will be added by JavaScript -->
+                    <div class="additional-images">
+                        <div class="image-thumbnail active" data-image="main">
+                            <img id="thumbnail1" src="" alt="Thumbnail 1">
+                        </div>
+                        <div class="image-thumbnail" data-image="additional1">
+                            <img id="thumbnail2" src="" alt="Thumbnail 2">
+                        </div>
+                        <div class="image-thumbnail" data-image="additional2">
+                            <img id="thumbnail3" src="" alt="Thumbnail 3">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-details">
@@ -1380,83 +323,126 @@
                         <button class="btn btn-primary" id="modalAddToCart">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
-                        <a href="index.html#store" class="btn btn-secondary" id="modalViewInStore">
-                            <i class="fas fa-store"></i> View in Store
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Toast Notification -->
+    <!-- TOAST NOTIFICATION (exact copy from index.html) -->
     <div class="toast" id="toast"></div>
 
     <!-- JavaScript -->
-    <script type="module" src="data.js"></script>
-    <script type="module" src="shop.js"></script>
+    <script type="module" src="main.js"></script>
     
-    <!-- Update shop.js to support enhanced features -->
-    <script>
-        // This code will enhance the existing shop.js functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Wait for shop.js to initialize
-            setTimeout(function() {
-                // Add image gallery functionality if not already in shop.js
-                if (typeof window.debugShop !== 'undefined') {
-                    console.log('Enhancing product modal with gallery feature...');
-                    
-                    // Override the openProductModal function to include gallery
-                    const originalOpenProductModal = window.debugShop.openProductModal || function() {};
-                    
-                    // Create enhanced modal function
-                    window.enhancedOpenProductModal = function(productId) {
-                        const product = window.debugShop.getProducts().find(p => p.id === productId);
-                        if (!product) return;
+    <!-- Dynamic product grid generation (runs after main.js, but delegation will work) -->
+    <script type="module">
+        import { products } from './data.js';
+        
+        // Additional images mapping (same as in main.js – kept here for clarity)
+        const productAdditionalImages = {
+            1: { main: "img/shop/a1.jpg", additional1: "img/shop/2P-set.png", additional2: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?auto=format&fit=crop&w=800&q=80" },
+            2: { main: "img/shop/2P-set.png", additional1: "img/shop/2P-set1.png", additional2: "img/shop/2P-set2.png" },
+            3: { main: "img/shop/akara-pant-bnw.png", additional1: "img/shop/akara-pant-bnw1.png", additional2: "img/shop/akara-pant-bnw2.png" },
+            4: { main: "img/shop/dress-01.png", additional1: "img/shop/dress-02.png", additional2: "img/shop/dress-03.JPG" },
+            5: { main: "img/shop/kid-top-b.JPG", additional1: "img/shop/kid-top-b2.JPG", additional2: "img/shop/kid-top-b3.JPG" },
+            6: { main: "img/shop/bubu-g.png", additional1: "img/shop/bubu-g2.png", additional2: "img/shop/bubu-g3.png" },
+            7: { main: "img/shop/7.jpg", additional1: "img/shop/7-1.jpg", additional2: "img/shop/7-2.jpg" },
+            8: { main: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80", additional1: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80", additional2: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80" },
+            9: { main: "img/shop/dress-02.png", additional1: "img/shop/dress-03.JPG", additional2: "img/shop/dress-01.png" },
+            10: { main: "img/shop/men/tops/rainbow1.JPG", additional1: "img/shop/men/tops/rainbow.JPG", additional2: "img/shop/men/tops/rainbow2.JPG" },
+            11: { main: "img/shop/akara-pant-bnw1.png", additional1: "img/shop/akara-pant-bnw.png", additional2: "img/shop/akara-pant-bnw2.png" },
+            12: { main: "img/shop/a2.JPG", additional1: "img/shop/a1.JPG", additional2: "img/shop/a3.JPG" },
+            13: { main: "img/shop/men/tops/d-blue-top.JPG", additional1: "img/shop/men/tops/white-red-longsleeve.JPG", additional2: "img/shop/men/tops/rainbow.JPG" },
+            14: { main: "img/shop/a3.JPG", additional1: "img/shop/a2.JPG", additional2: "img/shop/a1.JPG" },
+            15: { main: "img/shop/wrap-dress-blue-01.png", additional1: "img/shop/dress-01.png", additional2: "img/shop/dress-02.png" },
+            16: { main: "img/shop/video/2P-set1.png", additional1: "img/shop/video/2P-set.png", additional2: "img/shop/video/2P-set2.png" },
+            17: { main: "img/shop/bubu-g2.png", additional1: "img/shop/bubu-g.png", additional2: "img/shop/bubu-g3.png" },
+            18: { main: "img/shop/men/tops/white-red-longsleeve.JPG", additional1: "img/shop/men/tops/rainbow.JPG", additional2: "img/shop/men/tops/d-blue-top.JPG" },
+            19: { main: "img/shop/kids/b-kid-short.JPG", additional1: "img/shop/kids/kids-akara-1.JPG", additional2: "img/shop/kids/kids-akara-2.JPG" },
+            21: { main: "img/shop/men/tops/rainbow2.JPG", additional1: "img/shop/men/tops/rainbow.JPG", additional2: "img/shop/men/tops/rainbow1.JPG" },
+            22: { main: "img/shop/kids/kids-akara-2.JPG", additional1: "img/shop/kids/kids-akara-1.JPG", additional2: "img/shop/kid-top-b.JPG" }
+        };
+
+        function generateProductCard(product) {
+            const hasDiscount = product.originalPrice !== null;
+            const discountPercent = hasDiscount ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
+            const availabilityAttr = product.availability || 'online';
+            const tagsAttr = product.tags ? product.tags.join(',') : '';
+            
+            // Build price HTML
+            let priceHtml = `<span class="price">R${product.price.toFixed(2)}</span>`;
+            if (hasDiscount) {
+                priceHtml = `<span class="original-price">R${product.originalPrice.toFixed(2)}</span> ${priceHtml} <div class="discount">Save ${discountPercent}%</div>`;
+            }
+            
+            // Determine badge text
+            let badgeHtml = '';
+            if (product.badge) {
+                badgeHtml = `<div class="product-badge">${product.badge}</div>`;
+            } else if (product.tags && product.tags.includes('new')) {
+                badgeHtml = `<div class="product-badge">NEW ARRIVAL</div>`;
+            } else if (product.tags && product.tags.includes('sale') && hasDiscount) {
+                badgeHtml = `<div class="product-badge">SALE</div>`;
+            } else if (product.availability === 'in-store') {
+                badgeHtml = `<div class="product-badge">IN-STORE EXCLUSIVE</div>`;
+            }
+            
+            return `
+                <div class="shop-card" data-id="${product.id}" data-availability="${availabilityAttr}" data-tags="${tagsAttr}">
+                    ${badgeHtml}
+                    <div class="shop-image">
+                        <a href="javascript:void(0);" class="product-image-link" data-id="${product.id}">
+                            <img src="${product.image}" alt="${product.name}" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="shop-content">
+                        <div class="shop-category">${product.category}</div>
+                        <h3 class="shop-title">
+                            <a href="javascript:void(0);" class="product-title-link" data-id="${product.id}">
+                                ${product.name}
+                            </a>
+                        </h3>
                         
-                        // Call original function first
-                        originalOpenProductModal.call(this, productId);
-                        
-                        // Then add gallery functionality
-                        const modalGallery = document.getElementById('modalGallery');
-                        if (modalGallery) {
-                            modalGallery.innerHTML = '';
-                            
-                            // Create gallery images (using main image plus 2 similar images)
-                            const galleryImages = [
-                                product.image,
-                                product.image.replace('800', '801') || product.image,
-                                product.image.replace('800', '802') || product.image
-                            ];
-                            
-                            galleryImages.forEach((imgSrc, index) => {
-                                const galleryItem = document.createElement('div');
-                                galleryItem.className = 'modal-gallery-item' + (index === 0 ? ' active' : '');
-                                galleryItem.innerHTML = `<img src="${imgSrc}" alt="View ${index + 1}">`;
-                                
-                                galleryItem.addEventListener('click', function() {
-                                    // Update main image
-                                    document.getElementById('modalImage').src = imgSrc;
-                                    
-                                    // Update active state
-                                    document.querySelectorAll('.modal-gallery-item').forEach(item => {
-                                        item.classList.remove('active');
-                                    });
-                                    this.classList.add('active');
-                                });
-                                
-                                modalGallery.appendChild(galleryItem);
-                            });
-                        }
-                    };
-                    
-                    // Replace the original function with enhanced version
-                    if (typeof window.debugShop.openProductModal === 'function') {
-                        window.debugShop.openProductModal = window.enhancedOpenProductModal;
-                    }
-                }
-            }, 1000);
-        });
+                        <div class="shop-price">
+                            <div>
+                                ${priceHtml}
+                            </div>
+                            <span class="availability-tag">${product.availability === 'in-store' ? 'In-Store Only' : (product.availability === 'online' ? 'Available Online' : 'Available Both')}</span>
+                        </div>
+                        <div class="shop-actions" style="display: flex; flex-direction: row;">
+                            <button class="btn btn-primary add-to-cart" data-id="${product.id}">
+                                <i class="fas fa-shopping-cart"></i> 
+                            </button>
+                            <button class="btn btn-secondary view-details" data-id="${product.id}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAllProducts() {
+            const grid = document.getElementById('shopGrid');
+            if (!grid) return;
+            
+            let html = '';
+            products.forEach(product => {
+                html += generateProductCard(product);
+            });
+            grid.innerHTML = html;
+            
+            // After adding cards, reapply any necessary event listeners? 
+            // No need – main.js uses event delegation on the grid.
+        }
+
+        // Run after DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', renderAllProducts);
+        } else {
+            renderAllProducts();
+        }
     </script>
 </body>
 </html>
