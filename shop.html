@@ -319,7 +319,7 @@
         @media (max-width: 768px) {
             /* Only target elements inside the product modal */
             .product-modal .modal-content {
-                max-height: 90vh;
+                max-height: 70vh;
                 overflow: auto;
                 display: flex;
                 flex-direction: column;
@@ -373,6 +373,8 @@
                 border-radius: 15px;
                 border: 2px solid rgba(255,255,255,0.3);
                 transition: all 0.2s ease;
+                cursor: pointer; /* Ensure pointer cursor */
+                pointer-events: auto; /* Ensure clickable */
             }
 
             .product-modal .modal-details {
@@ -425,10 +427,39 @@
                 opacity: 1;
             }
         }
+
+        /* Currency switcher styles */
+        .currency-switcher {
+            position: relative;
+            margin-left: 10px;
+        }
+        .currency-select {
+            background: transparent;
+            color: var(--secondary);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-sm);
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            outline: none;
+        }
+        .currency-select option {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+        @media (max-width: 768px) {
+            .currency-switcher {
+                margin-left: 5px;
+            }
+            .currency-select {
+                padding: 0.2rem 0.3rem;
+                font-size: 0.7rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- HEADER (exact copy from index.html) -->
+    <!-- HEADER with currency switcher -->
     <header class="header">
         <div class="container">
             <nav class="navbar">
@@ -446,6 +477,14 @@
                 </ul>
                 
                 <div class="nav-actions">
+                    <!-- Currency Switcher -->
+                    <div class="currency-switcher">
+                        <select id="currencySelect" class="currency-select">
+                            <option value="ZAR" selected>ZAR (R)</option>
+                            <option value="USD">USD ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                        </select>
+                    </div>
                     <a href="#search" class="search-btn">
                         <i class="fas fa-search"></i>
                     </a>
@@ -541,7 +580,7 @@
             <!-- Enhanced Filter Bar (collapsible on mobile) -->
             <div class="filter-section">
                 <div class="filter-header">
-                    <h3><i class="fas fa-sliders-h"></i> Filter Products</h3>
+                    <h3>Filter Products</h3>
                     <button class="filter-toggle" id="filterToggle">
                         <i class="fas fa-chevron-down"></i> Show Filters
                     </button>
@@ -813,7 +852,7 @@
     <!-- JavaScript -->
     <script type="module" src="main.js"></script>
     
-    <!-- Dynamic product grid, filtering, pagination, and collapsible filter -->
+    <!-- Dynamic product grid, filtering, pagination, collapsible filter, currency switcher, and thumbnail fix -->
     <script type="module">
         import { products } from './data.js';
 
@@ -844,6 +883,49 @@
             21: { main: "img/shop/men/tops/rainbow2.JPG", additional1: "img/shop/men/tops/rainbow.JPG", additional2: "img/shop/men/tops/rainbow1.JPG" },
             22: { main: "img/shop/kids/kids-akara-2.JPG", additional1: "img/shop/kids/kids-akara-1.JPG", additional2: "img/shop/kid-top-b.JPG" }
         };
+
+        // ---------- Currency Configuration ----------
+        const exchangeRates = {
+            ZAR: 1,
+            USD: 0.055,  // 1 ZAR = 0.055 USD (approx)
+            EUR: 0.051   // 1 ZAR = 0.051 EUR (approx)
+        };
+        
+        const currencySymbols = {
+            ZAR: 'R',
+            USD: '$',
+            EUR: '€'
+        };
+
+        let currentCurrency = localStorage.getItem('bebeysCurrency') || 'ZAR';
+
+        // Update currency selector
+        const currencySelect = document.getElementById('currencySelect');
+        if (currencySelect) {
+            currencySelect.value = currentCurrency;
+            currencySelect.addEventListener('change', (e) => {
+                currentCurrency = e.target.value;
+                localStorage.setItem('bebeysCurrency', currentCurrency);
+                // Re-render everything with new currency
+                renderGrid();
+                updateCartDisplay(); // from global scope? We'll define a function to update cart
+                // Also update modal if open
+                if (currentProduct) {
+                    updateModalPrices();
+                }
+            });
+        }
+
+        // Helper: convert price
+        function convertPrice(priceZAR) {
+            return priceZAR * exchangeRates[currentCurrency];
+        }
+
+        // Helper: format price with currency symbol
+        function formatPrice(priceZAR) {
+            const converted = convertPrice(priceZAR);
+            return `${currencySymbols[currentCurrency]}${converted.toFixed(2)}`;
+        }
 
         // ---------- State ----------
         let filteredProducts = [...products];
@@ -887,10 +969,10 @@
             // Get additional image for hover effect (use additional1 if available, otherwise fallback to main)
             const hoverImage = (productAdditionalImages[product.id]?.additional1) || product.image;
 
-            // Build price HTML
-            let priceHtml = `<span class="price">R${product.price.toFixed(2)}</span>`;
+            // Build price HTML with converted prices
+            let priceHtml = `<span class="price">${formatPrice(product.price)}</span>`;
             if (hasDiscount) {
-                priceHtml = `<span class="original-price">R${product.originalPrice.toFixed(2)}</span> ${priceHtml} <div class="discount">Save ${discountPercent}%</div>`;
+                priceHtml = `<span class="original-price">${formatPrice(product.originalPrice)}</span> ${priceHtml} <div class="discount">Save ${discountPercent}%</div>`;
             }
             
             // Determine badge text
@@ -979,7 +1061,7 @@
             filteredProducts = products.filter(p => {
                 // Category filter
                 if (category !== 'all' && p.category !== category) return false;
-                // Price filter
+                // Price filter (use base ZAR prices)
                 if (p.price < minPrice || p.price > maxPrice) return false;
                 // Availability filter
                 if (availability !== 'all') {
@@ -1091,6 +1173,112 @@
 
         // Initialize
         renderGrid();
+
+        // ---------- Cart and Modal Functions (integration with main.js) ----------
+        // We need to update cart display when currency changes.
+        // Since cart is managed in main.js, we'll expose a global function to refresh cart.
+        window.updateCartDisplayWithCurrency = function() {
+            if (typeof CartManager !== 'undefined') {
+                CartManager.updateDisplay();
+            }
+        };
+
+        // Update modal prices when currency changes
+        window.updateModalPrices = function() {
+            if (currentProduct) {
+                const modalPrice = document.getElementById('modalPrice');
+                const modalOriginalPrice = document.getElementById('modalOriginalPrice');
+                const modalDiscount = document.getElementById('modalDiscount');
+                
+                if (modalPrice) {
+                    modalPrice.textContent = formatPrice(currentProduct.price);
+                }
+                if (modalOriginalPrice && currentProduct.originalPrice) {
+                    modalOriginalPrice.textContent = formatPrice(currentProduct.originalPrice);
+                    modalOriginalPrice.style.display = 'inline';
+                } else if (modalOriginalPrice) {
+                    modalOriginalPrice.style.display = 'none';
+                }
+                if (modalDiscount && currentProduct.originalPrice) {
+                    const discountPercent = Math.round((1 - currentProduct.price / currentProduct.originalPrice) * 100);
+                    modalDiscount.textContent = `Save ${discountPercent}%`;
+                    modalDiscount.style.display = 'block';
+                } else if (modalDiscount) {
+                    modalDiscount.style.display = 'none';
+                }
+            }
+        };
+
+        // Listen for currency changes from the dropdown (already handled)
+        // Also override main.js's formatPrice if needed? We'll keep separate.
+
+        // ---------- Fix for thumbnail clicks (event delegation) ----------
+        document.addEventListener('click', function(e) {
+            const thumbnail = e.target.closest('.product-modal .image-thumbnail');
+            if (!thumbnail) return;
+            
+            const imageType = thumbnail.getAttribute('data-image');
+            if (!currentProduct) return;
+            
+            const productId = currentProduct.id;
+            const images = productAdditionalImages[productId];
+            
+            if (images) {
+                const modalImage = document.getElementById('modalImage');
+                if (imageType === 'main') {
+                    modalImage.src = images.main;
+                } else if (imageType === 'additional1') {
+                    modalImage.src = images.additional1;
+                } else if (imageType === 'additional2') {
+                    modalImage.src = images.additional2;
+                }
+                
+                // Update active thumbnail
+                document.querySelectorAll('.product-modal .image-thumbnail').forEach(t => {
+                    t.classList.remove('active');
+                });
+                thumbnail.classList.add('active');
+            }
+        });
+
+        // Also need to update modal when product changes (openProductModal in main.js will call our updateModalPrices)
+        // We'll patch openProductModal if possible, but since main.js is separate, we'll rely on the fact that
+        // openProductModal sets currentProduct and then we can call updateModalPrices from currency change.
+        // We'll also override the modal's add to cart to use converted prices? No, cart stores base ZAR.
+
+        // Expose currentProduct globally for our functions
+        window.currentProduct = null;
+        // main.js sets currentProduct; we'll mirror it.
+        // We'll use a MutationObserver or just rely on the fact that main.js updates the modal content.
+        // Instead, we can patch main.js's openProductModal to call our updateModalPrices after setting content.
+        // But since we can't modify main.js easily, we'll add a listener for modal opening.
+        const modalElement = document.getElementById('productModal');
+        if (modalElement) {
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.attributeName === 'class' && modalElement.classList.contains('active')) {
+                        // Modal just opened, currentProduct should be set by main.js
+                        setTimeout(() => {
+                            if (window.currentProduct) {
+                                window.updateModalPrices();
+                            }
+                        }, 100);
+                    }
+                });
+            });
+            observer.observe(modalElement, { attributes: true });
+        }
+
+        // Also listen for currency change to update modal if open
+        currencySelect.addEventListener('change', () => {
+            if (modalElement.classList.contains('active') && window.currentProduct) {
+                window.updateModalPrices();
+            }
+            // Also update cart totals if cart is open
+            if (typeof CartManager !== 'undefined') {
+                CartManager.updateDisplay();
+            }
+        });
     </script>
     
     <!-- Additional CSS for hover effect using custom properties -->
