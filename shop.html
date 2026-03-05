@@ -317,9 +317,8 @@
 
         /* FIXED: Mobile modal styles - properly scoped to modal only */
         @media (max-width: 768px) {
-            /* Only target elements inside the product modal */
             .product-modal .modal-content {
-                max-height: 70vh;
+                max-height: 90vh;
                 overflow: auto;
                 display: flex;
                 flex-direction: column;
@@ -365,6 +364,8 @@
                 transform: none;
                 width: 100%;
                 align-items: center;
+                z-index: 10; /* Ensure thumbnails are above other elements */
+                pointer-events: auto; /* Make sure they are clickable */
             }
 
             .product-modal .image-thumbnail {
@@ -373,8 +374,9 @@
                 border-radius: 15px;
                 border: 2px solid rgba(255,255,255,0.3);
                 transition: all 0.2s ease;
-                cursor: pointer; /* Ensure pointer cursor */
-                pointer-events: auto; /* Ensure clickable */
+                cursor: pointer; /* Indicate clickability */
+                position: relative;
+                z-index: 20;
             }
 
             .product-modal .modal-details {
@@ -427,39 +429,10 @@
                 opacity: 1;
             }
         }
-
-        /* Currency switcher styles */
-        .currency-switcher {
-            position: relative;
-            margin-left: 10px;
-        }
-        .currency-select {
-            background: transparent;
-            color: var(--secondary);
-            border: 1px solid var(--accent);
-            border-radius: var(--radius-sm);
-            padding: 0.25rem 0.5rem;
-            font-size: 0.75rem;
-            cursor: pointer;
-            outline: none;
-        }
-        .currency-select option {
-            background: var(--primary);
-            color: var(--secondary);
-        }
-        @media (max-width: 768px) {
-            .currency-switcher {
-                margin-left: 5px;
-            }
-            .currency-select {
-                padding: 0.2rem 0.3rem;
-                font-size: 0.7rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- HEADER with currency switcher -->
+    <!-- HEADER (exact copy from index.html) -->
     <header class="header">
         <div class="container">
             <nav class="navbar">
@@ -477,14 +450,6 @@
                 </ul>
                 
                 <div class="nav-actions">
-                    <!-- Currency Switcher -->
-                    <div class="currency-switcher">
-                        <select id="currencySelect" class="currency-select">
-                            <option value="ZAR" selected>ZAR (R)</option>
-                            <option value="USD">USD ($)</option>
-                            <option value="EUR">EUR (€)</option>
-                        </select>
-                    </div>
                     <a href="#search" class="search-btn">
                         <i class="fas fa-search"></i>
                     </a>
@@ -580,7 +545,7 @@
             <!-- Enhanced Filter Bar (collapsible on mobile) -->
             <div class="filter-section">
                 <div class="filter-header">
-                    <h3>Filter Products</h3>
+                    <h3><i class="fas fa-sliders-h"></i> Filter Products</h3>
                     <button class="filter-toggle" id="filterToggle">
                         <i class="fas fa-chevron-down"></i> Show Filters
                     </button>
@@ -602,10 +567,10 @@
                             </select>
                         </div>
                         <div class="filter-group">
-                            <label>Price Range (R)</label>
+                            <label>Price Range ($)</label>
                             <div class="price-range">
-                                <input type="number" id="filterPriceMin" placeholder="Min" min="0" step="50">
-                                <input type="number" id="filterPriceMax" placeholder="Max" min="0" step="50">
+                                <input type="number" id="filterPriceMin" placeholder="Min" min="0" step="10">
+                                <input type="number" id="filterPriceMax" placeholder="Max" min="0" step="10">
                             </div>
                         </div>
                         <div class="filter-group">
@@ -771,7 +736,7 @@
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
-                <span id="cartTotal">R0.00</span>
+                <span id="cartTotal">$0.00</span>
             </div>
             <a href="#checkout" class="btn btn-primary">Proceed to Checkout</a>
             <button class="btn btn-secondary" id="continueShopping">Continue Shopping</button>
@@ -783,7 +748,7 @@
         </div>
     </div>
 
-    <!-- PRODUCT MODAL (exact copy from index.html) -->
+    <!-- PRODUCT MODAL (updated with two thumbnails) -->
     <div class="product-modal" id="productModal">
         <div class="modal-content">
             <button class="close-modal" id="closeModal">
@@ -796,13 +761,10 @@
                     </div>
                     <div class="additional-images">
                         <div class="image-thumbnail active" data-image="main">
-                            <img id="thumbnail1" src="" alt="Thumbnail 1">
+                            <img id="thumbnail1" src="" alt="Main view">
                         </div>
                         <div class="image-thumbnail" data-image="additional1">
-                            <img id="thumbnail2" src="" alt="Thumbnail 2">
-                        </div>
-                        <div class="image-thumbnail" data-image="additional2">
-                            <img id="thumbnail3" src="" alt="Thumbnail 3">
+                            <img id="thumbnail2" src="" alt="Alternate view">
                         </div>
                     </div>
                 </div>
@@ -830,7 +792,7 @@
                     <div class="modal-price">
                         <div>
                             <span class="original-price" id="modalOriginalPrice"></span>
-                            <span class="price" id="modalPrice">R0.00</span>
+                            <span class="price" id="modalPrice">$0.00</span>
                             <div class="discount" id="modalDiscount"></div>
                         </div>
                         <span class="modal-availability" id="modalAvailability">Available Online</span>
@@ -852,80 +814,37 @@
     <!-- JavaScript -->
     <script type="module" src="main.js"></script>
     
-    <!-- Dynamic product grid, filtering, pagination, collapsible filter, currency switcher, and thumbnail fix -->
+    <!-- Dynamic product grid, filtering, pagination, and collapsible filter -->
     <script type="module">
         import { products } from './data.js';
 
         // ---------- Configuration ----------
         const ITEMS_PER_PAGE = 6;
 
-        // Additional images mapping (used for hover effect)
+        // Additional images mapping (used for hover effect and modal)
         const productAdditionalImages = {
-            1: { main: "img/shop/a1.jpg", additional1: "img/shop/2P-set.png", additional2: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?auto=format&fit=crop&w=800&q=80" },
-            2: { main: "img/shop/2P-set.png", additional1: "img/shop/2P-set1.png", additional2: "img/shop/2P-set2.png" },
-            3: { main: "img/shop/akara-pant-bnw.png", additional1: "img/shop/akara-pant-bnw1.png", additional2: "img/shop/akara-pant-bnw2.png" },
-            4: { main: "img/shop/dress-01.png", additional1: "img/shop/dress-02.png", additional2: "img/shop/dress-03.JPG" },
-            5: { main: "img/shop/kid-top-b.JPG", additional1: "img/shop/kid-top-b2.JPG", additional2: "img/shop/kid-top-b3.JPG" },
-            6: { main: "img/shop/bubu-g.png", additional1: "img/shop/bubu-g2.png", additional2: "img/shop/bubu-g3.png" },
-            7: { main: "img/shop/7.jpg", additional1: "img/shop/7-1.jpg", additional2: "img/shop/7-2.jpg" },
-            8: { main: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80", additional1: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80", additional2: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80" },
-            9: { main: "img/shop/dress-02.png", additional1: "img/shop/dress-03.JPG", additional2: "img/shop/dress-01.png" },
-            10: { main: "img/shop/men/tops/rainbow1.JPG", additional1: "img/shop/men/tops/rainbow.JPG", additional2: "img/shop/men/tops/rainbow2.JPG" },
-            11: { main: "img/shop/akara-pant-bnw1.png", additional1: "img/shop/akara-pant-bnw.png", additional2: "img/shop/akara-pant-bnw2.png" },
-            12: { main: "img/shop/a2.JPG", additional1: "img/shop/a1.JPG", additional2: "img/shop/a3.JPG" },
-            13: { main: "img/shop/men/tops/d-blue-top.JPG", additional1: "img/shop/men/tops/white-red-longsleeve.JPG", additional2: "img/shop/men/tops/rainbow.JPG" },
-            14: { main: "img/shop/a3.JPG", additional1: "img/shop/a2.JPG", additional2: "img/shop/a1.JPG" },
-            15: { main: "img/shop/wrap-dress-blue-01.png", additional1: "img/shop/dress-01.png", additional2: "img/shop/dress-02.png" },
-            16: { main: "img/shop/video/2P-set1.png", additional1: "img/shop/video/2P-set.png", additional2: "img/shop/video/2P-set2.png" },
-            17: { main: "img/shop/bubu-g2.png", additional1: "img/shop/bubu-g.png", additional2: "img/shop/bubu-g3.png" },
-            18: { main: "img/shop/men/tops/white-red-longsleeve.JPG", additional1: "img/shop/men/tops/rainbow.JPG", additional2: "img/shop/men/tops/d-blue-top.JPG" },
-            19: { main: "img/shop/kids/b-kid-short.JPG", additional1: "img/shop/kids/kids-akara-1.JPG", additional2: "img/shop/kids/kids-akara-2.JPG" },
-            21: { main: "img/shop/men/tops/rainbow2.JPG", additional1: "img/shop/men/tops/rainbow.JPG", additional2: "img/shop/men/tops/rainbow1.JPG" },
-            22: { main: "img/shop/kids/kids-akara-2.JPG", additional1: "img/shop/kids/kids-akara-1.JPG", additional2: "img/shop/kid-top-b.JPG" }
+            1: { main: "img/shop/a1.jpg", additional1: "img/shop/2P-set.png" },
+            2: { main: "img/shop/2P-set.png", additional1: "img/shop/2P-set1.png" },
+            3: { main: "img/shop/akara-pant-bnw.png", additional1: "img/shop/akara-pant-bnw1.png" },
+            4: { main: "img/shop/dress-01.png", additional1: "img/shop/dress-02.png" },
+            5: { main: "img/shop/kid-top-b.JPG", additional1: "img/shop/kid-top-b2.JPG" },
+            6: { main: "img/shop/bubu-g.png", additional1: "img/shop/bubu-g2.png" },
+            7: { main: "img/shop/7.jpg", additional1: "img/shop/7-1.jpg" },
+            8: { main: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80", additional1: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80" },
+            9: { main: "img/shop/dress-02.png", additional1: "img/shop/dress-03.JPG" },
+            10: { main: "img/shop/men/tops/rainbow1.JPG", additional1: "img/shop/men/tops/rainbow.JPG" },
+            11: { main: "img/shop/akara-pant-bnw1.png", additional1: "img/shop/akara-pant-bnw.png" },
+            12: { main: "img/shop/a2.JPG", additional1: "img/shop/a1.JPG" },
+            13: { main: "img/shop/men/tops/d-blue-top.JPG", additional1: "img/shop/men/tops/white-red-longsleeve.JPG" },
+            14: { main: "img/shop/a3.JPG", additional1: "img/shop/a2.JPG" },
+            15: { main: "img/shop/wrap-dress-blue-01.png", additional1: "img/shop/dress-01.png" },
+            16: { main: "img/shop/video/2P-set1.png", additional1: "img/shop/video/2P-set.png" },
+            17: { main: "img/shop/bubu-g2.png", additional1: "img/shop/bubu-g.png" },
+            18: { main: "img/shop/men/tops/white-red-longsleeve.JPG", additional1: "img/shop/men/tops/rainbow.JPG" },
+            19: { main: "img/shop/kids/b-kid-short.JPG", additional1: "img/shop/kids/kids-akara-1.JPG" },
+            21: { main: "img/shop/men/tops/rainbow2.JPG", additional1: "img/shop/men/tops/rainbow.JPG" },
+            22: { main: "img/shop/kids/kids-akara-2.JPG", additional1: "img/shop/kids/kids-akara-1.JPG" }
         };
-
-        // ---------- Currency Configuration ----------
-        const exchangeRates = {
-            ZAR: 1,
-            USD: 0.055,  // 1 ZAR = 0.055 USD (approx)
-            EUR: 0.051   // 1 ZAR = 0.051 EUR (approx)
-        };
-        
-        const currencySymbols = {
-            ZAR: 'R',
-            USD: '$',
-            EUR: '€'
-        };
-
-        let currentCurrency = localStorage.getItem('bebeysCurrency') || 'ZAR';
-
-        // Update currency selector
-        const currencySelect = document.getElementById('currencySelect');
-        if (currencySelect) {
-            currencySelect.value = currentCurrency;
-            currencySelect.addEventListener('change', (e) => {
-                currentCurrency = e.target.value;
-                localStorage.setItem('bebeysCurrency', currentCurrency);
-                // Re-render everything with new currency
-                renderGrid();
-                updateCartDisplay(); // from global scope? We'll define a function to update cart
-                // Also update modal if open
-                if (currentProduct) {
-                    updateModalPrices();
-                }
-            });
-        }
-
-        // Helper: convert price
-        function convertPrice(priceZAR) {
-            return priceZAR * exchangeRates[currentCurrency];
-        }
-
-        // Helper: format price with currency symbol
-        function formatPrice(priceZAR) {
-            const converted = convertPrice(priceZAR);
-            return `${currencySymbols[currentCurrency]}${converted.toFixed(2)}`;
-        }
 
         // ---------- State ----------
         let filteredProducts = [...products];
@@ -947,6 +866,21 @@
         const filterToggle = document.getElementById('filterToggle');
         const filterBody = document.getElementById('filterBody');
 
+        // Modal elements (for later use)
+        const modalImage = document.getElementById('modalImage');
+        const thumb1 = document.getElementById('thumbnail1');
+        const thumb2 = document.getElementById('thumbnail2');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalOriginalPrice = document.getElementById('modalOriginalPrice');
+        const modalDiscount = document.getElementById('modalDiscount');
+        const modalAvailability = document.getElementById('modalAvailability');
+        const modalSizes = document.getElementById('modalSizes');
+        const modalColors = document.getElementById('modalColors');
+        const modalAddToCart = document.getElementById('modalAddToCart');
+
         // Collapsible filter on mobile
         if (filterToggle && filterBody) {
             filterToggle.addEventListener('click', () => {
@@ -959,20 +893,20 @@
             });
         }
 
-        // Helper: generate product card HTML with hover image styling
+        // Helper: generate product card HTML with hover image styling (USD)
         function generateProductCard(product) {
             const hasDiscount = product.originalPrice !== null;
             const discountPercent = hasDiscount ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
             const availabilityAttr = product.availability || 'online';
             const tagsAttr = product.tags ? product.tags.join(',') : '';
             
-            // Get additional image for hover effect (use additional1 if available, otherwise fallback to main)
+            // Get additional image for hover effect
             const hoverImage = (productAdditionalImages[product.id]?.additional1) || product.image;
 
-            // Build price HTML with converted prices
-            let priceHtml = `<span class="price">${formatPrice(product.price)}</span>`;
+            // Build price HTML with USD
+            let priceHtml = `<span class="price">$${product.price.toFixed(2)}</span>`;
             if (hasDiscount) {
-                priceHtml = `<span class="original-price">${formatPrice(product.originalPrice)}</span> ${priceHtml} <div class="discount">Save ${discountPercent}%</div>`;
+                priceHtml = `<span class="original-price">$${product.originalPrice.toFixed(2)}</span> ${priceHtml} <div class="discount">Save ${discountPercent}%</div>`;
             }
             
             // Determine badge text
@@ -1029,7 +963,6 @@
             const pageProducts = filteredProducts.slice(start, end);
 
             if (pageProducts.length === 0 && filteredProducts.length > 0) {
-                // If current page is empty (e.g., after filter), go to last page
                 currentPage = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
                 renderGrid();
                 return;
@@ -1039,7 +972,7 @@
             pageProducts.forEach(p => html += generateProductCard(p));
             grid.innerHTML = html;
 
-            // Apply hover image backgrounds using CSS custom properties
+            // Apply hover image backgrounds
             document.querySelectorAll('.shop-card').forEach(card => {
                 const id = card.dataset.id;
                 const hoverImg = productAdditionalImages[id]?.additional1;
@@ -1051,7 +984,7 @@
             updatePaginationControls();
         }
 
-        // Filter logic
+        // Filter logic (USD)
         function applyFilters() {
             const category = filterCategory.value;
             const minPrice = parseFloat(filterPriceMin.value) || 0;
@@ -1059,11 +992,8 @@
             const availability = filterAvailability.value;
 
             filteredProducts = products.filter(p => {
-                // Category filter
                 if (category !== 'all' && p.category !== category) return false;
-                // Price filter (use base ZAR prices)
                 if (p.price < minPrice || p.price > maxPrice) return false;
-                // Availability filter
                 if (availability !== 'all') {
                     if (availability === 'online' && p.availability !== 'online' && p.availability !== 'both') return false;
                     if (availability === 'in-store' && p.availability !== 'in-store' && p.availability !== 'both') return false;
@@ -1075,7 +1005,6 @@
             currentPage = 1;
             renderGrid();
 
-            // Update quick filter buttons active state
             quickFilterBtns.forEach(btn => btn.classList.remove('active'));
             document.querySelector('.quick-filters .filter-btn[data-filter="all"]').classList.add('active');
         }
@@ -1093,9 +1022,7 @@
             document.querySelector('.quick-filters .filter-btn[data-filter="all"]').classList.add('active');
         }
 
-        // Quick filter handler
         function handleQuickFilter(filter) {
-            // Reset the detailed filters to match quick filter
             filterCategory.value = 'all';
             filterPriceMin.value = '';
             filterPriceMax.value = '';
@@ -1125,14 +1052,12 @@
             prevPageBtn.disabled = currentPage === 1;
             nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
 
-            // Build page numbers
             let pagesHtml = '';
             for (let i = 1; i <= totalPages; i++) {
                 pagesHtml += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
             }
             pageNumbersDiv.innerHTML = pagesHtml;
 
-            // Attach event listeners to page number buttons
             document.querySelectorAll('.pagination-numbers .pagination-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     currentPage = parseInt(btn.dataset.page);
@@ -1151,8 +1076,7 @@
             btn.addEventListener('click', (e) => {
                 quickFilterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                const filter = btn.dataset.filter;
-                handleQuickFilter(filter);
+                handleQuickFilter(btn.dataset.filter);
             });
         });
 
@@ -1171,114 +1095,154 @@
             }
         });
 
-        // Initialize
-        renderGrid();
+        // Open product modal (overriding the one from main.js to use two thumbnails)
+        window.openProductModal = function(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
 
-        // ---------- Cart and Modal Functions (integration with main.js) ----------
-        // We need to update cart display when currency changes.
-        // Since cart is managed in main.js, we'll expose a global function to refresh cart.
-        window.updateCartDisplayWithCurrency = function() {
-            if (typeof CartManager !== 'undefined') {
-                CartManager.updateDisplay();
+            const images = productAdditionalImages[productId] || { main: product.image, additional1: product.image };
+
+            // Set modal content
+            modalImage.src = images.main;
+            thumb1.src = images.main;
+            thumb2.src = images.additional1 || images.main;
+            modalTitle.textContent = product.name;
+            modalCategory.textContent = product.category;
+            modalDescription.textContent = product.description;
+
+            // Prices in USD
+            modalPrice.textContent = `$${product.price.toFixed(2)}`;
+            if (product.originalPrice) {
+                modalOriginalPrice.textContent = `$${product.originalPrice.toFixed(2)}`;
+                modalOriginalPrice.style.display = 'inline';
+                const discount = Math.round((1 - product.price / product.originalPrice) * 100);
+                modalDiscount.textContent = `Save ${discount}%`;
+                modalDiscount.style.display = 'block';
+            } else {
+                modalOriginalPrice.style.display = 'none';
+                modalDiscount.style.display = 'none';
             }
-        };
 
-        // Update modal prices when currency changes
-        window.updateModalPrices = function() {
-            if (currentProduct) {
-                const modalPrice = document.getElementById('modalPrice');
-                const modalOriginalPrice = document.getElementById('modalOriginalPrice');
-                const modalDiscount = document.getElementById('modalDiscount');
-                
-                if (modalPrice) {
-                    modalPrice.textContent = formatPrice(currentProduct.price);
-                }
-                if (modalOriginalPrice && currentProduct.originalPrice) {
-                    modalOriginalPrice.textContent = formatPrice(currentProduct.originalPrice);
-                    modalOriginalPrice.style.display = 'inline';
-                } else if (modalOriginalPrice) {
-                    modalOriginalPrice.style.display = 'none';
-                }
-                if (modalDiscount && currentProduct.originalPrice) {
-                    const discountPercent = Math.round((1 - currentProduct.price / currentProduct.originalPrice) * 100);
-                    modalDiscount.textContent = `Save ${discountPercent}%`;
-                    modalDiscount.style.display = 'block';
-                } else if (modalDiscount) {
-                    modalDiscount.style.display = 'none';
-                }
+            // Availability
+            if (product.availability === 'in-store') {
+                modalAvailability.textContent = 'In-Store Only';
+            } else if (product.availability === 'online') {
+                modalAvailability.textContent = 'Available Online';
+            } else {
+                modalAvailability.textContent = 'Available Both';
             }
-        };
 
-        // Listen for currency changes from the dropdown (already handled)
-        // Also override main.js's formatPrice if needed? We'll keep separate.
-
-        // ---------- Fix for thumbnail clicks (event delegation) ----------
-        document.addEventListener('click', function(e) {
-            const thumbnail = e.target.closest('.product-modal .image-thumbnail');
-            if (!thumbnail) return;
-            
-            const imageType = thumbnail.getAttribute('data-image');
-            if (!currentProduct) return;
-            
-            const productId = currentProduct.id;
-            const images = productAdditionalImages[productId];
-            
-            if (images) {
-                const modalImage = document.getElementById('modalImage');
-                if (imageType === 'main') {
-                    modalImage.src = images.main;
-                } else if (imageType === 'additional1') {
-                    modalImage.src = images.additional1;
-                } else if (imageType === 'additional2') {
-                    modalImage.src = images.additional2;
-                }
-                
-                // Update active thumbnail
-                document.querySelectorAll('.product-modal .image-thumbnail').forEach(t => {
-                    t.classList.remove('active');
+            // Sizes
+            modalSizes.innerHTML = '';
+            product.sizes.forEach(size => {
+                const span = document.createElement('span');
+                span.className = 'size';
+                span.textContent = size;
+                span.addEventListener('click', () => {
+                    document.querySelectorAll('.modal-details .size').forEach(s => s.classList.remove('active'));
+                    span.classList.add('active');
                 });
-                thumbnail.classList.add('active');
-            }
-        });
+                modalSizes.appendChild(span);
+            });
+            if (modalSizes.firstChild) modalSizes.firstChild.classList.add('active');
 
-        // Also need to update modal when product changes (openProductModal in main.js will call our updateModalPrices)
-        // We'll patch openProductModal if possible, but since main.js is separate, we'll rely on the fact that
-        // openProductModal sets currentProduct and then we can call updateModalPrices from currency change.
-        // We'll also override the modal's add to cart to use converted prices? No, cart stores base ZAR.
+            // Colors
+            modalColors.innerHTML = '';
+            product.colors.forEach(color => {
+                const span = document.createElement('span');
+                span.className = 'color';
+                span.style.backgroundColor = getColorValue(color);
+                span.title = color;
+                span.addEventListener('click', () => {
+                    document.querySelectorAll('.modal-details .color').forEach(c => c.classList.remove('active'));
+                    span.classList.add('active');
+                });
+                modalColors.appendChild(span);
+            });
+            if (modalColors.firstChild) modalColors.firstChild.classList.add('active');
 
-        // Expose currentProduct globally for our functions
-        window.currentProduct = null;
-        // main.js sets currentProduct; we'll mirror it.
-        // We'll use a MutationObserver or just rely on the fact that main.js updates the modal content.
-        // Instead, we can patch main.js's openProductModal to call our updateModalPrices after setting content.
-        // But since we can't modify main.js easily, we'll add a listener for modal opening.
-        const modalElement = document.getElementById('productModal');
-        if (modalElement) {
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (mutation.attributeName === 'class' && modalElement.classList.contains('active')) {
-                        // Modal just opened, currentProduct should be set by main.js
-                        setTimeout(() => {
-                            if (window.currentProduct) {
-                                window.updateModalPrices();
-                            }
-                        }, 100);
+            // Thumbnail click handlers
+            document.querySelectorAll('.image-thumbnail').forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    const type = this.dataset.image;
+                    if (type === 'main') {
+                        modalImage.src = images.main;
+                    } else {
+                        modalImage.src = images.additional1 || images.main;
                     }
+                    document.querySelectorAll('.image-thumbnail').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
                 });
             });
-            observer.observe(modalElement, { attributes: true });
+
+            // Show modal
+            document.getElementById('productModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        // Helper for color values (same as main.js)
+        function getColorValue(colorName) {
+            const colorMap = {
+                'Blue/Black': '#1e3a8a',
+                'Red/Gold': '#b91c1c',
+                'Green/Brown': '#065f46',
+                'Gold': '#d4af37',
+                'Ivory': '#fffff0',
+                'Bronze': '#cd7f32',
+                'Multi-color': 'linear-gradient(45deg, #ff0000, #00ff00, #0000ff)',
+                'Blue/White': '#1e40af',
+                'Red/Black': '#7f1d1d',
+                'Gold/Green': '#d4af37',
+                'Natural': '#f5deb3',
+                'Indigo': '#4b0082',
+                'Brown': '#8b4513',
+                'Multicolor': 'linear-gradient(45deg, #ff0000, #00ff00, #0000ff)',
+                'Gold/Red': '#ffd700',
+                'Blue/Green': '#1e40af',
+                'Custom': '#6b7280',
+                'Blue/Gold': '#1e40af',
+                'Green/White': '#065f46',
+                'Navy/Gold': '#1e3a8a',
+                'Emerald/Silver': '#065f46',
+                'Burgundy': '#800020',
+                'Yellow/Black': '#fbbf24',
+                'Pink/Orange': '#fb7185',
+                'Green/Gold': '#065f46',
+                'Purple/White': '#7e22ce',
+                'Emerald': '#065f46',
+                'Royal Blue': '#1e40af',
+                'Deep Red': '#7f1d1d',
+                'Pink/White': '#f472b6',
+                'Blue/Grey': '#4b5563',
+                'Green/Beige': '#065f46',
+                'Purple/Orange': '#7e22ce',
+                'White': '#ffffff',
+                'Light Blue': '#93c5fd',
+                'Black': '#000000',
+                'Navy': '#1e3a8a',
+                'Olive': '#3f6212',
+                'Red': '#dc2626'
+            };
+            return colorMap[colorName] || '#cccccc';
         }
 
-        // Also listen for currency change to update modal if open
-        currencySelect.addEventListener('change', () => {
-            if (modalElement.classList.contains('active') && window.currentProduct) {
-                window.updateModalPrices();
+        // Override the default view-details click handler
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.view-details')) {
+                const btn = e.target.closest('.view-details');
+                const id = parseInt(btn.dataset.id);
+                openProductModal(id);
             }
-            // Also update cart totals if cart is open
-            if (typeof CartManager !== 'undefined') {
-                CartManager.updateDisplay();
+            if (e.target.closest('.product-image-link') || e.target.closest('.product-title-link')) {
+                e.preventDefault();
+                const link = e.target.closest('a');
+                const id = parseInt(link.dataset.id);
+                openProductModal(id);
             }
         });
+
+        // Initialize
+        renderGrid();
     </script>
     
     <!-- Additional CSS for hover effect using custom properties -->

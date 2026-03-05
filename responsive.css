@@ -1116,11 +1116,11 @@ body.menu-open {
     /* PRODUCT MODAL - LANDSCAPE */
     .modal-grid {
         grid-template-columns: 1fr 1fr;
-        height: 90vh;
+        height: 50vh;
     }
     
     .modal-image-section {
-        height: 90vh;
+        height: 450vh;
     }
     
     .main-image-container {
