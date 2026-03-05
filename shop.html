@@ -17,6 +17,7 @@
     <style>
         /* Additional styles for filter bar, pagination, spacing, and enhanced hover animation */
         .shop-page {
+            margin-top: 20px;
             padding-top: 100px; /* Clear fixed header */
         }
         
@@ -319,9 +320,11 @@
         @media (max-width: 768px) {
             .product-modal .modal-content {
                 max-height: 90vh;
-                overflow: auto;
+                overflow-y: auto;
                 display: flex;
                 flex-direction: column;
+                margin: 1rem;
+                border-radius: var(--radius-lg);
             }
 
             .product-modal .modal-availability {
@@ -542,14 +545,9 @@
                 <p class="section-subtitle">Discover our full collection of handcrafted African luxury</p>
             </div>
 
-            <!-- Enhanced Filter Bar (collapsible on mobile) -->
+            
             <div class="filter-section">
-                <div class="filter-header">
-                    <h3><i class="fas fa-sliders-h"></i> Filter Products</h3>
-                    <button class="filter-toggle" id="filterToggle">
-                        <i class="fas fa-chevron-down"></i> Show Filters
-                    </button>
-                </div>
+                
                 <div class="filter-body" id="filterBody">
                     <div class="filter-row">
                         <div class="filter-group">
