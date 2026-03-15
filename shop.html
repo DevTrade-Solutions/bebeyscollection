@@ -318,90 +318,94 @@
 
         /* FIXED: Mobile modal styles - properly scoped to modal only */
         @media (max-width: 768px) {
-            .product-modal .modal-content {
-                max-height: 90vh;
-                overflow-y: auto;
-                display: flex;
-                flex-direction: column;
-                margin: 1rem;
-                border-radius: var(--radius-lg);
-            }
+    
+    .product-modal .modal-content {
+        max-height: 90vh;
+        overflow: auto;                /* Enable vertical scroll */
+        display: flex;
+        flex-direction: column;
+    }
 
-            .product-modal .modal-availability {
-                display: none;
-            }
-            
-            .product-modal .main-image {
-                object-fit: contain !important;
-                width: 100%;
-                height: auto;
-                max-height: 40vh;
-            }
+    
+    .modal-availability{
+        display: none;
+    }
+    
+    
+    /* 1. Main image with contain + left alignment */
+    .main-image {
+        object-fit: contain !important;
+        width: 100%;
+        height: auto;
+        max-height: 40vh;                  /* Limit image height */
+    }
 
-            .product-modal .modal-grid {
-                flex: 1;
-                overflow-y: auto;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-                align-items: start;
-            }
+    /* 2. Reposition thumbnails to the right column */
+    .modal-grid {
+        flex: 1;                         /* Expand to fill available space */
+        overflow-y: auto;                 /* Scroll if content overflows */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        align-items: start;
+    }
 
-            .product-modal .modal-image-section {
-                grid-column: 1 / 2;
-                height: 100%;
-                width: 180px;
-            }
+    /* Keep main image in left column, without its own thumbnails */
+    .modal-image-section {
+        grid-column: 1 / 2;
+        height: 100%;
+        width: 180px;
+    }
 
-            .product-modal .additional-images {
-                position: static;
-                grid-column: 2 / 3;
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
-                opacity: 1 !important;
-                filter: none !important;
-                backdrop-filter: none;
-                background: transparent;
-                padding: 0;
-                transform: none;
-                width: 100%;
-                align-items: center;
-                z-index: 10; /* Ensure thumbnails are above other elements */
-                pointer-events: auto; /* Make sure they are clickable */
-            }
+    /* Move the thumbnail container into the right column */
+    .additional-images {
+        position: static; /* remove absolute positioning */
+        grid-column: 2 / 3;
+        display: flex;
+        flex-direction: column; /* stack thumbnails vertically */
+        gap: 0.5rem;
+        opacity: 1 !important;
+        filter: none !important;
+        backdrop-filter: none;
+        background: transparent; /* remove blur overlay */
+        padding: 0;
+        transform: none;
+        width: 100%;
+        align-items: center; /* push thumbnails to the right end */
+    }
 
-            .product-modal .image-thumbnail {
-                width: 90px;
-                height: 90px;
-                border-radius: 15px;
-                border: 2px solid rgba(255,255,255,0.3);
-                transition: all 0.2s ease;
-                cursor: pointer; /* Indicate clickability */
-                position: relative;
-                z-index: 20;
-            }
+    /* Thumbnail images – 15px border radius */
+    .image-thumbnail {
+        width: 90px;
+        height: 90px;       /* fill the column width */
+        height: auto;
+        border-radius: 15px;
+        border: 2px solid rgba(255,255,255,0.3);
+        transition: all 0.2s ease;
+    }
 
-            .product-modal .modal-details {
-                grid-column: 2 / 3;
-                width: 100%;
-                padding: 9px;
-                margin-top: 1rem;
-                max-height: none;
-                overflow: visible;
-            }
+    /* Optional: keep the details in right column, below thumbnails */
+    .modal-details {
+        grid-column: 2 / 3;
+        width: 100%;
+        padding: 9px;
+        margin-top: 1rem;
+        max-height: none;
+        overflow: visible;
+        
+    }
 
-            .product-modal .modal-actions {
-                padding: 5px;
-                display: flex;
-                flex-direction: row;
-                width: 90%;
-            }
+    .modal-actions{
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+    }
 
-            .product-modal .modal-actions button {
-                height: auto;
-            }
-        }
+    .modal-actions button{
+        height: auto;
+    }
+}
 
         /* Ensure product grid images display properly on mobile */
         @media (max-width: 768px) {
